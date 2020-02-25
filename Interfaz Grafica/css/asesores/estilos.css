@@ -1,0 +1,243 @@
+header .menu {
+  background: #23374d;
+  color: #fff;
+  display: flex;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  height: 60px;
+}
+header .menu .logo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 20%;
+  padding: 10px;
+}
+header .menu .logo h2 {
+  margin: 0 20px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+header .menu .logo h2 i {
+  font-size: 1.5em;
+}
+header .menu nav {
+  text-transform: uppercase;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+}
+header .menu nav a {
+  font-size: 0.8em;
+  margin: 0 20px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+header .menu nav a:hover {
+  color: #f3a953;
+}
+
+main .opciones {
+  width: 70%;
+  text-align: center;
+  margin-top: 30px;
+}
+main .opciones a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 700;
+  transition: 0.3s all ease;
+  margin: 0px 20px;
+}
+main .opciones a:hover {
+  text-decoration: underline;
+  color: #f3a953;
+}
+main .asesores {
+  float: left;
+  width: 70%;
+}
+main .asesores .filtrado {
+  text-align: center;
+}
+main .asesores .filtrado .titulo {
+  margin: 0;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  color: #23374d;
+}
+main .asesores .filtrado a {
+  text-decoration: none;
+  color: #1089ff;
+  font-size: 1.2em;
+  font-weight: 300;
+  margin: 0 20px;
+}
+main .asesores .filtrado a:hover {
+  text-decoration: underline;
+}
+main .asesores .filtrado .separador {
+  pointer-events: none;
+  cursor: default;
+}
+main .asesores .grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+main .asesores .grid .titulo {
+  width: 100%;
+  margin-left: 15%;
+}
+main .asesores .grid .titulo h3 {
+  font-size: 2em;
+}
+main .asesores .grid .asesor {
+  background: #fff;
+  width: 30%;
+  position: relative;
+  padding: 30px;
+  border-radius: 5px;
+  margin: 0 50px;
+  margin-bottom: 50px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+main .asesores .grid .asesor p {
+  margin: 0;
+}
+main .asesores .grid .asesor .foto {
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 5px;
+  height: 250px;
+}
+main .asesores .grid .asesor .foto img {
+  width: 100%;
+}
+main .asesores .grid .asesor .nombre {
+  margin-top: 10px;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #1089ff;
+  margin-bottom: 10px;
+}
+main .asesores .grid .asesor .ocupacion {
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #f3a953;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+main .asesores .grid .asesor .descripcion {
+  font-size: 0.875em;
+  line-height: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
+}
+main .asesores .grid .asesor a {
+  background: #1089ff;
+  text-decoration: none;
+  padding: 10px 30px;
+  float: right;
+  color: #fff;
+  font-weight: 300;
+  border-radius: 5px;
+  transition: 0.3s all ease;
+}
+main .asesores .grid .asesor a:hover {
+  background: #23374d;
+}
+main .recursos {
+  margin-top: 50px;
+  float: left;
+  width: 30%;
+  color: #333;
+}
+main .recursos .materiales h3 {
+  font-size: 2em;
+  margin: 0;
+  margin-right: 100px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  font-weight: 400;
+}
+main .recursos .materiales .material .titulo {
+  font-size: 1em;
+}
+main .recursos .materiales .material .imagen {
+  width: 50%;
+  height: 300px;
+  overflow: hidden;
+}
+main .recursos .materiales .material .imagen img {
+  width: 100%;
+}
+main .recursos .materiales .material a {
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  font-weight: 900;
+  color: #f3a953;
+}
+main .recursos .materiales .material a:hover {
+  text-decoration: underline;
+}
+main .recursos .movimientos {
+  margin-bottom: 50px;
+}
+main .recursos .movimientos h3 {
+  font-size: 2em;
+  margin: 0;
+  margin-right: 100px;
+  padding-bottom: 10px;
+  margin-top: 40px;
+  border-bottom: 1px solid #ccc;
+  font-weight: 400;
+}
+main .recursos .movimientos a {
+  display: block;
+  text-decoration: none;
+  color: #1089ff;
+  margin: 20px 0;
+}
+main .recursos .movimientos a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  clear: both;
+  background: #2d3436;
+}
+footer .info {
+  padding: 30px 0;
+  text-align: center;
+}
+footer .info a {
+  text-decoration: none;
+  color: #fff;
+  margin: 0 20px;
+}
+footer .info a:hover {
+  text-decoration: underline;
+}
+footer .info .separador {
+  pointer-events: none;
+  cursor: default;
+}
+
+body {
+  background: #eeeeee;
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+}
+
+/*# sourceMappingURL=estilos.css.map */

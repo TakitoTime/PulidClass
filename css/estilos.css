@@ -1,0 +1,295 @@
+header .menu {
+  background: #23374d;
+  color: #fff;
+  display: flex;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  height: 60px;
+}
+header .menu .logo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 20%;
+  padding: 10px;
+}
+header .menu .logo a {
+  color: white;
+  text-decoration: none;
+}
+header .menu .logo a h2 {
+  margin: 0 20px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+header .menu .logo a h2 i {
+  font-size: 1.5em;
+}
+header .menu nav {
+  text-transform: uppercase;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+}
+header .menu nav a {
+  font-size: 0.8em;
+  margin: 0 20px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+header .menu nav a:hover {
+  color: #f3a953;
+}
+header .menu nav #cerrar_sesion {
+  display: none;
+}
+header .banner {
+  width: 100%;
+  height: 600px;
+  background-image: url("../img/neonbrand-y_6rqStQBYQ-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 10% center;
+}
+header .banner .titulo {
+  margin-left: 10%;
+  padding-top: 10%;
+}
+header .banner .titulo h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 6em;
+}
+header .banner .titulo h2 {
+  margin: 0;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 4em;
+  font-weight: 300;
+}
+
+main {
+  background: #eeeeee;
+}
+main .descripcion {
+  background: #1089ff;
+}
+main .descripcion .contenido {
+  width: 800px;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+  padding-top: 30px;
+}
+main .descripcion .contenido h2 {
+  margin: 0;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 30px;
+  font-size: 2em;
+}
+main .descripcion .contenido p {
+  margin: 0;
+  padding: 30px 0;
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+main .testimonios {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+main .testimonios .titulo {
+  text-align: center;
+  font-weight: 300;
+  font-size: 32px;
+  color: #064acb;
+  margin-bottom: 40px;
+}
+main .testimonios .testimonio {
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+main .testimonios .testimonio .foto {
+  width: 20%;
+  float: left;
+  text-align: right;
+}
+main .testimonios .testimonio .foto img {
+  max-width: 100px;
+  width: 100%;
+  vertical-align: top;
+  border-radius: 100%;
+}
+main .testimonios .testimonio .opinion {
+  float: left;
+  width: 70%;
+  padding: 0 30px;
+  margin-top: 20px;
+}
+main .testimonios .testimonio .opinion .texto {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 10px;
+}
+main .testimonios .testimonio .opinion .nombre {
+  color: #f3a953;
+  font-size: 14px;
+  font-weight: 700;
+}
+main .testimonios .testimonio.derecha .foto {
+  float: right;
+  text-align: left;
+}
+main .testimonios .testimonio.derecha .opinion {
+  float: right;
+  text-align: right;
+}
+main .noticias {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+main .noticias .titulo {
+  width: 100%;
+  text-align: center;
+  font-weight: 300;
+  font-size: 32px;
+  color: #064acb;
+  margin-bottom: 20px;
+}
+main .noticias .noticia {
+  width: 350px;
+  height: 550px;
+  background: #fff;
+  margin: 0 50px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+}
+main .noticias .noticia .foto {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+main .noticias .noticia .foto img {
+  width: 100%;
+}
+main .noticias .noticia .info {
+  padding: 30px;
+}
+main .noticias .noticia .info .titulo-new {
+  margin: 0;
+  color: #2d3436;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+main .noticias .noticia .info .subtitulo {
+  margin: 0;
+  color: #f3a953;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+main .noticias .noticia .info .descripcion-new {
+  color: #2d3436;
+  font-size: 0.875em;
+  line-height: 1.8em;
+}
+main .social {
+  margin-top: 70px;
+  width: 100%;
+  background: #23374d;
+}
+main .social .titulo {
+  width: 100%;
+  text-align: center;
+  font-size: 32px;
+  color: #fff;
+  margin-bottom: 50px;
+  padding-top: 50px;
+}
+main .social .titulo h3 {
+  margin: 0;
+}
+main .social .redes {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 50px;
+}
+main .social .redes a {
+  display: block;
+  width: 150px;
+  text-align: center;
+  padding: 15px 0;
+  color: #fff;
+  text-decoration: none;
+  font-size: 3em;
+  margin: 0 20px;
+  transition: all 0.3s ease-out;
+  border-radius: 5px;
+}
+main .social .redes .facebook:hover {
+  background: #3b5998;
+}
+main .social .redes .twitter:hover {
+  background: #1da1f2;
+}
+main .social .redes .instagram:hover {
+  background: #c13584;
+}
+main .social .redes .youtube:hover {
+  background: #ff0000;
+}
+
+footer {
+  background: #2d3436;
+}
+footer .info {
+  padding: 30px 0;
+  text-align: center;
+}
+footer .info a {
+  text-decoration: none;
+  color: #fff;
+  margin: 0 20px;
+}
+footer .info a:hover {
+  text-decoration: underline;
+}
+footer .info .separador {
+  pointer-events: none;
+  cursor: default;
+}
+
+body {
+  background: #eeeeee;
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+}
+
+.informacion{
+  max-width: 1000px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px 100px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px;
+  text-align: justify;
+}
+.informacion #politicas{
+  font-size: 40px;
+}
+
+
+/*# sourceMappingURL=estilos.css.map */

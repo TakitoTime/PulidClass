@@ -1,0 +1,250 @@
+header .menu {
+  background: #23374d;
+  color: #fff;
+  display: flex;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  height: 60px;
+}
+header .menu .logo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 20%;
+  padding: 10px;
+}
+header .menu .logo a {
+  color: white;
+  text-decoration: none;
+}
+header .menu .logo a h2 {
+  margin: 0 20px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+header .menu .logo a h2 i {
+  font-size: 1.5em;
+}
+header .menu nav {
+  text-transform: uppercase;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+}
+header .menu nav a {
+  font-size: 0.8em;
+  margin: 0 20px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+header .menu nav a:hover {
+  color: #f3a953;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+main .emergente h2 {
+  font-size: 90px;
+}
+main .asesor {
+  margin-top: 100px;
+  overflow: hidden;
+}
+main .asesor input[type='submit'] {
+  text-decoration: none;
+    color: #fff;
+    font-size: 11px;
+    background: #1089ff;
+    padding: 10px 20px;
+    font-weight: 300;
+    border-radius: 5px;
+}
+
+main .asesor .datos {
+  width: 60%;
+  color: #333;
+  float: left;
+}
+main .asesor .datos > div {
+  margin-bottom: 15px;
+}
+main .asesor .datos > div > * {
+  display: inline-block;
+  font-size: 20px;
+}
+main .asesor .datos > div p {
+  margin: 20px 10px;
+  width: 30%;
+  text-align: left;
+}
+main .asesor .datos > div input {
+  padding: 10px;
+  width: 55%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+main .asesor .datos #descripcion {
+  padding: 10px;
+  width: 55%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 17px;
+}
+main .asesor .datos .materias {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+main .asesor .datos .materias p {
+  display: block;
+  width: 100%;
+}
+main .asesor .datos .materias input {
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  width: 20%;
+  background: #1089ff;
+  padding: 10px 20px;
+  margin: 0 10px;
+  text-align: center;
+  font-weight: 300;
+  border-radius: 5px;
+}
+main .asesor .datos .materias a:hover {
+  background: #23374d;
+  transition: all 0.3s ease;
+}
+main .asesor .contacto {
+  width: 40%;
+  float: right;
+  margin-bottom: 100px;
+}
+main .asesor .contacto > div > * {
+  font-size: 20px;
+}
+main .asesor .contacto > div input {
+  padding: 10px;
+  width: 55%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+main .asesor .contacto > div input {
+  padding: 10px;
+  width: 55%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+main .asesor .contacto .foto img {
+  border-radius: 5px;
+  width: 60%;
+}
+main .asesor .generar {
+  text-align: center;
+  clear: both;
+  margin-bottom: 100px;
+}
+main .asesor .generar a {
+  text-decoration: none;
+  color: #fff;
+  display: inline-block;
+  background: #27ae60;
+  width: 30%;
+  font-size: 32px;
+  font-weight: 400;
+  padding: 10px 30px;
+  border-radius: 5px;
+}
+main .asesor .generar a:hover {
+  background: #2ecc71;
+  transition: all 0.3s ease;
+}
+
+footer {
+  clear: both;
+  background: #2d3436;
+}
+footer .info {
+  padding: 30px 0;
+  text-align: center;
+}
+footer .info a {
+  text-decoration: none;
+  color: #fff;
+  margin: 0 20px;
+}
+footer .info a:hover {
+  text-decoration: underline;
+}
+footer .info .separador {
+  pointer-events: none;
+  cursor: default;
+}
+
+body {
+  background: #eeeeee;
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+}
+
+#ex1{
+  background:#f2f2f2;
+}
+
+#ex1 h2{
+  text-align: center;
+}
+
+#ex1 input{
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+#ex1 input[type="submit"]{
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 30px;
+  background: #f3a953;
+  color: #fff;
+  border: none;
+}
+
+#ex1 #ticket{
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background: #f3a953;
+  color: #fff;
+  border: none;
+  text-decoration: none;
+  text-align: center;
+}
+#ex1 #ticket:hover{
+  transition: 300ms;
+  background: #333;
+}
+.cita{
+  padding-left: 58px;
+}
+
+/*# sourceMappingURL=estilos.css.map */

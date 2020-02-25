@@ -1,0 +1,379 @@
+header .menu {
+  background: #23374d;
+  color: #fff;
+  display: flex;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  height: 60px;
+}
+header .menu .logo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 20%;
+  padding: 10px;
+}
+header .menu .logo a {
+  color: white;
+  text-decoration: none;
+}
+header .menu .logo a h2 {
+  margin: 0 20px;
+  font-family: "Titillium Web", sans-serif;
+  font-size: 1.2em;
+  font-weight: 300;
+}
+header .menu .logo a h2 i {
+  font-size: 1.5em;
+}
+header .menu nav {
+  text-transform: uppercase;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+}
+header .menu nav a {
+  font-size: 0.8em;
+  margin: 0 20px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+header .menu nav a:hover {
+  color: #f3a953;
+}
+header .menu nav #iniciar_sesion {
+  display: none;
+}
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+main .perfil {
+  margin-top: 80px;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+main .perfil .foto {
+  padding: 0 10px;
+  width: 30%;
+  margin-left: 25px;
+  margin-right: 25px;
+  text-align: center;
+}
+main .perfil .foto #foto_usuario {
+  width: 300px;
+  height: 300px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+main .perfil .foto img {
+  width: 300px;
+  height: 300px;
+  border-radius: 5px;
+}
+main .perfil .foto a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 11px;
+  background: #1089ff;
+  padding: 10px 20px;
+  font-weight: 300;
+  border-radius: 5px;
+}
+main .perfil .foto a:hover{
+  background: #23374d;
+  transition: all 0.3s ease;
+}
+
+main .perfil .info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 63%;
+  padding: 50px 0;
+}
+main .perfil .info input {
+  padding: 10px;
+  width: 55%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+  margin: 10px;
+}
+main .perfil .info .perfil-footer input {
+  float: right;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  background: #1089ff;
+  padding: 10px 20px;
+  font-weight: 300;
+  border-radius: 5px;
+}
+main .perfil .info .perfil-footer input:hover {
+  background: #23374d;
+  transition: all 0.3s ease;
+}
+main .perfil .info .perfil-footer #guardar_usuario {
+  display: none;
+}
+main .perfil .info .perfil-footer #modificar_usuario {
+  display: block;
+}
+main .perfil .info #foto {
+  width: 87%;
+}
+main .perfil .info #nombre {
+  width: 60%;
+}
+main .perfil .info #edad {
+  width: 20%;
+}
+main .perfil .info #paterno, main .perfil .info #materno{
+  width: 40%;
+}
+main .perfil .info #correo{
+  width: 50%;
+}
+main .perfil .info #telefono{
+  width: 30%;
+}
+main .perfil .perfil-footer {
+  width: 93%;
+  margin: 20px 0;
+}
+main .perfil .perfil-footer p {
+  float: left;
+  margin: 0;
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+main .direccion {
+  display: flex;
+  width: 100%;
+}
+main .direccion .botones {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 30%;
+  text-align: center;
+  align-items: center;
+}
+main .direccion .botones a {
+  width: 70%;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  background: #f3a953;
+}
+main .direccion .botones a:hover {
+  background: #ffbe76;
+  transition: all 0.3s ease;
+}
+main .direccion .direcciones {
+  width: 70%;
+}
+main .direccion .direcciones,
+main .direccion .direcciones,
+main .direccion .direcciones{
+  padding-left: 30px;
+  margin-bottom: 20px;
+}
+main .direccion .direcciones .titulo {
+  color: #fff;
+  background: #23374d;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 0;
+  padding: 10px 20px;
+}
+main .direccion .direcciones .datos,
+main .direccion .direcciones .datos,
+main .direccion .direcciones .datos {
+  background: #fff;
+  padding: 10px 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+main .direccion .direcciones .datos .pais,main .direccion .direcciones .datos .pais,main .direccion .direcciones .datos .pais,
+main .direccion .direcciones .datos .estado,main .direccion .direcciones .datos .estado,main .direccion .direcciones .datos .estado{
+  width: 40%;
+}
+
+main .direccion .direcciones .datos .numero,main .direccion .direcciones .datos .numero,main .direccion .direcciones .datos .numero,
+main .direccion .direcciones .datos .codigo_postal,main .direccion .direcciones .datos .codigo_postal,main .direccion .direcciones .datos .codigo_postal{
+  width: 30%;
+}
+
+main .direccion .direcciones .datos .descripcion,main .direccion .direcciones .datos .descripcion,main .direccion .direcciones .datos .descripcion{
+  width: 90%;
+}
+
+
+main .direccion .direcciones .datos .ciudad,main .direccion .direcciones .datos .ciudad,main .direccion .direcciones .datos .ciudad,
+main .direccion .direcciones .datos .colonia,main .direccion .direcciones .datos .colonia,main .direccion .direcciones .datos .colonia,
+main .direccion .direcciones .datos .calle,main .direccion .direcciones .datos .calle,main .direccion .direcciones .datos .calle{
+  width: 90%;
+}
+
+main .direccion .direcciones .datos input,main .direccion .direcciones .datos input,main .direccion .direcciones .datos input {
+  padding: 10px;
+  width: 55%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+  margin: 10px;
+}
+main .direccion .direcciones .datos input[type="submit"],main .direccion .direcciones .datos input[type="submit"],main .direccion .direcciones .datos input[type="submit"]
+{
+  width: 25%;
+  border: none;
+  color: #fff;
+  background: #1089ff;
+}
+main .direccion .direcciones .datos input[type="submit"]:disabled,main .direccion .direcciones .datos input[type="submit"]:disabled,main .direccion .direcciones .datos input[type="submit"]:disabled
+{
+  background: #23374d;
+}
+main .direccion .direcciones .datos input[type="button"],main .direccion .direcciones .datos input[type="button"],main .direccion .direcciones .datos input[type="button"]
+{
+  width: 25%;
+  border: none;
+  color: #fff;
+  background: #1089ff;
+}
+main .direccion .direcciones .datos #pais, main .direccion .direcciones .datos #estado,main .direccion .direcciones .datos #pais, main .direccion .direcciones .datos #estado,main .direccion .direcciones .datos #pais, main .direccion .direcciones .datos #estado {
+  width: 40%;
+}
+main .direccion .direcciones .datos #ciudad, main .direccion .direcciones .datos #colonia, main .direccion .direcciones .datos #calle,
+main .direccion .direcciones .datos #ciudad, main .direccion .direcciones .datos #colonia, main .direccion .direcciones .datos #calle,
+main .direccion .direcciones .datos #ciudad, main .direccion .direcciones .datos #colonia, main .direccion .direcciones .datos #calle {
+  width: 85%;
+}
+main .direccion .direcciones .datos #num, main .direccion .direcciones .datos #postal,
+main .direccion .direcciones .datos #num, main .direccion .direcciones .datos #postal, 
+main .direccion .direcciones .datos #num, main .direccion .direcciones .datos #postal {
+  width: 25%;
+}
+main .direccion .direcciones .datos a, 
+main .direccion .direcciones .datos a, 
+main .direccion .direcciones .datos a {
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  background: #f3a953;
+  color: #fff;
+  padding: 10px 20px;
+  margin-left: 20px;
+}
+main .direccion .direcciones .datos a:hover,
+main .direccion .direcciones .datos a:hover,
+main .direccion .direcciones .datos a:hover {
+  background: #ffbe76;
+  transition: all 0.3s ease;
+}
+main .direccion .direcciones, main .direccion .direcciones {
+  padding-left: 30px;
+  margin-bottom: 20px;
+}
+main .direccion .direcciones .titulo, main .direccion .direcciones .titulo {
+  color: #fff;
+  background: #23374d;
+  border-radius: 5px;
+  margin: 0;
+  margin-top: 5px;
+  padding: 10px 20px;
+}
+
+main .botones input{
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background: #ffbe76;
+  color: #fff;
+  font-size: 20px;
+}
+
+/*
+	Color fondo: #632432;
+	Color header: 246355;
+	Color borde: 0F362D;
+	Color iluminado: 369681;
+*/
+
+table{
+	background-color: white;
+	text-align: left;
+	border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 25px;;
+}
+
+th, td{
+	padding: 20px;
+}
+
+thead{
+	background-color: #246355;
+	border-bottom: solid 5px #0F362D;
+	color: white;
+}
+
+#header{
+  background: #23374d;
+  color: white;
+}
+
+tr:nth-child(even){
+	background-color: #ddd;
+}
+
+tr:hover td{
+	background-color: #1089ff;
+	color: white;
+}
+
+footer {
+  clear: both;
+  background: #2d3436;
+}
+footer .info {
+  padding: 30px 0;
+  text-align: center;
+}
+footer .info a {
+  text-decoration: none;
+  color: #fff;
+  margin: 0 20px;
+}
+footer .info a:hover {
+  text-decoration: underline;
+}
+footer .info .separador {
+  pointer-events: none;
+  cursor: default;
+}
+
+body {
+  background: #eeeeee;
+  font-size: 16px;
+  font-family: "Lato", sans-serif;
+}
+
+/*# sourceMappingURL=estilos.css.map */
