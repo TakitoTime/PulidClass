@@ -37,9 +37,9 @@
                             </div>
                             <?php if($cita_confirmada != "confirmar_cita"): ?>
                                 <p># De Horas:</p>
-                                <input type="text" id="nhoras" name="nhoras" value="<?php echo $nhoras?>">
+                                <input type="text" id="nhoras" name="nhoras" value="<?php echo $nhoras?>" disabled>
                                 <p>Costo:</p>
-                                <input type="text" id="costo" name="costo" value="$ <?php echo $costo?>">
+                                <input type="text" id="costo" name="costo" value="$ <?php echo $costo?>" disabled>
 
                             <?php endif; ?>
                             <?php if(!empty($errores)): ?>
@@ -51,7 +51,7 @@
                             <?php endif; ?>
                     </div>
                     <?php if($cita_confirmada == "ticket"): ?>
-                            <a href="ticket.php" id="ticket" target="_black">Descargar Comprobante</a>
+                            <a href="ticket.php?Folio=<?php echo $folio?>" id="ticket" target="_black"><i class="fas fa-download"></i> Descargar Comprobante</a>
                     <?php endif; ?>
 
                     <?php if($cita_confirmada == "confirmar_cita" || $cita_confirmada == "generar_cita"): ?>

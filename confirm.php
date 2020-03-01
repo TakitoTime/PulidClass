@@ -9,5 +9,5 @@
     ));
 
     echo "<div class='alert alert-danger mt-4' role='alert'>Su correo ah sido validado correctamente, por favor, inicie sesion para continuar</div>";
-    header("Refresh:10; url=login.php");
+    header("Refresh:5; url=login.php");
 ?>

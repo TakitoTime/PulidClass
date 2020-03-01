@@ -48,7 +48,7 @@
     $pdf->SetFont('Arial','B',5);
     $textypos+=10;
     $pdf->setX(2);
-    $pdf->Cell(5,$textypos,"                                                    Costo: $ $costo");
+    $pdf->Cell(5,$textypos,"Folio: $folio                                     Costo: $$costo");
     $pdf->SetFont('Arial','',5);
     $textypos+=10;
     $pdf->setX(2);

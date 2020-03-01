@@ -1,8 +1,11 @@
 <?php session_start();
     require('conexion.php');
 
-    $statement = $conexion->prepare('SELECT * FROM Cita WHERE N_De_Usuario = :n_de_usuario order by Folio desc LIMIT 1');
-    $statement->execute(array(':n_de_usuario' => $_SESSION['n_de_usuario']));
+
+    $folio=$_GET['Folio'];
+
+    $statement = $conexion->prepare('SELECT * FROM Cita WHERE Folio=:folio LIMIT 1');
+    $statement->execute(array(':folio' => $folio));
         
     $cita=$statement->fetch();
 
@@ -13,7 +16,6 @@
     $hora_final=$cita['Hora_Final'];
     $nhoras=$cita['N_De_Horas'];
     $costo=$cita['Costo'];
-    $folio=$cita['Folio'];
     $direccion=$cita['Direccion'];
 
     $id_asesor=$cita['Id_Asesor'];

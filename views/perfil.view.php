@@ -39,7 +39,7 @@
                 <a href="elimina.php">Eliminar Cuenta</a>
             </div>
             <div class="info">
-                <h3 class="titulo">Usuario</h3>
+                <h3 class="titulo">Perfil</h3>
                 <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                     <input type="file" name="foto" id="foto" disabled value="<?php echo $info_personal['Foto']?>">
                     <input type="text" name="nombre" id="nombre" placeholder="Nombres" disabled value="<?php echo $info_personal['Nombres']?>">
@@ -53,6 +53,29 @@
                         <input type="button" class="button" id="modificar_usuario" value="Modificar Datos" onclick="Modificar_Datos_Usuario()">
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="tarjeta">
+            <div class="tarjeta1">
+            <h3 class="titulo" id="titulo">Tarjeta 1</h3>
+                <div class="datos">
+                    <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                        <div class="principal">
+                            <p>Nombre Del Titular:</p>
+                            <input type="text" name="titular" id="titular" placeholder="Como aparece en la tarjeta" disabled value="">
+                            <p>Fecha De Expiracion:</p>
+                            <input type="text" name="expiracion_mes" id="expiracion_mes" placeholder="Mes" disabled value="">
+                            <input type="text" name="expiracion_year" id="expiracion_year" placeholder="Año" disabled value="">
+                        </div>
+                        <div class="secundario">
+                            <p>Numero De Tarjeta</p>
+                            <input type="text" name="tarjeta" id="tarjeta"  disabled value="">
+                            <p>Codigo De Seguridad:</p>
+                            <input type="password" name="codigo" id="codigo" placeholder="3 digitos" disabled value="">
+                        </div>
+            
+                    </form>
+                </div>
             </div>
         </div>
         <div class="direccion">
@@ -132,6 +155,7 @@
                     <td>Hora Final</td>
                     <td>Numero De Horas</td>
                     <td>Costo</td>
+                    <td>Comprobante</td>
                 </tr>
                 <?php
                     foreach($citas as $cita){
@@ -154,7 +178,8 @@
                     <td><?php echo $cita['Hora_Inicial']?></td>
                     <td><?php echo $cita['Hora_Final']?></td>
                     <td><?php echo $cita['N_De_Horas']?></td>
-                    <td><?php echo "$ ".$cita['Costo']?></td>
+                    <td><?php echo "$".$cita['Costo']?></td>
+                    <td><a href="ticket.php?Folio=<?php echo $cita['Folio']?>" id="ticket" target="_black"><i class="fas fa-download"></i> Descargar Comprobante</a></td>
                 </tr>
                 <?php
                 }

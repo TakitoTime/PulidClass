@@ -158,6 +158,30 @@ main .perfil .perfil-footer p {
   vertical-align: middle;
 }
 
+main .tarjeta{
+  width: 100%;
+}
+
+main .tarjeta .tarjeta1{
+  width: 70%;
+}
+
+main .tarjeta .tarjeta1 .titulo{
+  color: #fff;
+  background: #23374d;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 0;
+  padding: 10px 20px;
+}
+
+main .tarjeta .tarjeta1 .datos {
+  background: #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+
 main .direccion {
   display: flex;
   width: 100%;
@@ -201,6 +225,45 @@ main .direccion .direcciones .titulo {
   margin: 0;
   padding: 10px 20px;
 }
+
+main .tarjeta .tarjeta1 form {
+  width: 100%;
+  display: flex;
+}
+
+main .tarjeta .tarjeta1 .datos {
+  width: 100%;
+  display: flex;
+}
+
+main .tarjeta .tarjeta1 .datos .principal {
+  width: 100%;
+}
+
+main .tarjeta .tarjeta1 .datos .principal input {
+  padding: 10px;
+  width: 40%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+  margin: 10px;
+}
+
+main .tarjeta .tarjeta1 .datos .principal p {
+  margin: 20px 10px;
+  width: 30%;
+  text-align: left;
+}
+
+main .tarjeta .tarjeta1 .datos .secundario {
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50%;
+    text-align: center;
+    align-items: center;
+}
+
 main .direccion .direcciones .datos,
 main .direccion .direcciones .datos,
 main .direccion .direcciones .datos {
@@ -328,12 +391,11 @@ table{
 th, td{
 	padding: 20px;
 }
-
-thead{
-	background-color: #246355;
-	border-bottom: solid 5px #0F362D;
-	color: white;
+th, td, a{
+  text-decoration: none;
 }
+
+
 
 #header{
   background: #23374d;

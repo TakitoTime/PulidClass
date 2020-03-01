@@ -215,6 +215,14 @@ body {
   color: #333;
 }
 
+#ex1 select{
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
 #ex1 input[type="submit"]{
   display: block;
   width: 50%;
