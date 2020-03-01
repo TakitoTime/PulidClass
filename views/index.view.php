@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v6.0&appId=2434910113406080&autoLogAppEvents=1"></script>
     <header>
         <div class="menu">
             <div class="logo">
@@ -44,6 +46,7 @@
                 <p>Esta empresa nace con la intencion de mejorar el nivel de educacion en la region lagunera, por parte de un conjunto de estudiantes de el Tecnologico Superior De Lerdo que con sus habilidades en diferentes hambitos y materias, se propornen a ayudar a jovenes de grados menores con problemas escolares mediante asesorias precenciales a domicilio.</p>
             </div>
         </div>
+        <!--
         <div class="testimonios">
             <div class="titulo">
                 <h3>Testimonios</h3>
@@ -57,6 +60,7 @@
                     <p class="nombre">- Alejandra Gomez</p>
                 </div>
             </div>
+
             <div class="testimonio derecha">
                 <div class="foto">
                     <img src="img/face2.jpg" alt="">
@@ -75,6 +79,10 @@
                     <p class="nombre">- Andrea Martínez</p>
                 </div>
             </div>
+        </div>
+        -->
+        <div class="facebook">
+        <div class="fb-page" data-href="https://www.facebook.com/pg/PulidClass/reviews/?ref=page_internal" data-tabs="timeline" data-width="400" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/pg/PulidClass/reviews/?ref=page_internal" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/pg/PulidClass/reviews/?ref=page_internal">PulidClass</a></blockquote></div>
         </div>
         <div class="noticias">
             <div class="titulo">
@@ -116,16 +124,16 @@
                 <h3>Nuestras redes sociales</h3>
             </div>
             <div class="redes">
-                <a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
-                <a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
-                <a class="instagram" href="#"><i class="fab fa-instagram"></i></a>
-                <a class="youtube" href="#"><i class="fab fa-youtube"></i></a>
+                <a class="facebook" target="_black" href="https://www.facebook.com/PulidClass/"><i class="fab fa-facebook-f"></i></a>
+                <a class="twitter" target="_black" href="#"><i class="fab fa-twitter"></i></a>
+                <a class="instagram" target="_black" href="#"><i class="fab fa-instagram"></i></a>
+                <a class="youtube" target="_black" href="https://www.youtube.com/channel/UCvoY-muv7vwv-uWe45rVX2g"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </main>
     <footer>
         <div class="info">
-            <a href="#">Atención a clientes</a>
+            <a href="sugerencias.php">Quejas y Sugerencias</a>
             <a href="#" class="separador"> | </a>
             <a href="#">Oferta laboral</a>
             <a href="#" class="separador"> | </a>
