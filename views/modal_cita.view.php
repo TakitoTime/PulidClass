@@ -1,6 +1,6 @@
 <div id="ex1" class="modal emergente">
             <?php                
-                if(isset($_SESSION['usuario'])){
+                if(isset($_SESSION['cliente'])){
 
                     if($direcciones!=null){
             ?>
