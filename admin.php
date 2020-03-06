@@ -3,7 +3,7 @@
 require('conexion.php');
 
 if(!isset($_SESSION['admin'])){
-    header("Location:index.html");
+    header("Location:index.php");
     die();
 }else{
     $correo=$_SESSION['admin'];

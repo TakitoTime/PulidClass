@@ -2,8 +2,8 @@
 
 require('conexion.php');
 
-if (isset($_SESSION['cliente'] || isset($_SESSION['asesor']) || isset($_SESSION['admin']))) {
-	header('Location: index.html');
+if (isset($_SESSION['cliente']) || isset($_SESSION['asesor']) || isset($_SESSION['admin'])) {
+	header('Location: index.php');
 	die();
 }
 
