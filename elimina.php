@@ -2,7 +2,7 @@
     require('conexion.php');
 
     if (!isset($_SESSION['cliente'])) {
-        header('Location: index.html');
+        header('Location: index.php');
         die();
     }
 

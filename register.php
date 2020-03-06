@@ -1,7 +1,7 @@
 <?php session_start();
 
     if (isset($_SESSION['cliente']) || isset($_SESSION['asesor']) || isset($_SESSION['admin'])) {
-        header('Location: index.html');
+        header('Location: index.php');
         die();
     }
 
