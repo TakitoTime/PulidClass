@@ -2,7 +2,7 @@
 
 require('conexion.php');
 
-if (isset($_SESSION['usuario'])) {
+if (isset($_SESSION['cliente'] || isset($_SESSION['asesor']) || isset($_SESSION['admin']))) {
 	header('Location: index.html');
 	die();
 }
@@ -32,12 +32,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }else{
 
             if ($resultado != false) {
-                $_SESSION['usuario'] = $correo;
-                $_SESSION['contra'] = $contra;
                 
                 if($resultado['Tipo']==1){
+                    
+                    $_SESSION['admin'] = $correo;
+                    $_SESSION['contra'] = $contra;
                     header('Location: admin.php');
+                    
                 }else{
+                    $_SESSION['cliente'] = $correo;
+                    $_SESSION['contra'] = $contra;
                     header('Location: perfil.php');
                 }
     

@@ -1,6 +1,6 @@
 <?php session_start();
 
-    if (isset($_SESSION['usuario'])) {
+    if (isset($_SESSION['cliente']) || isset($_SESSION['asesor']) || isset($_SESSION['admin'])) {
         header('Location: index.html');
         die();
     }
@@ -73,7 +73,7 @@
 				sendemail($mail_username,$mail_userpassword,$mail_setFromEmail,$mail_addAddress,$txt_message,$mail_subject,$template);//Enviar el mensaje
             
             echo "<div class='alert alert-danger mt-4' role='alert'>Se mando un correo de confirmacion al correo:".$correo."</div>";
-            header("Refresh:5; url=index.php");
+            header("Refresh:20; url=index.php");
         }
     
     

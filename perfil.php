@@ -1,12 +1,12 @@
 <?php session_start();
     require('conexion.php');
 
-    if(!isset($_SESSION['usuario'])){
+    if(!isset($_SESSION['cliente'])){
         header("Location:index.html");
         die();
-    }
-    
-        $correo=$_SESSION['usuario'];
+    }else{
+        
+        $correo=$_SESSION['cliente'];
         $contra=$_SESSION['contra'];
     
         $statement = $conexion->prepare('SELECT * FROM Usuario WHERE correo = :correo LIMIT 1');
@@ -195,5 +195,8 @@
         
 
     require('views/perfil.view.php');
+        
+    }
+    
 ?>
    

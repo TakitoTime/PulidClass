@@ -13,7 +13,7 @@
         $asesor=$statement->fetch();
         $nombre_asesor=$asesor['Nombres']." ".$asesor['A_Paterno']." ".$asesor['A_Materno'];
 
-        if(isset($_SESSION['usuario'])){
+        if(isset($_SESSION['cliente'])){
 
             $n_de_usuario=$_SESSION['n_de_usuario'];
 
@@ -221,12 +221,6 @@
                 $asesor=$statement->fetch();
                             
                 $nombre_asesor=$asesor['Nombres']." ".$asesor['A_Paterno']." ".$asesor['A_Materno'];
-
-                $statement = $conexion->prepare('SELECT * FROM Cita WHERE N_De_Usuario = :n_de_usuario order by Folio desc LIMIT 1');
-                $statement->execute(array(':n_de_usuario' => $_SESSION['n_de_usuario']));
-                    
-                $folio=$statement->fetch();
-                $folio=$folio['Folio'];
 
                 $errores="<li>La cita a sido creada correctamente.</li>";
                 $cita_confirmada="ticket";

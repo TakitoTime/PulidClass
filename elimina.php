@@ -1,7 +1,7 @@
 <?php session_start();
     require('conexion.php');
 
-    if (!isset($_SESSION['usuario'])) {
+    if (!isset($_SESSION['cliente'])) {
         header('Location: index.html');
         die();
     }
@@ -25,7 +25,7 @@
                 $errores.= "<li>Por favor ingresa un correo valido</li>";
 
             } else{
-                if(($_SESSION['usuario']!= $correo) || ($_SESSION['contra'] != $contra)){
+                if(($_SESSION['cliente']!= $correo) || ($_SESSION['contra'] != $contra)){
 
                     $errores.= "<li>La cuenta con este correo electronico o con esta contraseña no existe</li>";
                     
