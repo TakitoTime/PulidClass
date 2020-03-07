@@ -100,56 +100,69 @@ main .descripcion .contenido p {
   font-size: 1.2em;
   line-height: 1.5;
 }
-main .testimonios {
-  max-width: 1000px;
-  width: 100%;
-  margin: 0 auto;
+main .contenidos{
+  display: flex;
+  margin: auto;
+  width: 90%;
 }
-main .testimonios .titulo {
+main .contenidos .testimonios {
+  width: 70%;
+}
+main .contenidos .testimonios .titulo {
   text-align: center;
   font-weight: 300;
   font-size: 32px;
   color: #064acb;
   margin-bottom: 40px;
 }
-main .testimonios .testimonio {
+main .contenidos .testimonios .testimonio {
   overflow: hidden;
   margin-bottom: 40px;
 }
-main .testimonios .testimonio .foto {
+main .contenidos .testimonios .testimonio .foto {
   width: 20%;
   float: left;
   text-align: right;
 }
-main .testimonios .testimonio .foto img {
+main .contenidos .testimonios .testimonio .foto img {
   max-width: 100px;
   width: 100%;
   vertical-align: top;
   border-radius: 100%;
 }
-main .testimonios .testimonio .opinion {
+main .contenidos .testimonios .testimonio .opinion {
   float: left;
   width: 70%;
   padding: 0 30px;
   margin-top: 20px;
 }
-main .testimonios .testimonio .opinion .texto {
+main .contenidos .testimonios .testimonio .opinion .texto {
   font-size: 18px;
   line-height: 28px;
   margin-bottom: 10px;
 }
-main .testimonios .testimonio .opinion .nombre {
+main .contenidos .testimonios .testimonio .opinion .nombre {
   color: #f3a953;
   font-size: 14px;
   font-weight: 700;
 }
-main .testimonios .testimonio.derecha .foto {
+main .contenidos .testimonios .testimonio.derecha .foto {
   float: right;
   text-align: left;
 }
-main .testimonios .testimonio.derecha .opinion {
+main .contenidos .testimonios .testimonio.derecha .opinion {
   float: right;
   text-align: right;
+}
+main .contenidos .facebook{
+
+}
+main .contenidos .facebook .titulo{
+  text-align: left;
+  font-weight: 300;
+  font-size: 21px;
+  color: #064acb;
+  margin-bottom: 20px;
 }
 main .noticias {
   width: 100%;

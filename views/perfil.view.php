@@ -61,29 +61,7 @@
                 </form>
             </div>
         </div>
-        <div class="tarjeta">
-            <div class="tarjeta1">
-            <h3 class="titulo" id="titulo">Tarjeta 1</h3>
-                <div class="datos">
-                    <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                        <div class="principal">
-                            <p>Nombre Del Titular:</p>
-                            <input type="text" name="titular" id="titular" placeholder="Como aparece en la tarjeta" disabled value="">
-                            <p>Fecha De Expiracion:</p>
-                            <input type="text" name="expiracion_mes" id="expiracion_mes" placeholder="Mes" disabled value="">
-                            <input type="text" name="expiracion_year" id="expiracion_year" placeholder="Año" disabled value="">
-                        </div>
-                        <div class="secundario">
-                            <p>Numero De Tarjeta</p>
-                            <input type="text" name="tarjeta" id="tarjeta"  disabled value="">
-                            <p>Codigo De Seguridad:</p>
-                            <input type="password" name="codigo" id="codigo" placeholder="3 digitos" disabled value="">
-                        </div>
-            
-                    </form>
-                </div>
-            </div>
-        </div>
+        <h2>Direcciones</h2>
         <div class="direccion">
             <div class="direcciones">
             <?php
@@ -149,6 +127,59 @@
                 <input type="button" value="Eliminar Direccion" onclick="Habilitar_Boton(<?php echo $cont_eliminar?>)">
             </div>
         </div>
+        <h2>Tarjetas</h2>
+        <div class="tarjeta">
+            <div class="tarjeta1">
+                <h3 class="titulo" id="titulo">Tarjeta 1</h3>
+                <div class="datos">
+                    <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                        <div class="principal">
+                            <p>Nombre Del Titular:</p>
+                            <input type="text" name="titular" id="titular" placeholder="Como aparece en la tarjeta" disabled value="">
+                            <p>Fecha De Expiracion:</p>
+                            <div class="fecha">
+                                <input type="text" name="expiracion_mes" id="expiracion_mes" placeholder="Mes" disabled value="">
+                                <input type="text" name="expiracion_year" id="expiracion_year" placeholder="Año" disabled value="">
+                            </div>
+                        </div>
+                        <div class="secundario">
+                            <p>Numero De Tarjeta</p>
+                            <input type="text" name="tarjeta" id="tarjeta"  disabled value="">
+                            <p>Codigo De Seguridad:</p>
+                            <input type="password" name="codigo" id="codigo" placeholder="3 digitos" disabled value="">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="tarjeta2">
+                <h3 class="titulo" id="titulo">Tarjeta 2</h3>
+                <div class="datos">
+                    <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                        <div class="principal">
+                            <p>Nombre Del Titular:</p>
+                            <input type="text" name="titular" id="titular" placeholder="Como aparece en la tarjeta" disabled value="">
+                            <p>Fecha De Expiracion:</p>
+                            <div class="fecha">
+                                <input type="text" name="expiracion_mes" id="expiracion_mes" placeholder="Mes" disabled value="">
+                                <input type="text" name="expiracion_year" id="expiracion_year" placeholder="Año" disabled value="">
+                            </div>
+                        </div>
+                        <div class="secundario">
+                            <p>Numero De Tarjeta</p>
+                            <input type="text" name="tarjeta" id="tarjeta"  disabled value="">
+                            <p>Codigo De Seguridad:</p>
+                            <input type="password" name="codigo" id="codigo" placeholder="3 digitos" disabled value="">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="botones">
+                <input type="button" value="Agregar Direccion" onclick="Agregar_Direccion(<?php echo $cont_agregar?>)">
+                <input type="button" value="Eliminar Direccion" onclick="Habilitar_Boton(<?php echo $cont_eliminar?>)">
+            </div>
+        </div>
+        
         <div class="citas">
             <h2>Bítacora de citas</h2>
             <table border="2">

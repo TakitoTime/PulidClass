@@ -52,43 +52,46 @@
                 <p>Esta empresa nace con la intencion de mejorar el nivel de educacion en la region lagunera, por parte de un conjunto de estudiantes de el Tecnologico Superior De Lerdo que con sus habilidades en diferentes hambitos y materias, se propornen a ayudar a jovenes de grados menores con problemas escolares mediante asesorias precenciales a domicilio.</p>
             </div>
         </div>
-        <!--
-        <div class="testimonios">
-            <div class="titulo">
-                <h3>Testimonios</h3>
-            </div>
-            <div class="testimonio">
-                <div class="foto">
-                    <img src="img/face1.jpg" alt="">
+        <div class="contenidos">
+            <div class="testimonios">
+                <div class="titulo">
+                    <h3>Testimonios</h3>
                 </div>
-                <div class="opinion">
-                    <p class="texto">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, eum?"</p>
-                    <p class="nombre">- Alejandra Gomez</p>
+                <div class="testimonio">
+                    <div class="foto">
+                        <img src="img/face1.jpg" alt="">
+                    </div>
+                    <div class="opinion">
+                        <p class="texto">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, eum?"</p>
+                        <p class="nombre">- Alejandra Gomez</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="testimonio derecha">
-                <div class="foto">
-                    <img src="img/face2.jpg" alt="">
+                <div class="testimonio derecha">
+                    <div class="foto">
+                        <img src="img/face2.jpg" alt="">
+                    </div>
+                    <div class="opinion">
+                        <p class="texto">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, eum?"</p>
+                        <p class="nombre">- Pedro Perez</p>
+                    </div>
                 </div>
-                <div class="opinion">
-                    <p class="texto">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, eum?"</p>
-                    <p class="nombre">- Pedro Perez</p>
+                <div class="testimonio">
+                    <div class="foto">
+                        <img src="img/face4.jpg" alt="">
+                    </div>
+                    <div class="opinion">
+                        <p class="texto">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, eum?"</p>
+                        <p class="nombre">- Andrea Martínez</p>
+                    </div>
                 </div>
             </div>
-            <div class="testimonio">
-                <div class="foto">
-                    <img src="img/face4.jpg" alt="">
+            <div class="facebook">
+                <div class="titulo">
+                    <h3>Unete a Facebook</h3>
                 </div>
-                <div class="opinion">
-                    <p class="texto">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, eum?"</p>
-                    <p class="nombre">- Andrea Martínez</p>
-                </div>
+                <div class="fb-page" data-href="https://www.facebook.com/PulidClass/?modal=admin_todo_tour/" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/PulidClass/?modal=admin_todo_tour/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/PulidClass/?modal=admin_todo_tour/">PulidClass</a></blockquote></div>
             </div>
-        </div>
-        -->
-        <div class="facebook">
-        <div class="fb-page" data-href="https://www.facebook.com/pg/PulidClass/reviews/?ref=page_internal" data-tabs="timeline" data-width="400" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/pg/PulidClass/reviews/?ref=page_internal" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/pg/PulidClass/reviews/?ref=page_internal">PulidClass</a></blockquote></div>
         </div>
         <div class="noticias">
             <div class="titulo">

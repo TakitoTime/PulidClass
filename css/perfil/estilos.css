@@ -158,30 +158,6 @@ main .perfil .perfil-footer p {
   vertical-align: middle;
 }
 
-main .tarjeta{
-  width: 100%;
-}
-
-main .tarjeta .tarjeta1{
-  width: 70%;
-}
-
-main .tarjeta .tarjeta1 .titulo{
-  color: #fff;
-  background: #23374d;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  margin: 0;
-  padding: 10px 20px;
-}
-
-main .tarjeta .tarjeta1 .datos {
-  background: #fff;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-
 main .direccion {
   display: flex;
   width: 100%;
@@ -226,42 +202,112 @@ main .direccion .direcciones .titulo {
   padding: 10px 20px;
 }
 
-main .tarjeta .tarjeta1 form {
+main .tarjeta{
+  width: 100%;
+}
+
+main .tarjeta .tarjeta1,main .tarjeta .tarjeta2{
+  width: 70%;
+  background: #fff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 20px;
+}
+
+main .tarjeta .tarjeta1 .titulo,main .tarjeta .tarjeta2 .titulo{
+  color: #fff;
+  background: #23374d;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 0;
+  padding: 10px 20px;
+}
+
+main .tarjeta .tarjeta1 form,main .tarjeta .tarjeta2 form {
+  width: 100%;
+  display: flex;
+  padding-bottom: 10px;
+}
+
+main .tarjeta .tarjeta1 .datos,main .tarjeta .tarjeta2 .datos {
   width: 100%;
   display: flex;
 }
 
-main .tarjeta .tarjeta1 .datos {
-  width: 100%;
+main .tarjeta .tarjeta1 .datos .principal,main .tarjeta .tarjeta2 .datos .principal {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 50%;
+  text-align: center;
+  align-items: center;
 }
 
-main .tarjeta .tarjeta1 .datos .principal {
-  width: 100%;
-}
-
-main .tarjeta .tarjeta1 .datos .principal input {
+main .tarjeta .tarjeta1 .datos .principal input,main .tarjeta .tarjeta2 .datos .principal input {
   padding: 10px;
-  width: 40%;
+  width: 70%;
   border-radius: 5px;
   border: 1px solid #ccc;
   color: #333;
   margin: 10px;
 }
 
-main .tarjeta .tarjeta1 .datos .principal p {
+main .tarjeta .tarjeta1 .datos .principal p,main .tarjeta .tarjeta2 .datos .principal p {
   margin: 20px 10px;
-  width: 30%;
-  text-align: left;
+  text-align: center;
 }
 
-main .tarjeta .tarjeta1 .datos .secundario {
+main .tarjeta .tarjeta1 .datos .principal .fecha,main .tarjeta .tarjeta2 .datos .principal .fecha {
+  display: block;
+  flex-direction: column;
+  width: 100%;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+}
+
+main .tarjeta .tarjeta1 .datos .principal .fecha input,main .tarjeta .tarjeta2 .datos .principal .fecha input  {
+  padding: 10px;
+  width: 29%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+  margin: 10px;
+}
+
+
+main .tarjeta .tarjeta1 .datos .secundario,main .tarjeta .tarjeta2 .datos .secundario {
   display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 50%;
-    text-align: center;
-    align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 50%;
+  text-align: center;
+  align-items: center;
+}
+
+main .tarjeta .tarjeta1 .datos .secundario input,main .tarjeta .tarjeta2 .datos .secundario input {
+  padding: 10px;
+  width: 70%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+  margin: 10px;
+}
+
+main .tarjeta .tarjeta1 .datos .secundario p,main .tarjeta .tarjeta2 .datos .secundario p {
+  margin: 20px 10px;
+  text-align: center;
+}
+
+main .tarjeta .tarjeta1 .imagenes,main .tarjeta .tarjeta2 .imagenes{
+  display: block;
+  float: right;
+  width: 100%;
+}
+
+main .tarjeta .tarjeta1 .imagenes a img,main .tarjeta .tarjeta2 .imagenes a img{
+  width: 100px;
+  height: 100px;
 }
 
 main .direccion .direcciones .datos,
