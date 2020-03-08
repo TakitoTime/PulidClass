@@ -202,19 +202,52 @@ main .direccion .direcciones .titulo {
   padding: 10px 20px;
 }
 
-main .tarjeta{
+main .cont_tarjetas{
+  display: flex;
+}
+main .cont_tarjetas .botones{
+  display: block;
+  text-align: center;
+}
+main .tarjetas{
   width: 100%;
 }
 
-main .tarjeta .tarjeta1,main .tarjeta .tarjeta2{
-  width: 70%;
+main .tarjetas .etiquetas{
+  display: block;
+  margin: auto;
+}
+
+main .tarjetas .etiquetas ul{
+  list-style: none;
+  display: block;
+  padding-inline-start: 0px;
+}
+
+main .tarjetas .etiquetas ul li{
+  display: inline-block;
+  transition: all 300ms;
+}
+
+main .tarjetas .etiquetas ul li a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+  background: #1089ff;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-weight: 300;
+}
+
+main .tarjetas .tarjeta1,main .tarjetas .tarjeta2{
+  width: 100%;
   background: #fff;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   margin-bottom: 20px;
 }
 
-main .tarjeta .tarjeta1 .titulo,main .tarjeta .tarjeta2 .titulo{
+main .tarjetas .tarjeta1 .titulo,main .tarjetas .tarjeta2 .titulo{
   color: #fff;
   background: #23374d;
   border-top-left-radius: 5px;
@@ -223,18 +256,19 @@ main .tarjeta .tarjeta1 .titulo,main .tarjeta .tarjeta2 .titulo{
   padding: 10px 20px;
 }
 
-main .tarjeta .tarjeta1 form,main .tarjeta .tarjeta2 form {
+main .tarjetas .tarjeta1 form,main .tarjetas .tarjeta2 form {
   width: 100%;
-  display: flex;
-  padding-bottom: 10px;
+  display: block;
+  padding-bottom: 10px; 
+  padding-top: 10px; 
 }
 
-main .tarjeta .tarjeta1 .datos,main .tarjeta .tarjeta2 .datos {
+main .tarjetas .tarjeta1 .datos,main .tarjetas .tarjeta2 .datos {
   width: 100%;
   display: flex;
 }
 
-main .tarjeta .tarjeta1 .datos .principal,main .tarjeta .tarjeta2 .datos .principal {
+main .tarjetas .tarjeta1 .datos .principal,main .tarjetas .tarjeta2 .datos .principal {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -243,7 +277,7 @@ main .tarjeta .tarjeta1 .datos .principal,main .tarjeta .tarjeta2 .datos .princi
   align-items: center;
 }
 
-main .tarjeta .tarjeta1 .datos .principal input,main .tarjeta .tarjeta2 .datos .principal input {
+main .tarjetas .tarjeta1 .datos .principal input,main .tarjetas .tarjeta2 .datos .principal input {
   padding: 10px;
   width: 70%;
   border-radius: 5px;
@@ -252,12 +286,12 @@ main .tarjeta .tarjeta1 .datos .principal input,main .tarjeta .tarjeta2 .datos .
   margin: 10px;
 }
 
-main .tarjeta .tarjeta1 .datos .principal p,main .tarjeta .tarjeta2 .datos .principal p {
-  margin: 20px 10px;
+main .tarjetas .tarjeta1 .datos .principal p,main .tarjetas .tarjeta2 .datos .principal p {
+  margin: 10px 10px;
   text-align: center;
 }
 
-main .tarjeta .tarjeta1 .datos .principal .fecha,main .tarjeta .tarjeta2 .datos .principal .fecha {
+main .tarjetas .tarjeta1 .datos .principal .fecha,main .tarjetas .tarjeta2 .datos .principal .fecha {
   display: block;
   flex-direction: column;
   width: 100%;
@@ -266,7 +300,7 @@ main .tarjeta .tarjeta1 .datos .principal .fecha,main .tarjeta .tarjeta2 .datos 
   align-items: center;
 }
 
-main .tarjeta .tarjeta1 .datos .principal .fecha input,main .tarjeta .tarjeta2 .datos .principal .fecha input  {
+main .tarjetas .tarjeta1 .datos .principal .fecha input,main .tarjetas .tarjeta2 .datos .principal .fecha input  {
   padding: 10px;
   width: 29%;
   border-radius: 5px;
@@ -276,7 +310,7 @@ main .tarjeta .tarjeta1 .datos .principal .fecha input,main .tarjeta .tarjeta2 .
 }
 
 
-main .tarjeta .tarjeta1 .datos .secundario,main .tarjeta .tarjeta2 .datos .secundario {
+main .tarjetas .tarjeta1 .datos .secundario,main .tarjetas .tarjeta2 .datos .secundario {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -285,7 +319,7 @@ main .tarjeta .tarjeta1 .datos .secundario,main .tarjeta .tarjeta2 .datos .secun
   align-items: center;
 }
 
-main .tarjeta .tarjeta1 .datos .secundario input,main .tarjeta .tarjeta2 .datos .secundario input {
+main .tarjetas .tarjeta1 .datos .secundario input,main .tarjetas .tarjeta2 .datos .secundario input {
   padding: 10px;
   width: 70%;
   border-radius: 5px;
@@ -294,20 +328,44 @@ main .tarjeta .tarjeta1 .datos .secundario input,main .tarjeta .tarjeta2 .datos 
   margin: 10px;
 }
 
-main .tarjeta .tarjeta1 .datos .secundario p,main .tarjeta .tarjeta2 .datos .secundario p {
-  margin: 20px 10px;
+main .tarjetas .tarjeta1 .datos .secundario #codigo ,main .tarjetas .tarjeta2 .datos .secundario #codigo {
+  padding: 10px;
+  width: 30%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+  margin: 10px;
+}
+
+main .tarjetas .tarjeta1 .datos .secundario p,main .tarjetas .tarjeta2 .datos .secundario p {
+  margin: 10px 10px;
   text-align: center;
 }
 
-main .tarjeta .tarjeta1 .imagenes,main .tarjeta .tarjeta2 .imagenes{
+main .tarjetas .tarjeta1 .imagenes,main .tarjetas .tarjeta2 .imagenes{
   display: block;
-  float: right;
   width: 100%;
 }
 
-main .tarjeta .tarjeta1 .imagenes a img,main .tarjeta .tarjeta2 .imagenes a img{
-  width: 100px;
-  height: 100px;
+main .tarjetas .tarjeta1 .imagenes a img,main .tarjetas .tarjeta2 .imagenes a img{
+  width: 130px;
+  height: 60px;
+  float: right;
+  margin-right: 40px;
+}
+main .tarjetas .tarjeta1 .submit input,main .tarjetas .tarjeta2 .submit input{
+  padding: 10px;
+  width: 30%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 10px;
+  margin-top: 60px;
+  margin-left: 40px;
+  color: #fff;
+  background: #1089ff;
+}
+main .tarjetas .tarjeta1 .submit input:disabled,main .tarjetas .tarjeta2 .submit input:disabled{
+  background: #23374d;
 }
 
 main .direccion .direcciones .datos,
