@@ -104,7 +104,7 @@
             $descripcion = trim($_POST["descripcion"]);
             $descripcion = filter_var($descripcion, FILTER_SANITIZE_STRING);
 
-            $correo = $_SESSION['usuario'];
+            $correo = $_SESSION['cliente'];
 
             $statement = $conexion->prepare('call pulidclass.spAltaDireccion(:correo,:pais,:estado,:ciudad,:colonia,:calle,:numero,:codigo_postal,:descripcion)');
             $statement->execute(array(
@@ -192,6 +192,53 @@
                 header('Location: ./perfil.php');
         }
     
+        if(isset($_POST['guardar_t'])){
+            $titular = trim($_POST["titular"]);
+            $titular = filter_var($titular, FILTER_SANITIZE_STRING);
+
+            $expiracion_mes = trim($_POST["expiracion_mes"]);
+            $expiracion_mes = filter_var($expiracion_mes, FILTER_SANITIZE_STRING);
+            
+            $expiracion_year = trim($_POST["expiracion_year"]);
+            $expiracion_year = filter_var($expiracion_year, FILTER_SANITIZE_STRING);
+
+            $tarjeta = trim($_POST["tarjeta"]);
+            $tarjeta = filter_var($tarjeta, FILTER_SANITIZE_STRING);
+
+            $codigo = trim($_POST["codigo"]);
+            $codigo = filter_var($codigo, FILTER_SANITIZE_STRING);
+
+            $n_de_usuario = $_SESSION['n_de_usuario'];
+
+            $statement = $conexion->prepare('insert into Tarjetas values(:n_de_usuario,:titular,:mes,:year,:tarjeta,:codigo)');
+            $statement->execute(array(
+                    ':n_de_usuario' => $n_de_usuario,
+                    ':titular' => $titular,
+                    ':mes' => $expiracion_mes,
+                    ':year' => $expiracion_year,
+                    ':tarjeta' => $tarjeta,
+                    ':codigo' => $codigo,
+                ));
+
+            echo "<div class='alert alert-danger mt-4' role='alert'>La cuenta No Existe En La Base De Datos</div>";
+            header('Location: ./perfil.php');
+        }
+
+        if(isset($_POST["eliminar_t"])){
+    
+            $id_tarjeta = trim($_POST["id_tarjeta"]);
+            $id_tarjeta = filter_var($id_tarjeta, FILTER_SANITIZE_STRING);
+    
+                $statement = $conexion->prepare('DELETE from Tarjeta where Id_Tarjeta=:id_tarjeta');
+                $statement->execute(array(
+                        ':id_tarjeta' => $id_tarjeta,
+                    ));
+    
+                $resultado = $statement->fetchColumn();
+            
+                echo "<div class='alert alert-danger mt-4' role='alert'>La cuenta No Existe En La Base De Datos</div>";
+                header('Location: ./perfil.php');
+        }
         
 
     require('views/perfil.view.php');

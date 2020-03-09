@@ -1,8 +1,9 @@
 <?php session_start();
     require('conexion.php');
 
-    $statement = $conexion->prepare('SELECT * FROM Cita WHERE N_De_Usuario = :n_de_usuario order by Folio desc LIMIT 1');
-    $statement->execute(array(':n_de_usuario' => $_SESSION['n_de_usuario']));
+    $folio=$_GET['Folio'];
+    $statement = $conexion->prepare('SELECT * FROM Cita WHERE Folio = :folio');
+    $statement->execute(array(':folio' => $folio));
         
     $cita=$statement->fetch();
 

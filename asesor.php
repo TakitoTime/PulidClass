@@ -225,6 +225,14 @@
                 $errores="<li>La cita a sido creada correctamente.</li>";
                 $cita_confirmada="ticket";
                 
+
+                $statement=$conexion->prepare('SELECT * FROM Cita WHERE N_De_Usuario = :n_de_usuario order by Folio desc LIMIT 1');
+                $statement->execute(array(
+                    ':n_de_usuario'=> $n_de_usuario,
+                ));
+
+                $cita=$statement->fetch();
+                $folio=$cita['Folio'];
             }
         }
 

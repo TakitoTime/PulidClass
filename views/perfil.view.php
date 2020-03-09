@@ -165,7 +165,7 @@
                         </div>
                         <div class="submit">
                             <input type="submit" name="guardar_t" value="Guardar Datos" disabled id="guardar_t1">
-                            <input type="button" name="eliminar_t" value="Eliminar" disabled id="eliminar1">
+                            <input type="button" name="eliminar_t" value="Eliminar" disabled id="eliminar1" style="display:none;">
                         </div>
                     </form>
                 </div>
@@ -194,7 +194,7 @@
                         </div>
                         <div class="submit">
                             <input type="submit" name="guardar_t" value="Guardar Datos" disabled id="guardar_t2">
-                            <input type="button" name="eliminar_t" value="Eliminar" disabled id="eliminar2">
+                            <input type="button" name="eliminar_t" value="Eliminar" disabled id="eliminar2" style="display:none;">
                         </div>
                     </form>
                 </div>

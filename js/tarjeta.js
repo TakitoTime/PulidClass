@@ -20,7 +20,7 @@ function Agregar_Tarjeta(id_agregar){
     if(id_agregar==1){
         guardar_t1.disabled=false;
         nombre1.disabled=false;
-        numero1.disabled=false;
+        numero2.disabled=false;
         mes1.disabled=false;
         año1.disabled=false;
         codigo1.disabled=false;
