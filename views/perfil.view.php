@@ -131,7 +131,7 @@
         <div class="cont_tarjetas">
             <div class="botones">
                     <input type="button" value="Agregar Tarjeta" onclick="Agregar_Tarjeta(<?php echo $cont_agregar?>)">
-                    <input type="button" value="Eliminar Tarjeta" onclick="Habilitar_Boton_T()">
+                    <input type="button" value="Eliminar Tarjeta" onclick="Habilitar_Boton_Tarjeta()">
                 </div>
             <div class="tarjetas">
                 <div class="etiquetas">
@@ -140,64 +140,75 @@
                         <li><a href="#tabs-2">Tarjeta2</a></li>
                     </ul>
                 </div>
-                <div class="tarjeta1" id="tabs-1">
-                    <h3 class="titulo" id="titulo">Tarjeta 1</h3>
+                <?php
+                $cont_t=0;
+                    foreach($tarjetas as $tarjeta){
+                    $cont_t=$cont_t+1;
+                ?>
+                <div class="tarjeta<?php echo $cont_t?>" id="tabs-<?php echo $cont_t?>">
+                    <h3 class="titulo" id="titulo">Tarjeta <?php echo $cont_t?></h3>
                     <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                         <div class="datos">
                             <div class="principal">
+                                <input type="hidden" name="id_tarjeta" id="id_tarjeta<?php echo $cont_t?>" value="<?php echo $tarjeta['Id_Tarjeta']?>">
                                 <p>Nombre Del Titular:</p>
-                                <input type="text" name="titular" id="nombre1" placeholder="Como aparece en la tarjeta" disabled value="">
+                                <input type="text" name="titular" id="nombre<?php echo $cont_t?>" placeholder="Como aparece en la tarjeta" disabled value="<?php echo $tarjeta['Nombre_T']?>">
                                 <p>Fecha De Expiracion:</p>
                                 <div class="fecha">
-                                    <input type="text" name="expiracion_mes" id="mes1" placeholder="Mes" disabled value="">
-                                    <input type="text" name="expiracion_year" id="año1" placeholder="Año" disabled value="">
+                                    <input type="text" name="expiracion_mes" id="mes<?php echo $cont_t?>" placeholder="Mes" disabled value="<?php echo $tarjeta['Mes']?>">
+                                    <input type="text" name="expiracion_year" id="año<?php echo $cont_t?>" placeholder="Año" disabled value="<?php echo $tarjeta['Year']?>">
                                 </div>
                             </div>
                             <div class="secundario">
                                 <p>Numero De Tarjeta:</p>
-                                <input type="text" name="tarjeta" id="numero1"  disabled value="">
+                                <input type="text" name="tarjeta" id="numero_t<?php echo $cont_t?>"  placeholder="Los 16 digitos de enfrete" disabled value="<?php echo $tarjeta['Num_T']?>">
                                 <p>Codigo De Seguridad:</p>
-                                <input type="password" name="codigo" id="codigo1" placeholder="3 digitos" disabled value="">
+                                <input type="password" name="codigo" id="codigo<?php echo $cont_t?>" placeholder="3 digitos" disabled value="<?php echo $tarjeta['Codigo_S']?>">
                             </div>
                         </div>
                         <div class="imagenes">
                             <a href="#"><img src="img/logo_tarjetas.png" alt=""></a>
                         </div>
                         <div class="submit">
-                            <input type="submit" name="guardar_t" value="Guardar Datos" disabled id="guardar_t1">
-                            <input type="button" name="eliminar_t" value="Eliminar" disabled id="eliminar1" style="display:none;">
+                            <input type="hidden" name="guardar_t" value="Guardar Datos" disabled id="guardar_t<?php echo $cont_t?>">
+                            <input type="submit" name="eliminar_t" value="Eliminar" disabled id="eliminar_t<?php echo $cont_t?>">
                         </div>
                     </form>
                 </div>
-                <div class="tarjeta2" id="tabs-2">
+                <?php }
+                    while($cont_t!=2){
+                        $cont_t=$cont_t+1;
+                ?>
+                <div class="tarjeta<?php echo $cont_t?>" id="tabs-<?php echo $cont_t?>">
                     <h3 class="titulo" id="titulo">Tarjeta 2</h3>
                     <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                         <div class="datos">
                             <div class="principal">
                                 <p>Nombre Del Titular:</p>
-                                <input type="text" name="titular" id="nombre2" placeholder="Como aparece en la tarjeta" disabled value="">
+                                <input type="text" name="titular" id="nombre<?php echo $cont_t?>" placeholder="Como aparece en la tarjeta" disabled value="">
                                 <p>Fecha De Expiracion:</p>
                                 <div class="fecha">
-                                    <input type="text" name="expiracion_mes" id="mes2" placeholder="Mes" disabled value="">
-                                    <input type="text" name="expiracion_year" id="año2" placeholder="Año" disabled value="">
+                                    <input type="text" name="expiracion_mes" id="mes<?php echo $cont_t?>" placeholder="Mes" disabled value="">
+                                    <input type="text" name="expiracion_year" id="año<?php echo $cont_t?>" placeholder="Año" disabled value="">
                                 </div>
                             </div>
                             <div class="secundario">
                                 <p>Numero De Tarjeta:</p>
-                                <input type="text" name="tarjeta" id="numero2"  disabled value="">
+                                <input type="text" name="tarjeta" id="numero_t<?php echo $cont_t?>"  placeholder="Los 16 digitos de enfrete" disabled value="">
                                 <p>Codigo De Seguridad:</p>
-                                <input type="password" name="codigo" id="codigo2" placeholder="3 digitos" disabled value="">
+                                <input type="password" name="codigo" id="codigo<?php echo $cont_t?>" placeholder="3 digitos" disabled value="">
                             </div>
                         </div>
                         <div class="imagenes">
                             <a href="#"><img src="img/logo_tarjetas.png" alt=""></a>
                         </div>
                         <div class="submit">
-                            <input type="submit" name="guardar_t" value="Guardar Datos" disabled id="guardar_t2">
-                            <input type="button" name="eliminar_t" value="Eliminar" disabled id="eliminar2" style="display:none;">
+                            <input type="submit" name="guardar_t" value="Guardar Datos" disabled id="guardar_t<?php echo $cont_t?>">
+                            <input type="hidden" name="eliminar_t" value="Eliminar" disabled id="eliminar_t<?php echo $cont_t?>">
                         </div>
                     </form>
                 </div>
+                <?php }?>
             </div>
 
         </div>

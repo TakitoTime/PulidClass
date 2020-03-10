@@ -150,6 +150,5 @@
         </div>
     </footer>
     <script src="https://kit.fontawesome.com/03ad672f06.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/logout.js"></script>
 </body>
 </html>

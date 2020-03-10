@@ -30,8 +30,13 @@
     
         $statement = $conexion->prepare('SELECT * FROM Cita WHERE N_De_Usuario = :n_de_usuario');
         $statement->execute(array(':n_de_usuario' => $n_de_usuario));
-        
+
         $citas=$statement->fetchAll();
+
+        $statement = $conexion->prepare('SELECT * FROM Tarjetas WHERE N_De_Usuario = :n_de_usuario LIMIT 2');
+        $statement->execute(array(':n_de_usuario' => $n_de_usuario));
+        
+        $tarjetas=$statement->fetchAll();
 
         if(isset($_POST['guardar_usuario'])){
 
@@ -50,7 +55,7 @@
             $telefono =trim($_POST["telefono"]);
             $telefono = filter_var($telefono, FILTER_SANITIZE_STRING);
 
-            $correo = $_SESSION['usuario'];
+            $correo = $_SESSION['cliente'];
 
             $target_path="fotosusuarios/";
             $target_path=$target_path . basename( $_FILES['foto']['name']);
@@ -210,13 +215,13 @@
 
             $n_de_usuario = $_SESSION['n_de_usuario'];
 
-            $statement = $conexion->prepare('insert into Tarjetas values(:n_de_usuario,:titular,:mes,:year,:tarjeta,:codigo)');
+            $statement = $conexion->prepare('INSERT INTO Tarjetas values(NULL,:n_de_usuario,:titular,:tarjeta,:mes,:año,:codigo)');
             $statement->execute(array(
                     ':n_de_usuario' => $n_de_usuario,
                     ':titular' => $titular,
-                    ':mes' => $expiracion_mes,
-                    ':year' => $expiracion_year,
                     ':tarjeta' => $tarjeta,
+                    ':mes' => $expiracion_mes,
+                    ':año' => $expiracion_year,
                     ':codigo' => $codigo,
                 ));
 
@@ -226,15 +231,12 @@
 
         if(isset($_POST["eliminar_t"])){
     
-            $id_tarjeta = trim($_POST["id_tarjeta"]);
-            $id_tarjeta = filter_var($id_tarjeta, FILTER_SANITIZE_STRING);
+            $id_tarjeta = $_POST["id_tarjeta"];
     
-                $statement = $conexion->prepare('DELETE from Tarjeta where Id_Tarjeta=:id_tarjeta');
+                $statement = $conexion->prepare('DELETE from Tarjetas where Id_Tarjeta=:id_tarjeta');
                 $statement->execute(array(
                         ':id_tarjeta' => $id_tarjeta,
                     ));
-    
-                $resultado = $statement->fetchColumn();
             
                 echo "<div class='alert alert-danger mt-4' role='alert'>La cuenta No Existe En La Base De Datos</div>";
                 header('Location: ./perfil.php');
