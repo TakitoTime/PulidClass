@@ -17,6 +17,14 @@
                                 <p>Asesor:</p>
                                 <input type="text" name="asesor" id="asesor" disabled value="<?php echo $nombre_asesor?>">
                             </div>
+                            <div class="tarjeta">
+                                <p>Tarjeta:</p>
+                                <select name="tarjeta" id="tarjeta">
+                                    <?php $cont=1; foreach ($tarjetas as $tarjeta){?>
+                                        <option value="<?php echo $tarjeta['Id_Tarjeta'];?>"><?php echo"Tarjeta $cont";?></option>
+                                    <?php $cont=$cont+1; }?>
+                                </select>
+                            </div>
                             <div class="direccion">
                                 <p>Direccion:</p>
                                 <select name="direccion" id="direccion">

@@ -328,7 +328,7 @@ main .tarjetas .tarjeta1 .datos .secundario input,main .tarjetas .tarjeta2 .dato
   margin: 10px;
 }
 
-main .tarjetas .tarjeta1 .datos .secundario #codigo ,main .tarjetas .tarjeta2 .datos .secundario #codigo {
+main .tarjetas .tarjeta1 .datos .secundario .codigo #codigo1 ,main .tarjetas .tarjeta2 .datos .secundario .codigo #codigo2{
   padding: 10px;
   width: 30%;
   border-radius: 5px;
@@ -347,7 +347,7 @@ main .tarjetas .tarjeta1 .imagenes,main .tarjetas .tarjeta2 .imagenes{
   width: 100%;
 }
 
-main .tarjetas .tarjeta1 .imagenes a img,main .tarjetas .tarjeta2 .imagenes a img{
+main .tarjetas .tarjeta1 .codigo a img,main .tarjetas .tarjeta2 .codigo a img{
   width: 130px;
   height: 60px;
   float: right;
@@ -359,7 +359,7 @@ main .tarjetas .tarjeta1 .submit input,main .tarjetas .tarjeta2 .submit input{
   border-radius: 5px;
   border: 1px solid #ccc;
   margin: 10px;
-  margin-top: 60px;
+  margin-top: 20px;
   margin-left: 40px;
   color: #fff;
   background: #1089ff;

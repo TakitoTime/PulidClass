@@ -15,7 +15,8 @@
     $nhoras=$cita['N_De_Horas'];
     $costo=$cita['Costo'];
     $folio=$cita['Folio'];
-    $direccion=$cita['Direccion'];
+    $direccion1=$cita['DireccionP1'];
+    $direccion2=$cita['DireccionP2'];
 
     $id_asesor=$cita['Id_Asesor'];
 

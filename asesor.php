@@ -37,6 +37,13 @@
 
                 $direcciones=$statement->fetchAll();
 
+                $statement=$conexion->prepare('SELECT Id_Tarjeta from Tarjeta where N_De_Usuario=:n_de_usuario LIMIT 2');
+                $statement->execute(array(
+                    'n_de_usuario'=>$n_de_usuario
+                ));
+
+                $tarjetas=$statement->fetchAll();
+
             $cita_confirmada="confirmar_cita";
             $confirmar="Confirmar";
 
@@ -177,7 +184,6 @@
                 $statement->execute(array('id_direccion'=> $dir));
 
                 $dir=$statement->fetch();
-                $direccion_comp=$dir['Calle']." #".$dir['Numero'].", Col.".$dir['Colonia'].". ".$dir['Codigo_Postal']." ".$dir['Ciudad']." ".$dir['Estado'].", ".$dir['Pais'].".";
                 $direccion1=$dir['Calle']." #".$dir['Numero'].", Col.".$dir['Colonia'].". ".$dir['Codigo_Postal'];
                 $direccion2=" ".$dir['Ciudad']." ".$dir['Estado'].", ".$dir['Pais'].".";
 
@@ -193,11 +199,12 @@
                 $costo=$statement->fetch();
                 $costo=$costo['Costo'];
                 
-                $statement=$conexion->prepare('call pulidclass.spAltaCita(:n_de_usuario, :id_asesor, :direccion, :descripcion, :fecha, :hora_inicial, :hora_final, :n_horas, :costo)');
+                $statement=$conexion->prepare('call pulidclass.spAltaCita(:n_de_usuario, :id_asesor, :direccionp1,:direccionp2, :descripcion, :fecha, :hora_inicial, :hora_final, :n_horas, :costo)');
                 $statement->execute(array(
                     ':n_de_usuario'=> $n_de_usuario,
                     ':id_asesor'=> $id_asesor,
-                    ':direccion'=> $direccion_comp,
+                    ':direccionp1'=> $direccion1,
+                    ':direccionp2'=> $direccion2,
                     ':descripcion' => $descripcion,
                     ':fecha'=> $fecha,
                     ':hora_inicial'=> $hora_inicial,

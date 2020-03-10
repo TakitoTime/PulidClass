@@ -33,7 +33,7 @@
 
         $citas=$statement->fetchAll();
 
-        $statement = $conexion->prepare('SELECT * FROM Tarjetas WHERE N_De_Usuario = :n_de_usuario LIMIT 2');
+        $statement = $conexion->prepare('SELECT * FROM Tarjeta WHERE N_De_Usuario = :n_de_usuario LIMIT 2');
         $statement->execute(array(':n_de_usuario' => $n_de_usuario));
         
         $tarjetas=$statement->fetchAll();
@@ -215,13 +215,13 @@
 
             $n_de_usuario = $_SESSION['n_de_usuario'];
 
-            $statement = $conexion->prepare('INSERT INTO Tarjetas values(NULL,:n_de_usuario,:titular,:tarjeta,:mes,:año,:codigo)');
+            $statement = $conexion->prepare('INSERT INTO Tarjeta values(NULL,:n_de_usuario,:titular,:tarjeta,:mes,:year,:codigo)');
             $statement->execute(array(
                     ':n_de_usuario' => $n_de_usuario,
                     ':titular' => $titular,
                     ':tarjeta' => $tarjeta,
                     ':mes' => $expiracion_mes,
-                    ':año' => $expiracion_year,
+                    ':year' => $expiracion_year,
                     ':codigo' => $codigo,
                 ));
 
@@ -233,7 +233,7 @@
     
             $id_tarjeta = $_POST["id_tarjeta"];
     
-                $statement = $conexion->prepare('DELETE from Tarjetas where Id_Tarjeta=:id_tarjeta');
+                $statement = $conexion->prepare('DELETE from Tarjeta where Id_Tarjeta=:id_tarjeta');
                 $statement->execute(array(
                         ':id_tarjeta' => $id_tarjeta,
                     ));

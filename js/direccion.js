@@ -28,9 +28,9 @@ var numero3=document.getElementById("numero3");
 var codigo_postal3=document.getElementById("codigo_postal3");
 var descripcion3=document.getElementById("descripcion3");
 
-var eliminar1=document.getElementById("eliminar1");
-var eliminar2=document.getElementById("eliminar2");
-var eliminar3=document.getElementById("eliminar3");
+var eliminar_d1=document.getElementById("eliminar_d1");
+var eliminar_d2=document.getElementById("eliminar_d2");
+var eliminar_d3=document.getElementById("eliminar_d3");
 
 var guardar_d1=document.getElementById("guardar_d1");
 var guardar_d2=document.getElementById("guardar_d2");
@@ -67,6 +67,7 @@ function Modificar_Datos_Direccion(id){
             descripcion2.disabled=false;
         }
         else{
+            if(id==3){
             guardar3.disabled=false;
             pais3.disabled=false;
             estado3.disabled=false;
@@ -76,6 +77,7 @@ function Modificar_Datos_Direccion(id){
             numero3.disabled=false;
             codigo_postal3.disabled=false;
             descripcion3.disabled=false;
+            }
         }
     }
 }
@@ -89,7 +91,9 @@ function Habilitar_ID(id){
             id2.disabled=false;
         }
         else{
+            if(id==3){
             id3.disabled=false;
+            }
         }
     }
 }
@@ -125,26 +129,28 @@ function Agregar_Direccion(id_agregar){
             }  );
         }
         else{
-            guardar3.disabled=false;
-            pais3.disabled=false;
-            estado3.disabled=false;
-            ciudad3.disabled=false;
-            colonia3.disabled=false;
-            calle3.disabled=false;
-            numero3.disabled=false;
-            codigo_postal3.disabled=false;
-            descripcion3.disabled=false;
-            $( ".direcciones" ).accordion( {
-                active: 2
-            }  );
+            if(id_agregar==3){
+                guardar3.disabled=false;
+                pais3.disabled=false;
+                estado3.disabled=false;
+                ciudad3.disabled=false;
+                colonia3.disabled=false;
+                calle3.disabled=false;
+                numero3.disabled=false;
+                codigo_postal3.disabled=false;
+                descripcion3.disabled=false;
+                $( ".direcciones" ).accordion( {
+                    active: 2
+                }  );
+            }
         }
     }
 }
 
 function Habilitar_Boton(){
-    eliminar1.disabled=false;
-    eliminar2.disabled=false;
-    eliminar3.disabled=false;
+    eliminar_d1.disabled=false;
+    eliminar_d2.disabled=false;
+    eliminar_d3.disabled=false;
 }
 
 $( function() {

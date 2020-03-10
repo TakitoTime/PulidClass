@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-03-2020 a las 04:26:16
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.2
+-- Tiempo de generación: 10-03-2020 a las 06:49:01
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -74,11 +74,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAsesor` (IN `_CorreoAdmin` VA
 	end if;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCita` (IN `_N_De_Usuario` INT, IN `_Id_Asesor` INT, IN `_Direccion` VARCHAR(200), IN `_Dir_Descripcion` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora_Inicial` VARCHAR(15), IN `_Hora_Final` VARCHAR(15), IN `_NDeHoras` INT, IN `_Costo` DECIMAL(10,2))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCita` (IN `_N_De_Usuario` INT, IN `_Id_Asesor` INT, IN `_DireccionP1` VARCHAR(200), IN `_DireccionP2` VARCHAR(200), IN `_Dir_Descripcion` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora_Inicial` VARCHAR(15), IN `_Hora_Final` VARCHAR(15), IN `_NDeHoras` INT, IN `_Costo` DECIMAL(10,2))  BEGIN
 		declare _correo varchar(70) default '';
         
         set _correo= (SELECT correo from Usuario where  N_De_Usuario=_N_De_Usuario);
-		insert into Cita(N_De_Usuario, Id_Asesor,Direccion,Dir_Descripcion,Fecha,Hora_Inicial,Hora_Final,N_De_Horas,Costo) Values (_N_De_Usuario,_Id_Asesor,_Direccion,_Dir_Descripcion,_Fecha,_Hora_Inicial,_Hora_Final,_NDeHoras,_Costo);
+		insert into Cita(N_De_Usuario, Id_Asesor,DireccionP1,DireccionP2,Dir_Descripcion,Fecha,Hora_Inicial,Hora_Final,N_De_Horas,Costo) Values (_N_De_Usuario,_Id_Asesor,_DireccionP1,_DireccionP2,_Dir_Descripcion,_Fecha,_Hora_Inicial,_Hora_Final,_NDeHoras,_Costo);
             
 		insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('El usuario con el Numero De Usuario: ',_N_De_Usuario, 'Genero Una Cita con el asesor:', _Id_Asesor), 'Cita', curdate());
             
@@ -596,7 +596,10 @@ INSERT INTO `bitacora` (`Id_Bitacora`, `Correo`, `Accion_Realizada`, `TablaAfect
 (271, NULL, NULL, 'Usuario', '2020-03-09'),
 (272, NULL, NULL, 'Usuario', '2020-03-09'),
 (273, '17231222@itslerdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itslerdo.edu.mx', 'Usuario', '2020-03-09'),
-(274, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-03-09');
+(274, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-03-09'),
+(275, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-03-09'),
+(276, '17231222@itslerdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itslerdo.edu.mx', 'Usuario', '2020-03-09'),
+(277, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-03-09');
 
 -- --------------------------------------------------------
 
@@ -608,26 +611,15 @@ CREATE TABLE `cita` (
   `Folio` int(11) NOT NULL,
   `N_De_Usuario` int(11) DEFAULT NULL,
   `Id_Asesor` int(11) DEFAULT NULL,
-  `Direccion` varchar(200) DEFAULT NULL,
+  `DireccionP1` varchar(200) DEFAULT NULL,
+  `DireccionP2` varchar(200) DEFAULT NULL,
   `Dir_Descripcion` varchar(100) DEFAULT NULL,
   `Fecha` date DEFAULT NULL,
   `Hora_Inicial` varchar(15) DEFAULT NULL,
   `Hora_Final` varchar(15) DEFAULT NULL,
   `N_De_Horas` int(11) DEFAULT NULL,
   `Costo` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `cita`
---
-
-INSERT INTO `cita` (`Folio`, `N_De_Usuario`, `Id_Asesor`, `Direccion`, `Dir_Descripcion`, `Fecha`, `Hora_Inicial`, `Hora_Final`, `N_De_Horas`, `Costo`) VALUES
-(135, 39, 123, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-27', '17:00', '18:00', 1, '100.00'),
-(136, 39, 123, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-27', '18:00', '19:00', 1, '100.00'),
-(137, 39, 123, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-27', '18:00', '19:00', 1, '100.00'),
-(138, 39, 123, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-27', '18:00', '19:00', 1, '100.00'),
-(139, 39, 123, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-27', '18:00', '19:00', 1, '100.00'),
-(140, 39, 124, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-29', '18:00', '17:00', -1, NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -740,6 +732,29 @@ INSERT INTO `precio` (`Id_Precio`, `Costo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tarjeta`
+--
+
+CREATE TABLE `tarjeta` (
+  `Id_Tarjeta` int(11) NOT NULL,
+  `N_De_Usuario` int(11) DEFAULT NULL,
+  `Nombre_T` varchar(200) DEFAULT NULL,
+  `Num_T` varchar(200) DEFAULT NULL,
+  `Mes` int(11) DEFAULT NULL,
+  `Year` int(11) DEFAULT NULL,
+  `Codigo_S` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tarjeta`
+--
+
+INSERT INTO `tarjeta` (`Id_Tarjeta`, `N_De_Usuario`, `Nombre_T`, `Num_T`, `Mes`, `Year`, `Codigo_S`) VALUES
+(4, 39, 'David Pulido', '1231231231231232', 12, 2026, 123);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -766,7 +781,7 @@ INSERT INTO `usuario` (`N_De_Usuario`, `Correo`, `Nombres`, `A_Paterno`, `A_Mate
 (8, 'administrador1@gmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/44407397_2031437606920368_5591387600746184704_n.jpg'),
 (9, 'davida7x77@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL),
 (38, 'sillapone@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL),
-(39, '17231222@itslerdo.edu.mx', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/WhatsApp Image 2019-11-26 at 13.18.51.jpeg');
+(39, '17231222@itslerdo.edu.mx', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/26171846_1670030629727736_6166157510929192402_o.jpg');
 
 --
 -- Disparadores `usuario`
@@ -797,8 +812,7 @@ ALTER TABLE `bitacora`
 --
 ALTER TABLE `cita`
   ADD PRIMARY KEY (`Folio`),
-  ADD KEY `N_De_Usuario` (`N_De_Usuario`),
-  ADD KEY `Id_Asesor` (`Id_Asesor`);
+  ADD KEY `N_De_Usuario` (`N_De_Usuario`);
 
 --
 -- Indices de la tabla `cuenta`
@@ -826,6 +840,13 @@ ALTER TABLE `precio`
   ADD PRIMARY KEY (`Id_Precio`);
 
 --
+-- Indices de la tabla `tarjeta`
+--
+ALTER TABLE `tarjeta`
+  ADD PRIMARY KEY (`Id_Tarjeta`),
+  ADD KEY `N_De_Usuario` (`N_De_Usuario`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -846,25 +867,31 @@ ALTER TABLE `asesor`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=275;
+  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
+  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `precio`
 --
 ALTER TABLE `precio`
   MODIFY `Id_Precio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `tarjeta`
+--
+ALTER TABLE `tarjeta`
+  MODIFY `Id_Tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -880,8 +907,7 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `cita`
 --
 ALTER TABLE `cita`
-  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cita_ibfk_2` FOREIGN KEY (`Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`);
 
 --
 -- Filtros para la tabla `habita`
@@ -889,6 +915,12 @@ ALTER TABLE `cita`
 ALTER TABLE `habita`
   ADD CONSTRAINT `habita_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `habita_ibfk_2` FOREIGN KEY (`Id_Direccion`) REFERENCES `direccion` (`Id_Direccion`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tarjeta`
+--
+ALTER TABLE `tarjeta`
+  ADD CONSTRAINT `tarjeta_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`);
 
 --
 -- Filtros para la tabla `usuario`

@@ -29,10 +29,10 @@
     $pdf->Cell(5,$textypos,"Direccion:");
     $textypos+=5;
     $pdf->setX(2);
-    $pdf->Cell(5,$textypos,"$direccion");
+    $pdf->Cell(5,$textypos,"$direccion1");
     $textypos+=5;
     $pdf->setX(2);
-    $pdf->Cell(5,$textypos,"$direccion");
+    $pdf->Cell(5,$textypos,"$direccion2");
     $textypos+=5;
     $pdf->setX(2);
     $pdf->Cell(5,$textypos,'-------------------------------------------------------------------');
@@ -48,7 +48,7 @@
     $pdf->SetFont('Arial','B',5);
     $textypos+=10;
     $pdf->setX(2);
-    $pdf->Cell(5,$textypos,"Folio: $folio                                     Costo: $$costo");
+    $pdf->Cell(5,$textypos,"Folio: $folio                                     Total: $$costo");
     $pdf->SetFont('Arial','',5);
     $textypos+=10;
     $pdf->setX(2);

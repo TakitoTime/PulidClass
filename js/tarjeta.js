@@ -29,15 +29,17 @@ function Agregar_Tarjeta(id_agregar){
         }  );
     }
     else{
-        guardar_t2.disabled=false;
-        nombre2.disabled=false;
-        numero_t2.disabled=false;
-        mes2.disabled=false;
-        año2.disabled=false;
-        codigo2.disabled=false;
-        $( ".tarjetas" ).tabs( {
-            active: 1
-        }  );
+        if(id_agregar==2){
+            guardar_t2.disabled=false;
+            nombre2.disabled=false;
+            numero_t2.disabled=false;
+            mes2.disabled=false;
+            año2.disabled=false;
+            codigo2.disabled=false;
+            $( ".tarjetas" ).tabs( {
+                active: 1
+            }  );
+        }
     }
 }
 

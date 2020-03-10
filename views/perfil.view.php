@@ -91,7 +91,7 @@
                                 <input type="text" name="descripcion" class="descripcion" id="descripcion<?php echo $cont?>" placeholder="Descripcion" disabled value="<?php echo $dato['Descripcion']?>">
 
                                 <input type="submit" name="guardar" disabled value="Guardar Cambios" onclick="Habilitar_ID(<?php echo $cont?>)" id="guardar<?php echo $cont?>">
-                                <input type="submit" name="eliminar"  disabled value="Eliminar Direccion" onclick="Habilitar_ID(<?php echo $cont?>)" id="eliminar<?php echo $cont?>">
+                                <input type="submit" name="eliminar"  disabled value="Eliminar Direccion" onclick="Habilitar_ID(<?php echo $cont?>)" id="eliminar_d<?php echo $cont?>">
                                 <input type="button" value="Modificar Datos"  onclick="Modificar_Datos_Direccion(<?php echo $cont?>)">
                         </form>
                     </div>
@@ -123,16 +123,30 @@
                 ?>
             </div>
             <div class="botones">
+            <?php if($cont_agregar==4): ?>
+                <input type="button" value="Agregar Direccion" onclick="Agregar_Direccion(<?php echo $cont_agregar?>)" disabled style="background:#23374d;">
+            <?php else: ?>
                 <input type="button" value="Agregar Direccion" onclick="Agregar_Direccion(<?php echo $cont_agregar?>)">
-                <input type="button" value="Eliminar Direccion" onclick="Habilitar_Boton(<?php echo $cont_eliminar?>)">
+            <?php endif; ?>
+                <input type="button" value="Eliminar Direccion" onclick="Habilitar_Boton()">
             </div>
         </div>
         <h2>Tarjetas</h2>
         <div class="cont_tarjetas">
+            <?php 
+                $contagregar_t=1;
+                foreach($tarjetas as $tarjeta){
+                    $contagregar_t=$contagregar_t+1;
+                }
+            ?>
             <div class="botones">
-                    <input type="button" value="Agregar Tarjeta" onclick="Agregar_Tarjeta(<?php echo $cont_agregar?>)">
+                <?php if($contagregar_t==3): ?>
+                    <input type="button" value="Agregar Tarjeta" onclick="Agregar_Tarjeta(<?php echo $contagregar_t?>)" disabled style="background:#23374d;">
+                <?php else: ?>
+                    <input type="button" value="Agregar Tarjeta" onclick="Agregar_Tarjeta(<?php echo $contagregar_t?>)">
+                <?php endif; ?>
                     <input type="button" value="Eliminar Tarjeta" onclick="Habilitar_Boton_Tarjeta()">
-                </div>
+            </div>
             <div class="tarjetas">
                 <div class="etiquetas">
                     <ul>
@@ -161,13 +175,13 @@
                             </div>
                             <div class="secundario">
                                 <p>Numero De Tarjeta:</p>
-                                <input type="text" name="tarjeta" id="numero_t<?php echo $cont_t?>"  placeholder="Los 16 digitos de enfrete" disabled value="<?php echo $tarjeta['Num_T']?>">
+                                <input type="text" name="tarjeta" id="numero_t<?php echo $cont_t?>" disabled value="<?php echo $tarjeta['Num_T']?>">
                                 <p>Codigo De Seguridad:</p>
-                                <input type="password" name="codigo" id="codigo<?php echo $cont_t?>" placeholder="3 digitos" disabled value="<?php echo $tarjeta['Codigo_S']?>">
+                                <div class="codigo">
+                                    <input type="password" name="codigo" id="codigo<?php echo $cont_t?>" placeholder="3 digitos" disabled value="<?php echo $tarjeta['Codigo_S']?>">
+                                    <a href="#"><img src="img/logo_tarjetas.png" alt=""></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="imagenes">
-                            <a href="#"><img src="img/logo_tarjetas.png" alt=""></a>
                         </div>
                         <div class="submit">
                             <input type="hidden" name="guardar_t" value="Guardar Datos" disabled id="guardar_t<?php echo $cont_t?>">
@@ -180,7 +194,7 @@
                         $cont_t=$cont_t+1;
                 ?>
                 <div class="tarjeta<?php echo $cont_t?>" id="tabs-<?php echo $cont_t?>">
-                    <h3 class="titulo" id="titulo">Tarjeta 2</h3>
+                    <h3 class="titulo" id="titulo">Tarjeta <?php echo $cont_t?></h3>
                     <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                         <div class="datos">
                             <div class="principal">
@@ -194,13 +208,13 @@
                             </div>
                             <div class="secundario">
                                 <p>Numero De Tarjeta:</p>
-                                <input type="text" name="tarjeta" id="numero_t<?php echo $cont_t?>"  placeholder="Los 16 digitos de enfrete" disabled value="">
+                                <input type="text" name="tarjeta" id="numero_t<?php echo $cont_t?>" disabled value="">
                                 <p>Codigo De Seguridad:</p>
-                                <input type="password" name="codigo" id="codigo<?php echo $cont_t?>" placeholder="3 digitos" disabled value="">
+                                <div class="codigo">
+                                    <input type="password" name="codigo" id="codigo<?php echo $cont_t?>" placeholder="3 digitos" disabled value="">
+                                    <a href="#"><img src="img/logo_tarjetas.png" alt=""></a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="imagenes">
-                            <a href="#"><img src="img/logo_tarjetas.png" alt=""></a>
                         </div>
                         <div class="submit">
                             <input type="submit" name="guardar_t" value="Guardar Datos" disabled id="guardar_t<?php echo $cont_t?>">
@@ -244,7 +258,7 @@
                 <tr>
                     <td><?php echo $cita['Folio']?></td>
                     <td><?php echo $nombre_asesor?></td>
-                    <td><?php echo $cita['Direccion']?></td>
+                    <td><?php echo $cita['DireccionP1']; echo $cita['DireccionP2']?></td>
                     <td><?php echo $cita['Fecha']?></td>
                     <td><?php echo $cita['Hora_Inicial']?></td>
                     <td><?php echo $cita['Hora_Final']?></td>
