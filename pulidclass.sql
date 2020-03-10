@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-02-2020 a las 01:45:35
+-- Tiempo de generación: 10-03-2020 a las 04:26:16
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -306,7 +306,7 @@ CREATE TABLE `asesor` (
 
 INSERT INTO `asesor` (`Id_Asesor`, `Nombre_Usuario`, `Edad`, `Grado_Estudios`, `Nombres`, `A_Paterno`, `A_Materno`, `Ocupacion`, `Materia1`, `Materia2`, `Materia3`, `Descripcion`, `Correo`, `Telefono`, `Foto`) VALUES
 (123, 'felipec0', 18, 'Universidad', 'Luis Felipe', 'Carrillo', 'Alvarado', 'Estudiante', 'Física', 'Química', 'Cálculo', 'Estudiante', 'felipe@mail.com', '8713751823', 'fotoasesores/asesorpro.jpg'),
-(124, 'Erenkiller', 22, 'Universidad', 'David', 'Pulido', 'Valdez', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'asedfasdfasdfasdasdfasdfasdfasdfasdfasd', 'sillapone@gmail.com', '8713975674', '');
+(124, 'Erenkiller', 22, 'Universidad', 'David', 'Pulido', 'Valdez', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'asedfasdfasdfasdasdfasdfasdfasdfasdfasd', 'sillapone@gmail.com', '8713975674', 'fotoasesores/asesorpro.jpg');
 
 -- --------------------------------------------------------
 
@@ -580,7 +580,23 @@ INSERT INTO `bitacora` (`Id_Bitacora`, `Correo`, `Accion_Realizada`, `TablaAfect
 (255, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
 (256, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
 (257, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(258, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21');
+(258, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
+(259, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-02-24'),
+(260, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-24'),
+(261, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-02-24'),
+(262, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-26'),
+(263, '17231222@itslerdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itslerdo.edu.mx', 'Usuario', '2020-02-26'),
+(264, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-02-26'),
+(265, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-02-26'),
+(266, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-02-26'),
+(267, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-02-26'),
+(268, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-02-26'),
+(269, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-02-26'),
+(270, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:124', 'Cita', '2020-02-26'),
+(271, NULL, NULL, 'Usuario', '2020-03-09'),
+(272, NULL, NULL, 'Usuario', '2020-03-09'),
+(273, '17231222@itslerdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itslerdo.edu.mx', 'Usuario', '2020-03-09'),
+(274, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-03-09');
 
 -- --------------------------------------------------------
 
@@ -600,6 +616,18 @@ CREATE TABLE `cita` (
   `N_De_Horas` int(11) DEFAULT NULL,
   `Costo` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cita`
+--
+
+INSERT INTO `cita` (`Folio`, `N_De_Usuario`, `Id_Asesor`, `Direccion`, `Dir_Descripcion`, `Fecha`, `Hora_Inicial`, `Hora_Final`, `N_De_Horas`, `Costo`) VALUES
+(135, 39, 123, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-27', '17:00', '18:00', 1, '100.00'),
+(136, 39, 123, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-27', '18:00', '19:00', 1, '100.00'),
+(137, 39, 123, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-27', '18:00', '19:00', 1, '100.00'),
+(138, 39, 123, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-27', '18:00', '19:00', 1, '100.00'),
+(139, 39, 123, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-27', '18:00', '19:00', 1, '100.00'),
+(140, 39, 124, 'Hector Espino #185, Col.Hortencias. 35043 Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-02-29', '18:00', '17:00', -1, NULL);
 
 -- --------------------------------------------------------
 
@@ -621,14 +649,14 @@ CREATE TABLE `cuenta` (
 --
 
 INSERT INTO `cuenta` (`Correo`, `Contrasena`, `Validacion`, `Tipo`, `Activacion`, `Codigo_Activacion`) VALUES
-('17231222@itslerdo.edu.mx', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', NULL, 2, 1, 7297),
+('17231222@itslerdo.edu.mx', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 2, 1, 2422),
 ('administrador1@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 1, NULL, NULL),
 ('correo@correo.com', '123', 'Validada', NULL, NULL, NULL),
-('davida7x77@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', NULL, 1, 0, 1478),
+('davida7x77@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 1, 0, 1478),
 ('david_tier@hotmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', NULL, NULL, NULL),
 ('felipe@mail.com', '123', 'Validada', NULL, NULL, NULL),
 ('prueba1@hotmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', NULL, NULL, NULL),
-('sillapone@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', NULL, NULL, NULL);
+('sillapone@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 2, 1, 4291);
 
 -- --------------------------------------------------------
 
@@ -660,7 +688,9 @@ INSERT INTO `direccion` (`Id_Direccion`, `Pais`, `Estado`, `Ciudad`, `Colonia`, 
 (22, 'MÃ©xico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 185, 35043, 'Fachada Verde, Porton Azul Rey'),
 (24, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde. Porton Azul'),
 (25, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde, Porton Azul, Arboles Enfrente'),
-(26, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde, Porton Azul, Arboles Enfrente');
+(26, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde, Porton Azul, Arboles Enfrente'),
+(27, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 185, 35043, 'Fachada verde, porton azul, 2 arboles enfrente'),
+(28, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde. Porton Azul');
 
 -- --------------------------------------------------------
 
@@ -680,11 +710,11 @@ CREATE TABLE `habita` (
 INSERT INTO `habita` (`N_De_Usuario`, `Id_Direccion`) VALUES
 (1, 1),
 (NULL, 8),
-(4, 19),
-(4, 20),
 (6, 24),
 (7, 25),
-(7, 26);
+(7, 26),
+(39, 27),
+(39, 28);
 
 -- --------------------------------------------------------
 
@@ -731,12 +761,12 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`N_De_Usuario`, `Correo`, `Nombres`, `A_Paterno`, `A_Materno`, `Edad`, `Telefono`, `Foto`) VALUES
 (1, 'correo@correo.com', 'Juan', 'Perez', 'Perez', 189, '871237182', 'fotosusuarios/rj01400-01-thumbnail-1080x1080-70.jpg'),
 (2, 'felipe@mail.com', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'sillapone@gmail.com', 'Felipe', 'Carrillo', 'Alvarado', 20, '8717850293', 'fotosusuarios/vscode-dark-1152x864.png'),
 (6, 'david_tier@hotmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg'),
 (7, 'prueba1@hotmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/WhatsApp Image 2019-11-26 at 13.18.51.jpeg'),
 (8, 'administrador1@gmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/44407397_2031437606920368_5591387600746184704_n.jpg'),
 (9, 'davida7x77@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL),
-(35, '17231222@itslerdo.edu.mx', NULL, NULL, NULL, NULL, NULL, NULL);
+(38, 'sillapone@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL),
+(39, '17231222@itslerdo.edu.mx', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/WhatsApp Image 2019-11-26 at 13.18.51.jpeg');
 
 --
 -- Disparadores `usuario`
@@ -816,19 +846,19 @@ ALTER TABLE `asesor`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=259;
+  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=275;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `precio`
@@ -840,7 +870,7 @@ ALTER TABLE `precio`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `N_De_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `N_De_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restricciones para tablas volcadas
