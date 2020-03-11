@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-03-2020 a las 06:49:01
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Tiempo de generación: 11-03-2020 a las 04:34:26
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -74,11 +74,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAsesor` (IN `_CorreoAdmin` VA
 	end if;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCita` (IN `_N_De_Usuario` INT, IN `_Id_Asesor` INT, IN `_DireccionP1` VARCHAR(200), IN `_DireccionP2` VARCHAR(200), IN `_Dir_Descripcion` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora_Inicial` VARCHAR(15), IN `_Hora_Final` VARCHAR(15), IN `_NDeHoras` INT, IN `_Costo` DECIMAL(10,2))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCita` (IN `_N_De_Usuario` INT, IN `_Id_Asesor` INT, IN `_Id_Tarjeta` INT, IN `_DireccionP1` VARCHAR(200), IN `_DireccionP2` VARCHAR(200), IN `_Dir_Descripcion` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora_Inicial` VARCHAR(15), IN `_Hora_Final` VARCHAR(15), IN `_NDeHoras` INT, IN `_Costo` DECIMAL(10,2))  BEGIN
 		declare _correo varchar(70) default '';
         
         set _correo= (SELECT correo from Usuario where  N_De_Usuario=_N_De_Usuario);
-		insert into Cita(N_De_Usuario, Id_Asesor,DireccionP1,DireccionP2,Dir_Descripcion,Fecha,Hora_Inicial,Hora_Final,N_De_Horas,Costo) Values (_N_De_Usuario,_Id_Asesor,_DireccionP1,_DireccionP2,_Dir_Descripcion,_Fecha,_Hora_Inicial,_Hora_Final,_NDeHoras,_Costo);
+		insert into Cita(N_De_Usuario, Id_Asesor,Id_Tarjeta,DireccionP1,DireccionP2,Dir_Descripcion,Fecha,Hora_Inicial,Hora_Final,N_De_Horas,Costo) Values (_N_De_Usuario,_Id_Asesor,_Id_Tarjeta,_DireccionP1,_DireccionP2,_Dir_Descripcion,_Fecha,_Hora_Inicial,_Hora_Final,_NDeHoras,_Costo);
             
 		insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('El usuario con el Numero De Usuario: ',_N_De_Usuario, 'Genero Una Cita con el asesor:', _Id_Asesor), 'Cita', curdate());
             
@@ -305,8 +305,11 @@ CREATE TABLE `asesor` (
 --
 
 INSERT INTO `asesor` (`Id_Asesor`, `Nombre_Usuario`, `Edad`, `Grado_Estudios`, `Nombres`, `A_Paterno`, `A_Materno`, `Ocupacion`, `Materia1`, `Materia2`, `Materia3`, `Descripcion`, `Correo`, `Telefono`, `Foto`) VALUES
-(123, 'felipec0', 18, 'Universidad', 'Luis Felipe', 'Carrillo', 'Alvarado', 'Estudiante', 'Física', 'Química', 'Cálculo', 'Estudiante', 'felipe@mail.com', '8713751823', 'fotoasesores/asesorpro.jpg'),
-(124, 'Erenkiller', 22, 'Universidad', 'David', 'Pulido', 'Valdez', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'asedfasdfasdfasdasdfasdfasdfasdfasdfasd', 'sillapone@gmail.com', '8713975674', 'fotoasesores/asesorpro.jpg');
+(125, 'TakitoTime', 22, 'Universidad', 'David Guadalupe', 'Pulido', 'Valdez', 'Estudiante', 'Matematicas', 'Fisica', 'Programacion', 'Joven universitario con habilidades principalmente en matematicas, y con capacidad de enseñar a otros', '17231222@itslerdo.edu.mx', '8713975674', 'fotoasesores/asesorpro1.jpg'),
+(126, 'Chinofloo', 20, 'Universidad', 'Cesar', 'Mendoza', 'Reyes', 'Estudiante', 'Programacion', 'Calculo', 'Ingles', 'Me gusta dar clases reducidas pero interactivas para poder enseñar a los alumnos a aprender por medio de  ejercicios y que logren adquirir experiencia, para poder transmitir conocimientos necesarios para aprender algun oficio', 'cesarmendoza@gmail.com', '8717887048', 'fotoasesores/asesorpro2.jpeg'),
+(127, 'Gerita', 30, 'Posgrado', 'Gerardo', 'Ortiz', 'Salas', 'Arquitecto', 'Algebra Lineal', 'Termodinamica', 'Mecanica De Fluidos', 'Profesionista experto en la realizacion de obras de ingenieria, capacitado para poder asistir a jovenes en los ambitos relacionados con las matematicas.', 'gerardortiz@gmail.com', '8714685762', 'fotoasesores/face2.jpg'),
+(128, 'Meny98', 21, 'Universidad', 'Manuel Alejandro', 'Herrera', 'Ceniceros', 'Estudiante', 'Contabilidad', 'Base De Datos', 'Redes', 'Lo más bello de este Mundo son las mujeres y la naturaleza.', 'ManuelAlejandroH@outlook.com', '8714038669', 'fotoasesores/asesorpro3.png'),
+(129, 'Karlita23', 23, 'Universidad', 'Karla', 'Guerrero', 'Hernandez', 'Estudiante', 'Contabilidad', 'Ingles', 'Marketing', 'Soy una joven estudiante con la capacidad de emprender e inonvar con nuevas metodologias y con el estudio del mercado.', 'karlaguerrero@gmail.com', '8714440458', 'fotoasesores/face1.jpg');
 
 -- --------------------------------------------------------
 
@@ -599,7 +602,14 @@ INSERT INTO `bitacora` (`Id_Bitacora`, `Correo`, `Accion_Realizada`, `TablaAfect
 (274, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-03-09'),
 (275, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-03-09'),
 (276, '17231222@itslerdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itslerdo.edu.mx', 'Usuario', '2020-03-09'),
-(277, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-03-09');
+(277, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-03-09'),
+(278, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-03-10'),
+(279, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-03-10'),
+(280, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: TakitoTime', 'Asesor', '2020-03-10'),
+(281, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Chinofloo', 'Asesor', '2020-03-10'),
+(282, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Gerita', 'Asesor', '2020-03-10'),
+(283, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Meny98', 'Asesor', '2020-03-10'),
+(284, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Karlita23', 'Asesor', '2020-03-10');
 
 -- --------------------------------------------------------
 
@@ -611,6 +621,7 @@ CREATE TABLE `cita` (
   `Folio` int(11) NOT NULL,
   `N_De_Usuario` int(11) DEFAULT NULL,
   `Id_Asesor` int(11) DEFAULT NULL,
+  `Id_Tarjeta` int(11) DEFAULT NULL,
   `DireccionP1` varchar(200) DEFAULT NULL,
   `DireccionP2` varchar(200) DEFAULT NULL,
   `Dir_Descripcion` varchar(100) DEFAULT NULL,
@@ -619,7 +630,7 @@ CREATE TABLE `cita` (
   `Hora_Final` varchar(15) DEFAULT NULL,
   `N_De_Horas` int(11) DEFAULT NULL,
   `Costo` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -682,7 +693,8 @@ INSERT INTO `direccion` (`Id_Direccion`, `Pais`, `Estado`, `Ciudad`, `Colonia`, 
 (25, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde, Porton Azul, Arboles Enfrente'),
 (26, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde, Porton Azul, Arboles Enfrente'),
 (27, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 185, 35043, 'Fachada verde, porton azul, 2 arboles enfrente'),
-(28, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde. Porton Azul');
+(28, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde. Porton Azul'),
+(30, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 195, 35043, 'Fachada Verde. Porton Azul');
 
 -- --------------------------------------------------------
 
@@ -706,7 +718,8 @@ INSERT INTO `habita` (`N_De_Usuario`, `Id_Direccion`) VALUES
 (7, 25),
 (7, 26),
 (39, 27),
-(39, 28);
+(39, 28),
+(39, 30);
 
 -- --------------------------------------------------------
 
@@ -728,29 +741,6 @@ INSERT INTO `precio` (`Id_Precio`, `Costo`) VALUES
 (2, '200.00'),
 (3, '250.00'),
 (4, '300.00');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tarjeta`
---
-
-CREATE TABLE `tarjeta` (
-  `Id_Tarjeta` int(11) NOT NULL,
-  `N_De_Usuario` int(11) DEFAULT NULL,
-  `Nombre_T` varchar(200) DEFAULT NULL,
-  `Num_T` varchar(200) DEFAULT NULL,
-  `Mes` int(11) DEFAULT NULL,
-  `Year` int(11) DEFAULT NULL,
-  `Codigo_S` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tarjeta`
---
-
-INSERT INTO `tarjeta` (`Id_Tarjeta`, `N_De_Usuario`, `Nombre_T`, `Num_T`, `Mes`, `Year`, `Codigo_S`) VALUES
-(4, 39, 'David Pulido', '1231231231231232', 12, 2026, 123);
 
 -- --------------------------------------------------------
 
@@ -812,7 +802,9 @@ ALTER TABLE `bitacora`
 --
 ALTER TABLE `cita`
   ADD PRIMARY KEY (`Folio`),
-  ADD KEY `N_De_Usuario` (`N_De_Usuario`);
+  ADD KEY `cita_ibfk_1` (`N_De_Usuario`),
+  ADD KEY `cita_ibfk_2` (`Id_Asesor`),
+  ADD KEY `cita_ibfk_3` (`Id_Tarjeta`);
 
 --
 -- Indices de la tabla `cuenta`
@@ -840,13 +832,6 @@ ALTER TABLE `precio`
   ADD PRIMARY KEY (`Id_Precio`);
 
 --
--- Indices de la tabla `tarjeta`
---
-ALTER TABLE `tarjeta`
-  ADD PRIMARY KEY (`Id_Tarjeta`),
-  ADD KEY `N_De_Usuario` (`N_De_Usuario`);
-
---
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -861,37 +846,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `asesor`
 --
 ALTER TABLE `asesor`
-  MODIFY `Id_Asesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `Id_Asesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
+  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=285;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `precio`
 --
 ALTER TABLE `precio`
   MODIFY `Id_Precio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `tarjeta`
---
-ALTER TABLE `tarjeta`
-  MODIFY `Id_Tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -907,7 +886,9 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `cita`
 --
 ALTER TABLE `cita`
-  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`);
+  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cita_ibfk_2` FOREIGN KEY (`Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cita_ibfk_3` FOREIGN KEY (`Id_Tarjeta`) REFERENCES `tarjeta` (`Id_Tarjeta`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `habita`
@@ -915,12 +896,6 @@ ALTER TABLE `cita`
 ALTER TABLE `habita`
   ADD CONSTRAINT `habita_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `habita_ibfk_2` FOREIGN KEY (`Id_Direccion`) REFERENCES `direccion` (`Id_Direccion`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `tarjeta`
---
-ALTER TABLE `tarjeta`
-  ADD CONSTRAINT `tarjeta_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`);
 
 --
 -- Filtros para la tabla `usuario`
