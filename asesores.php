@@ -8,7 +8,7 @@
 
     $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 
-    $postPorPagina = 2;
+    $postPorPagina = 4;
 
     $inicio = ($pagina > 1) ? ($pagina * $postPorPagina - $postPorPagina) : 0 ;
 

@@ -487,19 +487,15 @@ main .botones input{
 table{
 	background-color: white;
 	text-align: left;
-	border-collapse: collapse;
-  width: 100%;
-  margin-bottom: 25px;;
+    width: 100%;
+    margin-bottom: 25px;;
 }
-
 th, td{
 	padding: 20px;
 }
 th, td, a{
   text-decoration: none;
 }
-
-
 
 #header{
   background: #23374d;
@@ -541,5 +537,6 @@ body {
   font-size: 16px;
   font-family: "Lato", sans-serif;
 }
+
 
 /*# sourceMappingURL=estilos.css.map */

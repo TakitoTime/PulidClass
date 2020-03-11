@@ -178,6 +178,8 @@
                 $hora_final=$_POST['hora_final'];
                 $final=substr($hora_final,0,-3);
 
+                $tarjeta=$_POST['tarjeta'];
+
                 $dir=$_POST['direccion'];
 
                 $statement=$conexion->prepare('SELECT * FROM Direccion where Id_Direccion=:id_direccion');
@@ -199,10 +201,11 @@
                 $costo=$statement->fetch();
                 $costo=$costo['Costo'];
                 
-                $statement=$conexion->prepare('call pulidclass.spAltaCita(:n_de_usuario, :id_asesor, :direccionp1,:direccionp2, :descripcion, :fecha, :hora_inicial, :hora_final, :n_horas, :costo)');
+                $statement=$conexion->prepare('call pulidclass.spAltaCita(:n_de_usuario, :id_asesor,:id_tarjeta, :direccionp1,:direccionp2, :descripcion, :fecha, :hora_inicial, :hora_final, :n_horas, :costo)');
                 $statement->execute(array(
                     ':n_de_usuario'=> $n_de_usuario,
                     ':id_asesor'=> $id_asesor,
+                    ':id_tarjeta'=> $tarjeta,
                     ':direccionp1'=> $direccion1,
                     ':direccionp2'=> $direccion2,
                     ':descripcion' => $descripcion,

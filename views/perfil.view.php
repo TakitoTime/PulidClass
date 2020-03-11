@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Perfil</title>
     <link rel="stylesheet" href="css/normalize.css">
+
+
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/perfil/estilos.css">
+    
 </head>
 <body>
     <header>
@@ -230,18 +233,21 @@
         
         <div class="citas">
             <h2>Bítacora de citas</h2>
-            <table border="2">
-                <tr id="header">
-                    <td>Folio</td>
-                    <td>Asesor</td>
-                    <td>Direccion</td>
-                    <td>Fecha</td>
-                    <td>Hora Inicio</td>
-                    <td>Hora Final</td>
-                    <td>Numero De Horas</td>
-                    <td>Costo</td>
-                    <td>Comprobante</td>
-                </tr>
+            </table>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr id="header">
+                        <td scope="col">Folio</td>
+                        <td scope="col">Asesor</td>
+                        <td scope="col">Direccion</td>
+                        <td scope="col">Fecha</td>
+                        <td scope="col">Hora Inicio</td>
+                        <td scope="col">Hora Final</td>
+                        <td scope="col">Numero De Horas</td>
+                        <td scope="col">Costo</td>
+                        <td scope="col">Comprobante</td>
+                    </tr>
+                </thead>
                 <?php
                     foreach($citas as $cita){
 
@@ -255,17 +261,19 @@
                         $nombre_asesor=$asesor['Nombres']." ".$asesor['A_Paterno']." ".$asesor['A_Materno'];
 
                 ?>
-                <tr>
-                    <td><?php echo $cita['Folio']?></td>
-                    <td><?php echo $nombre_asesor?></td>
-                    <td><?php echo $cita['DireccionP1']; echo $cita['DireccionP2']?></td>
-                    <td><?php echo $cita['Fecha']?></td>
-                    <td><?php echo $cita['Hora_Inicial']?></td>
-                    <td><?php echo $cita['Hora_Final']?></td>
-                    <td><?php echo $cita['N_De_Horas']?></td>
-                    <td><?php echo "$".$cita['Costo']?></td>
-                    <td><a href="ticket.php?Folio=<?php echo $cita['Folio']?>" id="ticket" target="_black"><i class="fas fa-download"></i> Descargar Comprobante</a></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td scope="row"><?php echo $cita['Folio']?></td>
+                        <td><?php echo $nombre_asesor?></td>
+                        <td><?php echo $cita['DireccionP1']; echo $cita['DireccionP2']?></td>
+                        <td><?php echo $cita['Fecha']?></td>
+                        <td><?php echo $cita['Hora_Inicial']?></td>
+                        <td><?php echo $cita['Hora_Final']?></td>
+                        <td><?php echo $cita['N_De_Horas']?></td>
+                        <td><?php echo "$".$cita['Costo']?></td>
+                        <td><a href="ticket.php?Folio=<?php echo $cita['Folio']?>" id="ticket" target="_black"><i class="fas fa-download"></i> Descargar Comprobante</a></td>
+                    </tr>
+                </tbody> 
                 <?php
                 }
                 ?>
