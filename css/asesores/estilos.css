@@ -166,11 +166,33 @@ main .asesores .paginacion {
   text-align: center;
 }
 main .asesores .paginacion ul{
-  display: inline;
+  list-style: none;
+}
+main .asesores .paginacion ul .disabled {
+    background: #c8c8c8;
+    display: inline-block;
+    font-family: "Oswald", Arial, helvetica, sans-serif;
+    padding: 15px 25px;
+    cursor: not-allowed;
+    color: #fff;
+    text-decoration: none;
 }
 main .asesores .paginacion ul li{
   line-height: normal;
   text-decoration: none;
+  display: inline;
+}
+main .asesores .paginacion ul li a{
+  display: inline-block;
+  font-family: "Oswald", Arial, helvetica, sans-serif;
+  padding: 15px 25px;
+  background: #23374d;
+  color: #fff;
+  text-decoration: none;
+}
+main .asesores .paginacion ul li a:hover {
+	text-decoration: none;
+	background: #1089ff;
 }
 main .recursos {
   margin-top: 50px;

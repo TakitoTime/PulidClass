@@ -230,7 +230,6 @@
 
         </div>
 
-        
         <div class="citas">
             <h2>Bítacora de citas</h2>
             </table>

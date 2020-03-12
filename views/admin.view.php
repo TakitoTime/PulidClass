@@ -102,8 +102,8 @@
             </table>
             <div class="loader" id="loader_bitacora"></div>
             <div class="pages">
-                <a href="#" id="btn_previous_bitacora"><i class="fas fa-chevron-left"></i></a>
-                <a href="#" id="btn_next_bitacora"><i class="fas fa-chevron-right"></i></a>
+                <a href="" id="btn_previous_bitacora"><i class="fas fa-chevron-left"></i></a>
+                <a href="" id="btn_next_bitacora"><i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
     </main>
@@ -125,5 +125,5 @@
 
     <script src="https://kit.fontawesome.com/03ad672f06.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/ingresa_datos.js"></script>
-    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/ajax_admin.js"></script>
 </body>

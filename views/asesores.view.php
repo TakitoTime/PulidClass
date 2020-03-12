@@ -53,7 +53,7 @@
                     <h3>Asesores</h3>
                 </div>
                 <?php
-                    foreach($asesores as $asesor){
+                    foreach($asesores_page as $asesor){
 
                     $nombre=$asesor['Nombres']." ".$asesor['A_Paterno']." ".$asesor['A_Materno'];
                     $ocupacion=$asesor['Ocupacion'];
