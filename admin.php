@@ -22,17 +22,6 @@ if(!isset($_SESSION['admin'])){
 
             $_SESSION['n_de_usuario']=$n_de_usuario;
 
-            $statement = $conexion->prepare('SELECT Id_Direccion FROM habita WHERE N_De_Usuario = :n_de_usuario LIMIT 3');
-            $statement->execute(array(':n_de_usuario' => $n_de_usuario));
-
-            $direcciones=$statement->fetchAll();
-
-
-            $statement = $conexion->prepare('SELECT * FROM Cita WHERE N_De_Usuario = :n_de_usuario');
-            $statement->execute(array(':n_de_usuario' => $n_de_usuario));
-
-            $citas=$statement->fetchAll();
-
             if(isset($_POST['guardar_usuario'])){
 
                 $nombre =trim($_POST["nombre"]);

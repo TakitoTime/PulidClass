@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/perfil/estilos.css">
+    <link rel="stylesheet" href="css/admin/estilos.css">
 </head>
 <body>
     <header>
@@ -63,7 +63,12 @@
         </div>
         <div class="profesores">
             <h2>Profesores</h2>
-            <table border="2">
+            <a href="#" class="add-profesor">Agregar Asesor</a>
+            <!-- <a href="#" class="remove-profesor">Eliminar Asesor</a> -->
+            <div class="error_box" id="error_box_asesores">
+				<!--<p>Se ha producido un error.</p>-->
+			</div>
+            <table border="2" id="tablaAsesores">
                 <tr id="header">
                     <th>Id</th>
                     <th>Estudios</th>
@@ -73,23 +78,20 @@
                     <th>Correo</th>
                     <th>Telefono</th>
                 </tr>
-                <?php $resultado = $conexion->query('SELECT * FROM asesor'); ?>
-                <?php foreach($resultado as $asesor): ?>
-                    <tr>
-                        <td><?php echo $asesor[0]?></td>
-                        <td><?php echo $asesor[3]?></td>
-                        <td><?php echo $asesor[4]?></td>
-                        <td><?php echo $asesor[5]?></td>
-                        <td><?php echo $asesor[6]?></td>
-                        <td><?php echo $asesor[12]?></td>
-                        <td><?php echo $asesor[13]?></td>
-                    </tr>
-                <?php endforeach; ?>
+                
             </table>
+            <div class="loader" id="loader_asesores"></div>
+            <div class="pages">
+                <a href="#" id="btn_previous_asesores"><i class="fas fa-chevron-left"></i></a>
+                <a href="#" id="btn_next_asesores"><i class="fas fa-chevron-right"></i></a>
+            </div>
         </div>
         <div class="bitacora">
             <h2>Bitacora de movimientos</h2>
-            <table border="2">
+            <div class="error_box" id="error_box_bitacora">
+				<!--<p>Se ha producido un error.</p>-->
+			</div>
+            <table border="2" id="tablaBitacora">
                 <tr id="header">
                     <th>Id</th>
                     <th>Correo</th>
@@ -97,17 +99,12 @@
                     <th>Tabla afectada</th>
                     <th>fecha</th>
                 </tr>
-                <?php $movimientos = $conexion->query('SELECT * FROM bitacora'); ?>
-                <?php foreach($movimientos as $dato): ?>
-                    <tr>
-                        <td><?php echo $dato[0]?></td>
-                        <td><?php echo $dato[1]?></td>
-                        <td><?php echo $dato[2]?></td>
-                        <td><?php echo $dato[3]?></td>
-                        <td><?php echo $dato[4]?></td>
-                    </tr>
-                <?php endforeach; ?>
             </table>
+            <div class="loader" id="loader_bitacora"></div>
+            <div class="pages">
+                <a href="#" id="btn_previous_bitacora"><i class="fas fa-chevron-left"></i></a>
+                <a href="#" id="btn_next_bitacora"><i class="fas fa-chevron-right"></i></a>
+            </div>
         </div>
     </main>
     <footer>
@@ -128,5 +125,5 @@
 
     <script src="https://kit.fontawesome.com/03ad672f06.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/ingresa_datos.js"></script>
-    <script type="text/javascript" src="js/direccion.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
 </body>
