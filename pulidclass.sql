@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-03-2020 a las 04:34:26
+-- Tiempo de generación: 12-03-2020 a las 08:17:26
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -309,7 +309,12 @@ INSERT INTO `asesor` (`Id_Asesor`, `Nombre_Usuario`, `Edad`, `Grado_Estudios`, `
 (126, 'Chinofloo', 20, 'Universidad', 'Cesar', 'Mendoza', 'Reyes', 'Estudiante', 'Programacion', 'Calculo', 'Ingles', 'Me gusta dar clases reducidas pero interactivas para poder enseñar a los alumnos a aprender por medio de  ejercicios y que logren adquirir experiencia, para poder transmitir conocimientos necesarios para aprender algun oficio', 'cesarmendoza@gmail.com', '8717887048', 'fotoasesores/asesorpro2.jpeg'),
 (127, 'Gerita', 30, 'Posgrado', 'Gerardo', 'Ortiz', 'Salas', 'Arquitecto', 'Algebra Lineal', 'Termodinamica', 'Mecanica De Fluidos', 'Profesionista experto en la realizacion de obras de ingenieria, capacitado para poder asistir a jovenes en los ambitos relacionados con las matematicas.', 'gerardortiz@gmail.com', '8714685762', 'fotoasesores/face2.jpg'),
 (128, 'Meny98', 21, 'Universidad', 'Manuel Alejandro', 'Herrera', 'Ceniceros', 'Estudiante', 'Contabilidad', 'Base De Datos', 'Redes', 'Lo más bello de este Mundo son las mujeres y la naturaleza.', 'ManuelAlejandroH@outlook.com', '8714038669', 'fotoasesores/asesorpro3.png'),
-(129, 'Karlita23', 23, 'Universidad', 'Karla', 'Guerrero', 'Hernandez', 'Estudiante', 'Contabilidad', 'Ingles', 'Marketing', 'Soy una joven estudiante con la capacidad de emprender e inonvar con nuevas metodologias y con el estudio del mercado.', 'karlaguerrero@gmail.com', '8714440458', 'fotoasesores/face1.jpg');
+(129, 'Karlita23', 23, 'Universidad', 'Karla', 'Guerrero', 'Hernandez', 'Estudiante', 'Contabilidad', 'Ingles', 'Marketing', 'Soy una joven estudiante con la capacidad de emprender e inonvar con nuevas metodologias y con el estudio del mercado.', 'karlaguerrero@gmail.com', '8714440458', 'fotoasesores/face1.jpg'),
+(130, 'Serious', 20, 'Universidad', 'Luis Felipe', 'Carrillo', 'Alvarado', 'Estudiante', 'Programacion', 'Matematicas', 'Diseño Web', 'Joven apacionado por la programacion web, y especializado en diseño de paginas web', 'felipec@gmail.com', '8717754896', 'fotoasesores/asesorpro4.jpg'),
+(131, 'GomezQueen', 20, 'Universidad', 'Erika', 'Gomez', 'Valdez', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'ErikaGomez@gmail.com', '8717958896', 'fotoasesores/face3.jpg'),
+(132, 'Lorem', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem@gmail.com', '8717958896', 'fotoasesores/face5.jpg'),
+(133, 'Lorem1', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem1@gmail.com', '8717958896', 'fotoasesores/face6.jpg'),
+(134, 'Lorem2', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem2@gmail.com', '8717958896', 'fotoasesores/face4.jpg');
 
 -- --------------------------------------------------------
 
@@ -609,7 +614,16 @@ INSERT INTO `bitacora` (`Id_Bitacora`, `Correo`, `Accion_Realizada`, `TablaAfect
 (281, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Chinofloo', 'Asesor', '2020-03-10'),
 (282, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Gerita', 'Asesor', '2020-03-10'),
 (283, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Meny98', 'Asesor', '2020-03-10'),
-(284, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Karlita23', 'Asesor', '2020-03-10');
+(284, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Karlita23', 'Asesor', '2020-03-10'),
+(285, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:128', 'Cita', '2020-03-12'),
+(286, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Serious', 'Asesor', '2020-03-12'),
+(287, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: GomezQueen', 'Asesor', '2020-03-12'),
+(288, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Lorem', 'Asesor', '2020-03-12'),
+(289, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Lorem1', 'Asesor', '2020-03-12'),
+(290, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Lorem2', 'Asesor', '2020-03-12'),
+(291, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:130', 'Cita', '2020-03-12'),
+(292, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:130', 'Cita', '2020-03-12'),
+(293, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:128', 'Cita', '2020-03-12');
 
 -- --------------------------------------------------------
 
@@ -631,6 +645,16 @@ CREATE TABLE `cita` (
   `N_De_Horas` int(11) DEFAULT NULL,
   `Costo` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `cita`
+--
+
+INSERT INTO `cita` (`Folio`, `N_De_Usuario`, `Id_Asesor`, `Id_Tarjeta`, `DireccionP1`, `DireccionP2`, `Dir_Descripcion`, `Fecha`, `Hora_Inicial`, `Hora_Final`, `N_De_Horas`, `Costo`) VALUES
+(2, 39, 128, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-13', '10:00', '11:00', 1, '100.00'),
+(3, 39, 130, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-26', '17:00', '18:00', 1, '100.00'),
+(4, 39, 130, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-26', '17:00', '18:00', 1, '100.00'),
+(5, 39, 128, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-30', '14:00', '17:00', 3, '250.00');
 
 -- --------------------------------------------------------
 
@@ -846,19 +870,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `asesor`
 --
 ALTER TABLE `asesor`
-  MODIFY `Id_Asesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `Id_Asesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=285;
+  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=294;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
