@@ -425,4 +425,80 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+#ex1{
+  background:#f2f2f2;
+  max-width: 900px;
+
+}
+
+#ex1 .error{
+  display: block;
+  margin: auto;
+}
+
+
+#ex1 h2{
+  text-align: center;
+}
+
+#ex1 input{
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+#ex1 input[type="submit"]{
+  display: block;
+    width: 55%;
+    height: 45px;
+    margin: 0 auto;
+    margin-left: 45px;
+    margin-top: 40px;
+    background: #f3a953;
+    color: #fff;
+    border: none;
+}
+
+#ex1 input[type="submit"]:hover{
+  transition: 300ms;
+  background: #333;
+}
+
+#ex1 textarea{
+  resize: none;
+  padding: 10px;
+  width: 80%;
+  height: 135px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+#ex1 .asesor{
+  display: flex;
+  margin-left:80px;
+  margin-bottom: 30px;
+}
+
+#ex1 .asesor .principal .telefono_edad{
+  display: flex;
+}
+
+#ex1 .asesor .principal .telefono_edad .telefono{
+  display: block;
+  width: 57%;
+}
+
+#ex1 .asesor .principal .telefono_edad .edad{
+  display: block;
+  width: 30%;
+}
+
+#ex1 .asesor .secundario{
+  display: block;
+  width: 50%;
+}
+
 /*# sourceMappingURL=estilos.css.map */

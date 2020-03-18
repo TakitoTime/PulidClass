@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-03-2020 a las 08:17:26
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.2
+-- Tiempo de generación: 18-03-2020 a las 05:52:59
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -61,7 +61,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAsesor` (IN `_CorreoAdmin` VA
     
     if (Id_AltaNombreUsuario != 0 || Id_AltaCorreo !=0) then
 		begin
-			select 'En Nombre De Usuario O El Correo Ya Existe En La Base De Datos';
+			select 0;
         end;
 	else
 		begin
@@ -69,7 +69,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAsesor` (IN `_CorreoAdmin` VA
             
             insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_CorreoAdmin,concat('El usuario con el correo:  ',_CorreoAdmin,'creo una cuenta de asesor, con el nombre de usuario: ', _NombreUsuario), 'Asesor', curdate());
             
-			SELECT 'Asesor Dado De Alta';
+			SELECT 1;
         end;
 	end if;
 END$$
@@ -314,7 +314,8 @@ INSERT INTO `asesor` (`Id_Asesor`, `Nombre_Usuario`, `Edad`, `Grado_Estudios`, `
 (131, 'GomezQueen', 20, 'Universidad', 'Erika', 'Gomez', 'Valdez', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'ErikaGomez@gmail.com', '8717958896', 'fotoasesores/face3.jpg'),
 (132, 'Lorem', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem@gmail.com', '8717958896', 'fotoasesores/face5.jpg'),
 (133, 'Lorem1', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem1@gmail.com', '8717958896', 'fotoasesores/face6.jpg'),
-(134, 'Lorem2', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem2@gmail.com', '8717958896', 'fotoasesores/face4.jpg');
+(134, 'Lorem2', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem2@gmail.com', '8717958896', 'fotoasesores/face4.jpg'),
+(139, 'Sillapone', 24, 'Universidad', 'David Alejandro', 'Herrera', 'Rodriguez', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'Breve Descripcion De El Asesor', 'lopremipsum@hotmail.com', '8293718273', 'fotoasesores/');
 
 -- --------------------------------------------------------
 
@@ -623,7 +624,12 @@ INSERT INTO `bitacora` (`Id_Bitacora`, `Correo`, `Accion_Realizada`, `TablaAfect
 (290, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Lorem2', 'Asesor', '2020-03-12'),
 (291, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:130', 'Cita', '2020-03-12'),
 (292, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:130', 'Cita', '2020-03-12'),
-(293, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:128', 'Cita', '2020-03-12');
+(293, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:128', 'Cita', '2020-03-12'),
+(294, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: ', 'Asesor', '2020-03-17'),
+(295, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Sillapone', 'Asesor', '2020-03-17'),
+(296, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Sillapone', 'Asesor', '2020-03-17'),
+(297, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Sillapone', 'Asesor', '2020-03-17'),
+(298, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Sillapone', 'Asesor', '2020-03-17');
 
 -- --------------------------------------------------------
 
@@ -769,6 +775,29 @@ INSERT INTO `precio` (`Id_Precio`, `Costo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tarjeta`
+--
+
+CREATE TABLE `tarjeta` (
+  `Id_Tarjeta` int(11) NOT NULL,
+  `N_De_Usuario` int(11) DEFAULT NULL,
+  `Nombre_T` varchar(200) DEFAULT NULL,
+  `Num_T` varchar(200) DEFAULT NULL,
+  `Mes` int(11) DEFAULT NULL,
+  `Year` int(11) DEFAULT NULL,
+  `Codigo_S` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tarjeta`
+--
+
+INSERT INTO `tarjeta` (`Id_Tarjeta`, `N_De_Usuario`, `Nombre_T`, `Num_T`, `Mes`, `Year`, `Codigo_S`) VALUES
+(2, 39, 'David Pulido', '1234567890123456', 12, 2023, 192);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -856,6 +885,13 @@ ALTER TABLE `precio`
   ADD PRIMARY KEY (`Id_Precio`);
 
 --
+-- Indices de la tabla `tarjeta`
+--
+ALTER TABLE `tarjeta`
+  ADD PRIMARY KEY (`Id_Tarjeta`),
+  ADD KEY `N_De_Usuario` (`N_De_Usuario`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -870,13 +906,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `asesor`
 --
 ALTER TABLE `asesor`
-  MODIFY `Id_Asesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `Id_Asesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
 
 --
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=294;
+  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=299;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
@@ -897,35 +933,20 @@ ALTER TABLE `precio`
   MODIFY `Id_Precio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT de la tabla `tarjeta`
 --
-ALTER TABLE `usuario`
-  MODIFY `N_De_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+ALTER TABLE `tarjeta`
+  MODIFY `Id_Tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `cita`
+-- Filtros para la tabla `tarjeta`
 --
-ALTER TABLE `cita`
-  ADD CONSTRAINT `cita_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cita_ibfk_2` FOREIGN KEY (`Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cita_ibfk_3` FOREIGN KEY (`Id_Tarjeta`) REFERENCES `tarjeta` (`Id_Tarjeta`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `habita`
---
-ALTER TABLE `habita`
-  ADD CONSTRAINT `habita_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `habita_ibfk_2` FOREIGN KEY (`Id_Direccion`) REFERENCES `direccion` (`Id_Direccion`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `usuario`
---
-ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`Correo`) REFERENCES `cuenta` (`Correo`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tarjeta`
+  ADD CONSTRAINT `tarjeta_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

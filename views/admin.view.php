@@ -63,7 +63,8 @@
         </div>
         <div class="profesores">
             <h2>Profesores</h2>
-            <a href="#" class="add-profesor">Agregar Asesor</a>
+
+            <a href="#ex1" class="add-profesor" rel="modal:open" id="modalactive" data-value="<?php echo $abrir_modal?>">Agregar Asesor</a>
             <!-- <a href="#" class="remove-profesor">Eliminar Asesor</a> -->
             <div class="error_box" id="error_box_asesores">
 				<!--<p>Se ha producido un error.</p>-->
@@ -126,4 +127,11 @@
     <script src="https://kit.fontawesome.com/03ad672f06.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/ingresa_datos.js"></script>
     <script type="text/javascript" src="js/ajax_admin.js"></script>
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script src="https://kit.fontawesome.com/03ad672f06.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/altasesor.js"></script>
+
 </body>
