@@ -83,8 +83,8 @@
             </table>
             <div class="loader" id="loader_asesores"></div>
             <div class="pages">
-                <a href="#" id="btn_previous_asesores"><i class="fas fa-chevron-left"></i></a>
-                <a href="#" id="btn_next_asesores"><i class="fas fa-chevron-right"></i></a>
+                <a id="btn_previous_asesores"><i class="fas fa-chevron-left"></i></a>
+                <a id="btn_next_asesores"><i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
         <div class="bitacora">
@@ -103,8 +103,8 @@
             </table>
             <div class="loader" id="loader_bitacora"></div>
             <div class="pages">
-                <a href="" id="btn_previous_bitacora"><i class="fas fa-chevron-left"></i></a>
-                <a href="" id="btn_next_bitacora"><i class="fas fa-chevron-right"></i></a>
+                <a id="btn_previous_bitacora"><i class="fas fa-chevron-left"></i></a>
+                <a id="btn_next_bitacora"><i class="fas fa-chevron-right"></i></a>
             </div>
         </div>
     </main>

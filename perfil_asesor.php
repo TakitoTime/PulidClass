@@ -2,11 +2,11 @@
 
 require('conexion.php');
 
-if(!isset($_SESSION['admin'])){
+if(!isset($_SESSION['asesor'])){
     header("Location:index.php");
     die();
 }else{
-    $correo=$_SESSION['admin'];
+    $correo=$_SESSION['asesor'];
     $contra=$_SESSION['contra'];
 
     $abrir_modal="false";
@@ -41,7 +41,7 @@ if(!isset($_SESSION['admin'])){
                 $telefono =trim($_POST["telefono"]);
                 $telefono = filter_var($telefono, FILTER_SANITIZE_STRING);
 
-                $target_path="fotosusuarios/";
+                $target_path="fotoasesores/";
                 $target_path=$target_path . basename( $_FILES['foto']['name']);
                 if(move_uploaded_file($_FILES['foto']['tmp_name'],$target_path)){
                     echo "el archivo". basename($_FILES['foto']['name'])."ha sido subido";
@@ -160,6 +160,6 @@ if(!isset($_SESSION['admin'])){
             }
 
     require 'views/modal_altasesor.view.php'; 
-    require 'views/admin.view.php';   
+    require 'views/perfil_asesor.view.php';   
 }
 ?>
