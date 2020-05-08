@@ -13,7 +13,7 @@ var btn_next_noticias = document.getElementById('btn_next_noticias'),
 var inicioNoticias=0, finNoticias=5;
 
 function cargarNoticias(){
-    tablaNoticias.innerHTML = '<tr id="header"><th>Id</th><th>Administrador</th><th>Titulo</th><th>Subtitulo</th><th>Fecha</th></tr>';
+    tablaNoticias.innerHTML = '<tr id="header"><th>Id</th><th>Administrador</th><th>Titulo</th><th>Subtitulo</th><th>Fecha</th><th>Eliminar</th></tr>';
 
     var peticion = new XMLHttpRequest();
     peticion.open('GET', 'leer-noticias.php');
@@ -34,6 +34,7 @@ function cargarNoticias(){
                 elemento.innerHTML += "<td>" + info.Titulo + "</td>";
                 elemento.innerHTML += "<td>" + info.Subtitulo + "</td>";
                 elemento.innerHTML += "<td>" + info.Fecha + "</td>";
+                elemento.innerHTML += "<td><button type='submit' id='delete' name='baja_noticia' value=" + info.Id_Noticia + ">Eliminar</a></td>";
                 tablaNoticias.appendChild(elemento);
             }
         }
@@ -68,7 +69,7 @@ var btn_next_material = document.getElementById('btn_next_material'),
 var inicioMaterial=0, finMaterial=5;
 
 function cargarMaterial(){
-    tablaMaterial.innerHTML = '<tr id="header"><th>Id</th><th>Administrador</th><th>Titulo</th><th>Materia</th><th>Fecha</th></tr>';
+    tablaMaterial.innerHTML = '<tr id="header"><th>Id</th><th>Administrador</th><th>Titulo</th><th>Materia</th><th>Fecha</th><th>Eliminar</th></tr>';
 
     var peticion = new XMLHttpRequest();
     peticion.open('GET', 'leer-material.php');
@@ -89,6 +90,7 @@ function cargarMaterial(){
                 elemento.innerHTML += "<td>" + info.Titulo + "</td>";
                 elemento.innerHTML += "<td>" + info.Materia + "</td>";
                 elemento.innerHTML += "<td>" + info.Fecha + "</td>";
+                elemento.innerHTML += "<td><button type='submit' id='delete' name='baja_material' value=" + info.Id_Material + ">Eliminar</a></td>";
                 tablaMaterial.appendChild(elemento);
             }
         }

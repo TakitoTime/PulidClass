@@ -239,6 +239,18 @@ if(!isset($_SESSION['admin'])){
 
             }
 
+            if(isset($_POST['baja_noticia'])){
+    
+                   $id_bajanoticia=$_POST['baja_noticia'];
+
+                   $statement = $conexion->prepare('DELETE FROM noticia WHERE Id_Noticia=:id_noticia');
+                   $statement->execute(array(':id_noticia' => $id_bajanoticia));
+
+                    echo "<div class='alert alert-danger mt-4' role='alert'>El registro se borro correctamente</div>";
+                    header("Refresh:10; url=admin.php");
+
+            }
+
             if(isset($_POST['alta_material'])){
 
                 $abrir_modal_material="true";
@@ -275,6 +287,18 @@ if(!isset($_SESSION['admin'])){
 
             }
 
+            if(isset($_POST['baja_material'])){
+    
+                $id_bajamaterial=$_POST['baja_material'];
+
+                $statement = $conexion->prepare('DELETE FROM material WHERE Id_Material=:id_material');
+                $statement->execute(array(':id_material' => $id_bajamaterial));
+
+                 echo "<div class='alert alert-danger mt-4' role='alert'>El registro se borro correctamente</div>";
+                 header("Refresh:10; url=admin.php");
+
+            }
+
             if(isset($_POST['n-pass'])){
                 $n_correo = $_POST['n-correo'];
                 $n_pass = hash('sha512', $_POST['n-pass']);
@@ -291,7 +315,6 @@ if(!isset($_SESSION['admin'])){
 
     require 'views/modal_altasesor.view.php'; 
     require 'views/modal_altanoticia.view.php'; 
-    require 'views/modal_bajanoticia.view.php'; 
     require 'views/modal_altamaterial.view.php'; 
     require 'views/admin.view.php';   
 }

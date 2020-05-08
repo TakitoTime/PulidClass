@@ -143,6 +143,18 @@ if(!isset($_SESSION['asesor'])){
 
             }
 
+            if(isset($_POST['baja_noticia'])){
+    
+                $id_bajanoticia=$_POST['baja_noticia'];
+
+                $statement = $conexion->prepare('DELETE FROM noticia WHERE Id_Noticia=:id_noticia');
+                $statement->execute(array(':id_noticia' => $id_bajanoticia));
+
+                 echo "<div class='alert alert-danger mt-4' role='alert'>El registro se borro correctamente</div>";
+                 header("Refresh:10; url=perfil_asesor.php");
+
+            }
+
             if(isset($_POST['alta_material'])){
 
                 $abrir_modal_material="true";
@@ -176,6 +188,18 @@ if(!isset($_SESSION['asesor'])){
 
                     echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctemente</div>";
                     header("Refresh:10; url=perfil_asesor.php");
+
+            }
+
+            if(isset($_POST['baja_material'])){
+    
+                $id_bajamaterial=$_POST['baja_material'];
+
+                $statement = $conexion->prepare('DELETE FROM material WHERE Id_Material=:id_material');
+                $statement->execute(array(':id_material' => $id_bajamaterial));
+
+                 echo "<div class='alert alert-danger mt-4' role='alert'>El registro se borro correctamente</div>";
+                 header("Refresh:10; url=perfil_asesor.php");
 
             }
 

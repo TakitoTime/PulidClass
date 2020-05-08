@@ -38,7 +38,7 @@
             </nav>
         </div>
     </header>
-    <main class="informacion">
+    <main class="information">
         <h2 id="politicas">Política De Privacidad</h2>
         <div class="mision">
             <p>

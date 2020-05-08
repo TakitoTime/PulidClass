@@ -96,17 +96,18 @@
             <div class="error_box" id="error_box_noticias">
 				<!--<p>Se ha producido un error.</p>-->
 			</div>
-            <table border="2" id="tablaNoticias">
-                <tr id="header">
-                    <th>Id</th>
-                    <th>Administrador</th>
-                    <th>Titulo</th>
-                    <th>Subtitulo</th>
-                    <th>Fecha</th>
-                    <th>Eliminar</th>
-                </tr>
-                
-            </table>
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                <table border="2" id="tablaNoticias">
+                    <tr id="header">
+                        <th>Id</th>
+                        <th>Administrador</th>
+                        <th>Titulo</th>
+                        <th>Subtitulo</th>
+                        <th>Fecha</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </table>
+            </form>
             <div class="loader" id="loader_noticias"></div>
             <div class="pages">
                 <a href="#" id="btn_previous_noticias"><i class="fas fa-chevron-left"></i></a>
@@ -121,17 +122,18 @@
             <!-- <a href="#" class="remove-profesor">Eliminar Asesor</a> -->
             <div class="error_box" id="error_box_material">
 				<!--<p>Se ha producido un error.</p>-->
-			</div>
-            <table border="2" id="tablaMaterial">
-                <tr id="header">
-                    <th>Id</th>
-                    <th>Administrador</th>
-                    <th>Titulo</th>
-                    <th>Materia</th>
-                    <th>Fecha</th>
-                </tr>
-                
-            </table>
+            </div>
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                <table border="2" id="tablaMaterial">
+                    <tr id="header">
+                        <th>Id</th>
+                        <th>Administrador</th>
+                        <th>Titulo</th>
+                        <th>Materia</th>
+                        <th>Fecha</th>
+                    </tr>
+                </table>
+            </form>
             <div class="loader" id="loader_material"></div>
             <div class="pages">
                 <a href="#" id="btn_previous_material"><i class="fas fa-chevron-left"></i></a>

@@ -415,6 +415,17 @@ main .pages button{
   color: #1089ff;
 }
 
+main #delete{
+  background: #e74c3c;
+  margin: auto;
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  border-style: none;
+}
+
 
 table{
 	background-color: white;
