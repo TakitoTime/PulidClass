@@ -3,7 +3,7 @@
                 if(isset($_SESSION['admin'])){
 
             ?>
-                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
+                <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
                     <h2 class="titulo">Alta Asesor</h2>
                     <?php if(!empty($errores)): ?>
                         <div class="error">
@@ -18,9 +18,9 @@
                                 <p>Correo Del Administrador:</p>    
                                 <input type="text" name="correo_admin" value="<?php echo $correo?>" disabled>
                             </div>
-                            <div class="correo_usuario">
-                                <p>Correo Del Usuario:</p>    
-                                <input type="text" name="correo_asesor" value="">
+                            <div class="password">
+                                <p>Contraseña Temporal:</p>    
+                                <input type="password" name="password" value="">
                             </div>
                             <div class="usuario">
                                 <p>Nombre De Usuario:</p>    
@@ -54,6 +54,10 @@
                             </div>
                         </div>
                         <div class="secundario">
+                            <div class="correo_usuario">
+                                <p>Correo Del Usuario:</p>    
+                                <input type="text" name="correo_asesor" value="">
+                            </div>
                             <div class="grado">
                                 <p>Grado De Estudios:</p> 
                                 <input type="text" name="grado" value="">

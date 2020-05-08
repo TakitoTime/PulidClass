@@ -19,6 +19,7 @@
             </div>
             <nav>
                 <a href="index.php">Inicio</a>
+                <a href="noticias.php">Noticias</a>
                 <a href="asesores.php">Asesores</a>
                 <a href="conocenos.php">Conocenos</a>
                 <?php if(isset($_SESSION['cliente'])): ?>
@@ -37,7 +38,7 @@
             </nav>
         </div>
     </header>
-    <main class="informacion">
+    <main class="information">
         <div class="mision">
             <h2>Misión</h2>
             <p>

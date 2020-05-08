@@ -10,6 +10,8 @@ if(!isset($_SESSION['admin'])){
     $contra=$_SESSION['contra'];
 
     $abrir_modal="false";
+    $abrir_modal_noticia="false";
+    $abrir_modal_material="false";
 
     $statement = $conexion->prepare('SELECT * FROM Usuario WHERE correo = :correo LIMIT 1');
             $statement->execute(array(':correo' => $correo));
@@ -23,6 +25,8 @@ if(!isset($_SESSION['admin'])){
             $n_de_usuario=$sql['N_De_Usuario'];
 
             $_SESSION['n_de_usuario']=$n_de_usuario;
+
+            $fecha=date("Y-m-d");
 
             if(isset($_POST['guardar_usuario'])){
 
@@ -63,13 +67,26 @@ if(!isset($_SESSION['admin'])){
                     ));
 
                 $resultado = $statement->fetchColumn();
+
+                echo "<div class='alert alert-danger mt-4' role='alert'>La cuenta No Existe En La Base De Datos</div>";
+                header('Location: /admin.php');
+            }
+
+            if(isset($_POST['respaldar_db'])){
+                $db_name = 'pulidclass';
+                $db_user = 'backup';
+                $fecha = date("Ymd-His");
+
+                $salida_sql = $db_name.'_'.$fecha.'.sql';
+                $dump = 'mysqldump -u '.$db_user.' '.$db_name.' > ./backups/'.$salida_sql.'';
+                system($dump, $output);
             }
             
             if(isset($_POST['alta_asesor'])){
 
                 $abrir_modal="true";
 
-                if(empty($_POST['correo_asesor']) || empty($_POST['usuario'])){
+                if(empty($_POST['correo_asesor']) || empty($_POST['usuario']) || empty($_POST['password'])){
                     $errores='<li>Por Favor Proporcione Los Datos Correctamente</li>';
                 }else{
 
@@ -77,6 +94,9 @@ if(!isset($_SESSION['admin'])){
 
                     $correo_asesor =trim($_POST["correo_asesor"]);
                     $correo_asesor = filter_var($_POST['correo_asesor'], FILTER_SANITIZE_EMAIL);
+
+                    $password =trim($_POST["password"]);
+                    $password = filter_var($password, FILTER_SANITIZE_STRING);
     
                     $username =trim($_POST["usuario"]);
                     $username = filter_var($username, FILTER_SANITIZE_STRING);
@@ -151,15 +171,128 @@ if(!isset($_SESSION['admin'])){
                         break;
     
                         case 1: 
+                            $password = hash('sha512', $password);
+            
+                            $statement = $conexion->prepare('call pulidclass.spAltaUsuarioAsesor(:correo_admin,:correo_asesor,:password,:tipo,:nombre,:paterno,:materno,:edad,:telefono,:foto)');
+                            $statement->execute(array(
+                                    ':correo_admin' => $correo,
+                                    ':correo_asesor' => $correo_asesor,
+                                    ':password' => $password,
+                                    ':tipo' => '3',
+                                    ':nombre' => $nombre_asesor,
+                                    ':paterno' => $paterno_asesor,
+                                    ':materno' => $materno_asesor,
+                                    ':edad' => $edad_asesor,
+                                    ':telefono' => $telefono_asesor,
+                                    ':foto' => $foto_asesor,
+                                ));
+
                             $errores='<li>Datos Guardados Correctamente</li>';
                         break;
-    
+
                     }
                 }
 
             }
 
+            if(isset($_POST['alta_noticia'])){
+
+                $abrir_modal_noticia="true";
+    
+                    $titulo =trim($_POST["titulo"]);
+                    $titulo = filter_var($titulo, FILTER_SANITIZE_STRING);
+                    
+                    $subtitulo =trim($_POST["subtitulo"]);
+                    $subtitulo = filter_var($subtitulo, FILTER_SANITIZE_STRING);
+
+                    $target_path="fotosnoticias/";
+                    $target_path=$target_path . basename($_FILES['fotonoticia']['name']);
+                    if(move_uploaded_file($_FILES['fotonoticia']['tmp_name'],$target_path)){
+                        echo "el archivo". basename($_FILES['fotonoticia']['name'])."ha sido subido";
+                    }
+                    else{
+                        echo"Ha ocurrido un error, trate de nuevo!";
+                    }
+                    $imagen_noticia=$target_path;
+    
+                    $informacion =trim($_POST["informacion"]);
+                    $informacion = filter_var($informacion, FILTER_SANITIZE_STRING);
+    
+                    $referencias =trim($_POST["referencias"]);
+                    $referencias = filter_var($referencias, FILTER_SANITIZE_STRING);
+
+                    $statement = $conexion->prepare('INSERT INTO noticia values(NULL, :correo, :titulo, :subtitulo, :fecha, :fuentes, :informacion, :imagen)');
+                    $statement->execute(array(
+                            ':correo' => $correo,
+                            ':titulo' => $titulo,
+                            ':subtitulo' => $subtitulo,
+                            ':fecha' => $fecha,
+                            ':fuentes' => $referencias,
+                            ':informacion' => $informacion,
+                            ':imagen' => $imagen_noticia
+                        ));
+    
+                    $resultado = $statement->fetchColumn();
+
+                    echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctemente</div>";
+                    header("Refresh:20; url=admin.php");
+
+            }
+
+            if(isset($_POST['alta_material'])){
+
+                $abrir_modal_material="true";
+    
+                    $titulo =trim($_POST["titulo"]);
+                    $titulo = filter_var($titulo, FILTER_SANITIZE_STRING);
+                    
+                    $materia =trim($_POST["materia"]);
+                    $materia = filter_var($materia, FILTER_SANITIZE_STRING);
+
+                    $target_path="materialdidactico/";
+                    $target_path=$target_path . basename($_FILES['archivo']['name']);
+                    if(move_uploaded_file($_FILES['archivo']['tmp_name'],$target_path)){
+                        echo "el archivo". basename($_FILES['archivo']['name'])."ha sido subido";
+                    }
+                    else{
+                        echo"Ha ocurrido un error, trate de nuevo!";
+                    }
+                    $archivo=$target_path;
+
+                    $statement = $conexion->prepare('INSERT INTO material values(NULL, :correo, :titulo, :fecha, :materia, :archivo)');
+                    $statement->execute(array(
+                            ':correo' => $correo,
+                            ':titulo' => $titulo,
+                            ':fecha' => $fecha,
+                            ':materia' => $materia,
+                            ':archivo' => $archivo
+                        ));
+    
+                    $resultado = $statement->fetchColumn();
+
+                    echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctemente</div>";
+                    header("Refresh:20; url=admin.php");
+
+            }
+
+            if(isset($_POST['n-pass'])){
+                $n_correo = $_POST['n-correo'];
+                $n_pass = hash('sha512', $_POST['n-pass']);
+                $n_statement = $conexion->prepare('UPDATE cuenta SET Contrasena = :pass WHERE correo = :correo');
+                $n_statement->execute(array(':correo'=>$n_correo, ':pass'=>$n_pass));
+            }
+
+            if(isset($_POST['m-correo'])){
+                $m_correo = $_POST['m-correo'];
+                $m_tipo = 2;
+                $m_statement = $conexion->prepare('UPDATE cuenta SET Tipo = :tipo WHERE correo = :correo');
+                $m_statement->execute(array(':tipo'=>$m_tipo, ':correo'=>$m_correo));
+            }
+
     require 'views/modal_altasesor.view.php'; 
+    require 'views/modal_altanoticia.view.php'; 
+    require 'views/modal_bajanoticia.view.php'; 
+    require 'views/modal_altamaterial.view.php'; 
     require 'views/admin.view.php';   
 }
 ?>

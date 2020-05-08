@@ -21,6 +21,7 @@
             </div>
             <nav>
                 <a href="index.php">Inicio</a>
+                <a href="noticias.php">Noticias</a>
                 <a href="asesores.php">Asesores</a>
                 <a href="conocenos.php">Conocenos</a>
                 <?php if(isset($_SESSION['cliente'])): ?>
@@ -30,7 +31,7 @@
                     <a href="admin.php">Perfil</a>
                     <a href="logout.php">Cerrar Sesión</a>
                 <?php elseif(isset($_SESSION['asesor'])): ?>
-                    <a href="asesor.php">Perfil</a>
+                    <a href="perfil_asesor.php">Perfil</a>
                     <a href="logout.php">Cerrar Sesión</a>
                 <?php else: ?>    
                     <a href="register.php">Registrate</a>
@@ -93,39 +94,45 @@
                 <div class="fb-page" data-href="https://www.facebook.com/PulidClass/?modal=admin_todo_tour/" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/PulidClass/?modal=admin_todo_tour/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/PulidClass/?modal=admin_todo_tour/">PulidClass</a></blockquote></div>
             </div>
         </div>
+
         <div class="noticias">
             <div class="titulo">
                 <h3>Últimas Noticias</h3>
             </div>
+            <?php
+                foreach($noticias as $noticia){
+
+                $id_noticia=$noticia['Id_Noticia'];
+                $titulo=$noticia['Titulo'];
+                $subtitulo=$noticia['Subtitulo'];
+                $informacion=$noticia['Informacion'];
+                $informacion=substr($informacion, 0, 250);
+                $informacion.="...";
+                $foto=$noticia['Imagen'];
+
+            ?>
             <div class="noticia">
-                <div class="foto">
-                    <img src="img/new1.jpg" alt="">
-                </div>
-                <div class="info">
-                    <h3 class="titulo-new">El esqueleto Humano</h3>
-                    <h4 class="subtitulo">El sistema oseo visto de cerca</h4>
-                    <p class="descripcion-new">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.</p>
-                </div>
+                <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="GET">
+                    <input type="hidden" name="id_noticia" value=<?php echo $id_noticia?>>
+                    <div class="foto">
+                        <img src="<?php echo $foto?>" alt="">
+                    </div>
+                    <div class="info">
+                        <h3 class="titulo-new"><?php echo $titulo ?>o</h3>
+                        <h4 class="subtitulo"><?php echo $subtitulo ?></h4>
+                        <p class="descripcion-new"><?php echo $informacion ?></p>
+                    </div>
+                    <input type="submit" value="Ver Mas">
+                        
+                    <a href="#noticia-modal" rel="modal:open" id="modalactive" data-value="<?php echo $abrir_modal?>"></a>
+                </form>
             </div>
-            <div class="noticia">
-                <div class="foto">
-                    <img src="img/new2.jpg" alt="">
-                </div>
-                <div class="info">
-                    <h3 class="titulo-new">Bacterias importantes</h3>
-                    <h4 class="subtitulo">Bacterias que debes conocer</h4>
-                    <p class="descripcion-new">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.</p>
-                </div>
+            <?php 
+                }
+            ?>
             </div>
-            <div class="noticia">
-                <div class="foto">
-                    <img src="img/new3.jpg" alt="">
-                </div>
-                <div class="info">
-                    <h3 class="titulo-new">Lanzamiento SpaceX</h3>
-                    <h4 class="subtitulo">Conoce sobre este acontecimiento</h4>
-                    <p class="descripcion-new">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.</p>
-                </div>
+            <div class="ver_mas">
+                <a href="noticias.php">Mas Noticias</a>
             </div>
         </div>
         <div class="social">
@@ -149,6 +156,19 @@
             <a href="politicas.php">Política de privacidad</a>
         </div>
     </footer>
+    <!-- Remember to include jQuery :) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+    <!--JQueryUI-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <script src="https://kit.fontawesome.com/03ad672f06.js" crossorigin="anonymous"></script>
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <script src="https://kit.fontawesome.com/03ad672f06.js" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="./js/open_modal_noticia.js"></script>
 </body>
 </html>

@@ -99,7 +99,7 @@ main .perfil .info {
   flex-direction: row;
   flex-wrap: wrap;
   width: 63%;
-  padding: 50px 0;
+  padding: 28px 0;
 }
 main .perfil .info input {
   padding: 10px;
@@ -156,6 +156,61 @@ main .perfil .perfil-footer p {
   margin: 0;
   font-size: 24px;
   vertical-align: middle;
+}
+
+main .ficha_tecnica{
+  width: 80%;
+  margin:auto;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  padding: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: white;
+  border-radius: 5px;
+  display: block;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+main .ficha_tecnica .titulo_ficha{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+main .ficha_tecnica .titulo_ficha h2{
+  width: 75%;
+}
+
+main .ficha_tecnica .titulo_ficha a{
+  width: 25%;
+  color: black;
+  text-decoration: none;
+}
+
+main .ficha_tecnica .contenedor{
+  border-radius: 5px;
+  border-style: solid;
+  padding: 20px;
+}
+
+main .ficha_tecnica .contenedor .asesor_info{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+main .ficha_tecnica .contenedor .asesor_info .principal{
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+
+main .ficha_tecnica .contenedor .asesor_info .secundario{
+  display: block;
+  margin: auto;
+  width: 50%;
 }
 
 main .direccion {
@@ -322,11 +377,13 @@ main .profesores{
   clear: both;
 }
 
-main .profesores h2{
+main h2{
   display: inline-block;
 }
 
-main .profesores a{
+main .add-profesor, .add-noticia, .add-material{
+  float: right;
+  background: #27ae60;
   margin: 20px;
   display: block;
   text-decoration: none;
@@ -335,12 +392,7 @@ main .profesores a{
   border-radius: 5px;
 }
 
-main .profesores .add-profesor{
-  float: right;
-  background: #27ae60;
-}
-
-main .profesores .add-profesor:hover{
+main .add-profesor:hover, .add-noticia:hover, .add-material:hover{
   background: #2ecc71;
 }
 
@@ -357,7 +409,7 @@ main .pages{
   margin-bottom: 25px;
 }
 
-main .pages a{
+main .pages button{
   display: inline-block;
   margin: 10px 50px;
   color: #1089ff;
@@ -431,13 +483,25 @@ body {
 
 }
 
-#ex1 .error{
+#noticia-modal{
+  background:#f2f2f2;
+  max-width: 800px;
+
+}
+
+#material-modal{
+  background:#f2f2f2;
+  max-width: 600px;
+
+}
+
+#ex1 .error, #noticia-modal .error, #material-modal .error{
   display: block;
   margin: auto;
 }
 
 
-#ex1 h2{
+#ex1 h2, #noticia-modal h2, #material-modal h2{
   text-align: center;
 }
 
@@ -448,6 +512,33 @@ body {
   border: 1px solid #ccc;
   color: #333;
 }
+
+#noticia-modal input,#material-modal input{
+  padding: 10px;
+  width: 88%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+#pass-modal input{
+  display: block;
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+#muerto-modal input{
+  display: block;
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
 
 #ex1 input[type="submit"]{
   display: block;
@@ -461,12 +552,60 @@ body {
     border: none;
 }
 
-#ex1 input[type="submit"]:hover{
+#noticia-modal input[type="submit"]{
+  display: block;
+    width: 45%;
+    height: 45px;
+    margin: 0 auto;
+    margin-left: 130px;
+    margin-top: 40px;
+    background: #f3a953;
+    color: #fff;
+    border: none;
+}
+
+#material-modal input[type="submit"]{
+  display: block;
+    width: 45%;
+    height: 45px;
+    margin: 0 auto;
+    margin-left: 100px;
+    margin-top: 40px;
+    background: #f3a953;
+    color: #fff;
+    border: none;
+}
+
+#pass-modal input[type="submit"]{
+  display: block;
+    width: 55%;
+    height: 45px;
+    margin: 0 auto;
+    margin-left: 45px;
+    margin-top: 40px;
+    background: #f3a953;
+    color: #fff;
+    border: none;
+}
+
+#muerto-modal input[type="submit"]{
+  display: block;
+    width: 55%;
+    height: 45px;
+    margin: 0 auto;
+    margin-left: 45px;
+    margin-top: 40px;
+    background: #f3a953;
+    color: #fff;
+    border: none;
+}
+
+#ex1 input[type="submit"]:hover, #noticia-modal input[type="submit"]:hover, #material-modal input[type="submit"]:hover{
   transition: 300ms;
   background: #333;
 }
 
-#ex1 textarea{
+#ex1 textarea, #noticia-modal textarea{
   resize: none;
   padding: 10px;
   width: 80%;
@@ -476,12 +615,21 @@ body {
   color: #333;
 }
 
+#noticia-modal .noticia .secundario .informacion #informacion{
+  width: 88%;
+  height: 300px;
+}
+
+#noticia-modal .noticia .secundario .referencias #referencias{
+  width: 88%;
+}
+
+
 #ex1 .asesor{
   display: flex;
   margin-left:80px;
   margin-bottom: 30px;
 }
-
 #ex1 .asesor .principal .telefono_edad{
   display: flex;
 }
@@ -499,6 +647,27 @@ body {
 #ex1 .asesor .secundario{
   display: block;
   width: 50%;
+}
+
+#noticia-modal .noticia,#material-modal .material{
+  display: block;
+  margin-left:80px;
+  margin-bottom: 30px;
+}
+
+#noticia-modal .noticia .principal .admin_fecha,#material-modal .material .principal .admin_fecha {
+  display: flex;
+}
+
+
+#noticia-modal .noticia .principal .admin_fecha .correo_administrador,#material-modal .material .principal .admin_fecha .correo_administrador{
+  display: block;
+  width: 60%;
+}
+
+#noticia-modal .noticia .principal .admin_fecha .fecha,#material-modal .material .principal .admin_fecha .fecha{
+  display: block;
+  width: 30%;
 }
 
 /*# sourceMappingURL=estilos.css.map */

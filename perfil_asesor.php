@@ -9,7 +9,8 @@ if(!isset($_SESSION['asesor'])){
     $correo=$_SESSION['asesor'];
     $contra=$_SESSION['contra'];
 
-    $abrir_modal="false";
+    $abrir_modal_noticia="false";
+    $abrir_modal_material="false";
 
     $statement = $conexion->prepare('SELECT * FROM Usuario WHERE correo = :correo LIMIT 1');
             $statement->execute(array(':correo' => $correo));
@@ -22,7 +23,25 @@ if(!isset($_SESSION['asesor'])){
             $sql=$statement->fetch();
             $n_de_usuario=$sql['N_De_Usuario'];
 
+            $statement = $conexion->prepare('SELECT Id_Asesor FROM Asesor WHERE Correo = :correo');
+            $statement->execute(array(':correo' => $correo));
+
+            $id_asesor=$statement->fetch();
+            $id_asesor=$id_asesor['Id_Asesor'];
+
+            $statement = $conexion->prepare('SELECT * FROM Cita WHERE Id_Asesor = :id_asesor');
+            $statement->execute(array(':id_asesor' => $id_asesor));
+
+            $citas=$statement->fetchAll();
+
+            $statement = $conexion->prepare('SELECT * FROM Asesor WHERE Id_Asesor = :id_asesor');
+            $statement->execute(array(':id_asesor' => $id_asesor));
+
+            $ficha_tecnica=$statement->fetch();
+
             $_SESSION['n_de_usuario']=$n_de_usuario;
+
+            $fecha=date("Y-m-d");
 
             if(isset($_POST['guardar_usuario'])){
 
@@ -41,7 +60,7 @@ if(!isset($_SESSION['asesor'])){
                 $telefono =trim($_POST["telefono"]);
                 $telefono = filter_var($telefono, FILTER_SANITIZE_STRING);
 
-                $target_path="fotoasesores/";
+                $target_path="fotosusuarios/";
                 $target_path=$target_path . basename( $_FILES['foto']['name']);
                 if(move_uploaded_file($_FILES['foto']['tmp_name'],$target_path)){
                     echo "el archivo". basename($_FILES['foto']['name'])."ha sido subido";
@@ -50,6 +69,17 @@ if(!isset($_SESSION['asesor'])){
                     echo"Ha ocurrido un error, trate de nuevo!";
                 }
                 $foto=$target_path;
+
+                $statement = $conexion->prepare('UPDATE asesor set Nombres=:nombre, A_Paterno=:paterno, A_Materno=:materno, Edad=:edad, Telefono=:telefono, Foto=:foto Where Correo=:correo');
+                $statement->execute(array(
+                        ':nombre' => $nombre,
+                        ':paterno' => $paterno,
+                        ':materno' => $materno,
+                        ':edad' => $edad,
+                        ':telefono' => $telefono,
+                        ':foto' => $foto,
+                        ':correo' => $correo
+                    ));
 
                 $statement = $conexion->prepare('call pulidclass.spModificarUsuario(:correo,:nombre,:paterno,:materno,:edad,:telefono,:foto)');
                 $statement->execute(array(
@@ -62,104 +92,95 @@ if(!isset($_SESSION['asesor'])){
                         ':foto' => $foto
                     ));
 
+
                 $resultado = $statement->fetchColumn();
+
+                echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctamente</div>";
+                header("Refresh:10; url=perfil_asesor.php");
             }
-            
-            if(isset($_POST['alta_asesor'])){
 
-                $abrir_modal="true";
+            if(isset($_POST['alta_noticia'])){
 
-                if(empty($_POST['correo_asesor']) || empty($_POST['usuario'])){
-                    $errores='<li>Por Favor Proporcione Los Datos Correctamente</li>';
-                }else{
+                $abrir_modal_noticia="true";
+    
+                    $titulo =trim($_POST["titulo"]);
+                    $titulo = filter_var($titulo, FILTER_SANITIZE_STRING);
+                    
+                    $subtitulo =trim($_POST["subtitulo"]);
+                    $subtitulo = filter_var($subtitulo, FILTER_SANITIZE_STRING);
 
-                    $abrir_modal="true";
-
-                    $correo_asesor =trim($_POST["correo_asesor"]);
-                    $correo_asesor = filter_var($_POST['correo_asesor'], FILTER_SANITIZE_EMAIL);
-    
-                    $username =trim($_POST["usuario"]);
-                    $username = filter_var($username, FILTER_SANITIZE_STRING);
-    
-                    $nombre_asesor =trim($_POST["nombre_asesor"]);
-                    $nombre_asesor = filter_var($nombre_asesor, FILTER_SANITIZE_STRING);
-    
-                    $paterno_asesor =trim($_POST["paterno_asesor"]);
-                    $paterno_asesor = filter_var($paterno_asesor, FILTER_SANITIZE_STRING);
-    
-                    $materno_asesor =trim($_POST["materno_asesor"]);
-                    $materno_asesor = filter_var($materno_asesor, FILTER_SANITIZE_STRING);
-    
-                    $target_path="fotoasesores/";
-                    $target_path=$target_path . basename( $_FILES['fotoasesor']['name']);
-                    if(move_uploaded_file($_FILES['fotoasesor']['tmp_name'],$target_path)){
-                        echo "el archivo". basename($_FILES['fotoasesor']['name'])."ha sido subido";
+                    $target_path="fotosnoticias/";
+                    $target_path=$target_path . basename($_FILES['fotonoticia']['name']);
+                    if(move_uploaded_file($_FILES['fotonoticia']['tmp_name'],$target_path)){
+                        echo "el archivo". basename($_FILES['fotonoticia']['name'])."ha sido subido";
                     }
                     else{
                         echo"Ha ocurrido un error, trate de nuevo!";
                     }
-                    $foto_asesor=$target_path;
+                    $imagen_noticia=$target_path;
     
-                    $telefono_asesor =trim($_POST["telefono_asesor"]);
-                    $telefono_asesor = filter_var($telefono_asesor, FILTER_SANITIZE_STRING);
+                    $informacion =trim($_POST["informacion"]);
+                    $informacion = filter_var($informacion, FILTER_SANITIZE_STRING);
     
-                    $edad_asesor =trim($_POST["edad_asesor"]);
-                    $edad_asesor = filter_var($edad_asesor, FILTER_SANITIZE_STRING);
-    
-                    $grado =trim($_POST["grado"]);
-                    $grado = filter_var($grado, FILTER_SANITIZE_STRING);
-    
-                    $ocupacion =trim($_POST["ocupacion"]);
-                    $ocupacion = filter_var($ocupacion, FILTER_SANITIZE_STRING);
-    
-                    $materia1 =trim($_POST["materia1"]);
-                    $materia1 = filter_var($materia1, FILTER_SANITIZE_STRING);
-    
-                    $materia2 =trim($_POST["materia2"]);
-                    $materia2 = filter_var($materia2, FILTER_SANITIZE_STRING);
-    
-                    $materia3 =trim($_POST["materia3"]);
-                    $materia3 = filter_var($materia3, FILTER_SANITIZE_STRING);
-    
-                    $descripcion =trim($_POST["descripcion"]);
-                    $descripcion = filter_var($descripcion, FILTER_SANITIZE_STRING);
-    
-                    $statement = $conexion->prepare('call pulidclass.spAltaAsesor(:correo_admin,:correo_asesor,:username,:edad,:grado,:nombre,:paterno,:materno,:ocupacion,:materia1,:materia2,:materia3,:descripcion,:telefono,:foto)');
+                    $referencias =trim($_POST["referencias"]);
+                    $referencias = filter_var($referencias, FILTER_SANITIZE_STRING);
+
+                    $statement = $conexion->prepare('INSERT INTO noticia values(NULL, :correo, :titulo, :subtitulo, :fecha, :fuentes, :informacion, :imagen)');
                     $statement->execute(array(
-                            ':correo_admin' => $correo,
-                            ':correo_asesor' => $correo_asesor,
-                            ':username' => $username,
-                            ':edad' => $edad_asesor,
-                            ':grado' => $grado,
-                            ':nombre' => $nombre_asesor,
-                            ':paterno' => $paterno_asesor,
-                            ':materno' => $materno_asesor,
-                            ':ocupacion' => $ocupacion,
-                            ':materia1' => $materia1,
-                            ':materia2' => $materia2,
-                            ':materia3' => $materia3,
-                            ':descripcion' => $descripcion,
-                            ':telefono' => $telefono_asesor,
-                            ':foto' => $foto_asesor,
+                            ':correo' => $correo,
+                            ':titulo' => $titulo,
+                            ':subtitulo' => $subtitulo,
+                            ':fecha' => $fecha,
+                            ':fuentes' => $referencias,
+                            ':informacion' => $informacion,
+                            ':imagen' => $imagen_noticia
                         ));
     
                     $resultado = $statement->fetchColumn();
-    
-                    switch($resultado){
-                        case 0: 
-                            $errores='<li>La cuenta con este correo electronico o nombre de usuario ya existe, por favor proporcione otro</li>';
-                        break;
-    
-                        case 1: 
-                            $errores='<li>Datos Guardados Correctamente</li>';
-                        break;
-    
-                    }
-                }
+
+                    echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctemente</div>";
+                    header("Refresh:10; url=perfil_asesor.php");
 
             }
 
-    require 'views/modal_altasesor.view.php'; 
+            if(isset($_POST['alta_material'])){
+
+                $abrir_modal_material="true";
+    
+                    $titulo =trim($_POST["titulo"]);
+                    $titulo = filter_var($titulo, FILTER_SANITIZE_STRING);
+                    
+                    $materia =trim($_POST["materia"]);
+                    $materia = filter_var($materia, FILTER_SANITIZE_STRING);
+
+                    $target_path="materialdidactico/";
+                    $target_path=$target_path . basename($_FILES['archivo']['name']);
+                    if(move_uploaded_file($_FILES['archivo']['tmp_name'],$target_path)){
+                        echo "el archivo". basename($_FILES['archivo']['name'])."ha sido subido";
+                    }
+                    else{
+                        echo"Ha ocurrido un error, trate de nuevo!";
+                    }
+                    $archivo=$target_path;
+
+                    $statement = $conexion->prepare('INSERT INTO material values(NULL, :correo, :titulo, :fecha, :materia, :archivo)');
+                    $statement->execute(array(
+                            ':correo' => $correo,
+                            ':titulo' => $titulo,
+                            ':fecha' => $fecha,
+                            ':materia' => $materia,
+                            ':archivo' => $archivo
+                        ));
+    
+                    $resultado = $statement->fetchColumn();
+
+                    echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctemente</div>";
+                    header("Refresh:10; url=perfil_asesor.php");
+
+            }
+
+    require 'views/modal_altanoticia.view.php'; 
+    require 'views/modal_altamaterial.view.php'; 
     require 'views/perfil_asesor.view.php';   
 }
 ?>

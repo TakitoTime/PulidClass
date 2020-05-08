@@ -40,9 +40,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     header('Location: admin.php');
                     
                 }else{
-                    $_SESSION['cliente'] = $correo;
-                    $_SESSION['contra'] = $contra;
-                    header('Location: perfil.php');
+                    if($resultado['Tipo']==3){
+                    
+                        $_SESSION['asesor'] = $correo;
+                        $_SESSION['contra'] = $contra;
+                        header('Location: perfil_asesor.php');
+                        
+                    }else{
+                        $_SESSION['cliente'] = $correo;
+                        $_SESSION['contra'] = $contra;
+                        header('Location: perfil.php');
+                    }
                 }
     
             } else {
