@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2020 a las 19:03:18
+-- Tiempo de generación: 13-05-2020 a las 00:09:51
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.30
 
@@ -172,7 +172,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCita` (IN `_Correo` VARCHAR(7
 			SELECT 'Los Datos Ha Sido Ingresados Correctamente';
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCuenta` (IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(20))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCuenta` (IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(200))  BEGIN
 	declare _Id_BajaCuenta int default 0;
     declare _Id_Usuario int default 0;
     
@@ -185,6 +185,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCuenta` (IN `_Correo` VARCHAR
             delete from habita where N_De_Usuario=_Id_Usuario;
             delete from Usuario where Correo=_Correo;
             delete from Cuenta where Correo=_Correo;
+            delete from Cita where N_De_Usuario=_Id_Usuario;
 			insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('Se elimino la cuenta con el correo ',_correo), 'Cuenta, Usuario, Dirección y Habita', curdate());
              
 			SELECT 0;
@@ -235,34 +236,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarAsesor` (IN `_Correo` VA
 	end if;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarCuenta` (IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(20), IN `_CorreoNew` VARCHAR(70), IN `_ContraNew` VARCHAR(20))  BEGIN
-	declare Id_ModificaCuenta int default 0;
-    declare Id_Corroborar_Nueva int default 0;
-    
-    set Id_ModificaCuenta = (SELECT count(*) from cuenta where Contrasena=_contra and Correo=_correo);
-    
-    if (Id_ModificaCuenta != 0) then
-		begin
-			set Id_Corroborar_Nueva=(SELECT count(*) from cuenta where Correo=_correoNew);
-            if(Id_Corroborar_Nueva !=0) then
-				begin
-					Select 0;
-                end;
-			else
-				begin
-					Update cuenta set Correo=_correoNew,Contrasena=_contraNew where Correo=_correo;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarCuenta` (IN `_Correo` VARCHAR(70), IN `_ContraNew` VARCHAR(200))  BEGIN
+
+	Update cuenta set Contrasena=_contraNew where Correo=_correo;
                     
-					insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('Se modifico una cuenta con el correo ',_correo), 'Cuenta', curdate());
-                    
-					Select 1;
-				end;
-			end if;
-        end;
-	else
-		begin
-            select 2;
-        end;
-	end if;
+	insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('Se modifico una cuenta con el correo ',_correo), 'Cuenta', curdate());
+	
+    select 1;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarDireccion` (IN `_IdDireccion` INT, IN `_PaisNew` VARCHAR(30), IN `_EstadoNew` VARCHAR(30), IN `_CiudadNew` VARCHAR(30), IN `_ColoniaNew` VARCHAR(50), IN `_CalleNew` VARCHAR(50), IN `_NumeroNew` INT, IN `_CodigoPostalNew` INT, IN `_DescripcionNew` VARCHAR(250))  BEGIN
@@ -316,7 +296,6 @@ CREATE TABLE `asesor` (
 
 INSERT INTO `asesor` (`Id_Asesor`, `Nombre_Usuario`, `Edad`, `Grado_Estudios`, `Nombres`, `A_Paterno`, `A_Materno`, `Ocupacion`, `Materia1`, `Materia2`, `Materia3`, `Descripcion`, `Correo`, `Telefono`, `Foto`) VALUES
 (125, 'TakitoTime', 22, 'Universidad', 'David Guadalupe', 'Pulido', 'Valdez', 'Estudiante', 'Matematicas', 'Fisica', 'Programacion', 'Joven universitario con habilidades principalmente en matematicas, y con capacidad de enseñar a otros', '17231222@itslerdo.edu.mx', '8713975674', 'fotoasesores/asesorpro1.jpg'),
-(126, 'Chinofloo', 20, 'Universidad', 'Cesar', 'Mendoza', 'Reyes', 'Estudiante', 'Programacion', 'Calculo', 'Ingles', 'Me gusta dar clases reducidas pero interactivas para poder enseñar a los alumnos a aprender por medio de  ejercicios y que logren adquirir experiencia, para poder transmitir conocimientos necesarios para aprender algun oficio', 'cesarmendoza@gmail.com', '8717887048', 'fotoasesores/asesorpro2.jpeg'),
 (127, 'Gerita', 30, 'Posgrado', 'Gerardo', 'Ortiz', 'Salas', 'Arquitecto', 'Algebra Lineal', 'Termodinamica', 'Mecanica De Fluidos', 'Profesionista experto en la realizacion de obras de ingenieria, capacitado para poder asistir a jovenes en los ambitos relacionados con las matematicas.', 'gerardortiz@gmail.com', '8714685762', 'fotoasesores/face2.jpg'),
 (128, 'Meny98', 21, 'Universidad', 'Manuel Alejandro', 'Herrera', 'Ceniceros', 'Estudiante', 'Contabilidad', 'Base De Datos', 'Redes', 'Lo más bello de este Mundo son las mujeres y la naturaleza.', 'ManuelAlejandroH@outlook.com', '8714038669', 'fotoasesores/asesorpro3.png'),
 (129, 'Karlita23', 23, 'Universidad', 'Karla', 'Guerrero', 'Hernandez', 'Estudiante', 'Contabilidad', 'Ingles', 'Marketing', 'Soy una joven estudiante con la capacidad de emprender e inonvar con nuevas metodologias y con el estudio del mercado.', 'karlaguerrero@gmail.com', '8714440458', 'fotoasesores/face1.jpg'),
@@ -325,12 +304,6 @@ INSERT INTO `asesor` (`Id_Asesor`, `Nombre_Usuario`, `Edad`, `Grado_Estudios`, `
 (132, 'Lorem', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem@gmail.com', '8717958896', 'fotoasesores/face5.jpg'),
 (133, 'Lorem1', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem1@gmail.com', '8717958896', 'fotoasesores/face6.jpg'),
 (134, 'Lorem2', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem2@gmail.com', '8717958896', 'fotoasesores/face4.jpg'),
-(139, 'Sillapone', 24, 'Universidad', 'David Alejandro', 'Herrera', 'Rodriguez', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'Breve Descripcion De El Asesor', 'lopremipsum@hotmail.com', '8293718273', 'fotoasesores/'),
-(140, 'Helgino', 18, 'Preparatoria', 'Angel', 'Pulido', 'Valdez', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'Breve Descripcion De El Asesor', 'angel@gmail.com', '12345678', 'fotoasesores/'),
-(141, 'Daniel@', 20, 'Preparatoria', 'Daniela', 'Pulido', 'Valdez', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'Breve Descripcion De El Asesor', 'daniela@gmail.com', '12345678', 'fotoasesores/81517932_2235187233440697_7711608875115347968_n.jpg'),
-(142, 'Helgin', 25, 'Preparatoria', 'Heriberto', 'Pulido', 'Valdez', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'Breve Descripcion De El Asesor', 'heriberto@gmail.com', '12345678', 'fotoasesores/81517932_2235187233440697_7711608875115347968_n.jpg'),
-(143, 'Fco', 25, 'Preparatoria', 'Javier', 'Pulido', 'Valdez', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'Breve Descripcion De El Asesor', 'javier@gmail.com', '12345678', 'fotoasesores/81517932_2235187233440697_7711608875115347968_n.jpg'),
-(144, 'mayela', 45, 'Preparatoria', 'Silvia', 'Pulido', 'Valdez', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'Breve Descripcion De El Asesor', 'silvia@gmail.com', '12345678', 'fotoasesores/81517932_2235187233440697_7711608875115347968_n.jpg'),
 (145, 'chino', 20, 'Preparatoria', 'Cesar', 'Mendoza', 'Reyes', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'Breve Descripcion De El Asesor', 'chino@gmail.com', '12345678', 'fotosusuarios/asesorpro2.jpeg');
 
 -- --------------------------------------------------------
@@ -659,7 +632,24 @@ INSERT INTO `bitacora` (`Id_Bitacora`, `Correo`, `Accion_Realizada`, `TablaAfect
 (309, 'chino@gmail.com', 'Se actualizaron los datos del usuario con el correo chino@gmail.com', 'Usuario', '2020-05-07'),
 (310, 'chino@gmail.com', 'Se actualizaron los datos del usuario con el correo chino@gmail.com', 'Usuario', '2020-05-07'),
 (311, 'chino@gmail.com', 'Se actualizaron los datos del usuario con el correo chino@gmail.com', 'Usuario', '2020-05-07'),
-(312, 'chino@gmail.com', 'Se actualizaron los datos del usuario con el correo chino@gmail.com', 'Usuario', '2020-05-07');
+(312, 'chino@gmail.com', 'Se actualizaron los datos del usuario con el correo chino@gmail.com', 'Usuario', '2020-05-07'),
+(313, 'pulidovaldezg@gmail.com', 'Se creo una cuenta con el correo pulidovaldezg@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
+(314, 'sillapone@gmail.com', 'Se modifico una cuenta con el correo sillapone@gmail.com', 'Cuenta', '2020-05-12'),
+(315, 'pulidovaldezg@gmail.com', 'Se creo una cuenta con el correo pulidovaldezg@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
+(316, 'pulidovaldezg@gmail.com', 'Se creo una cuenta con el correo pulidovaldezg@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
+(317, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
+(318, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
+(319, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
+(320, 'sillapone@gmail.com', 'Se modifico una cuenta con el correo sillapone@gmail.com', 'Cuenta', '2020-05-12'),
+(321, 'david@gmail.com', 'Se modifico una cuenta con el correo david@gmail.com', 'Cuenta', '2020-05-12'),
+(322, 'david@gmail.com', 'Se modifico una cuenta con el correo david@gmail.com', 'Cuenta', '2020-05-12'),
+(323, 'david@gmail.com', 'Se elimino la cuenta con el correo david@gmail.com', 'Cuenta, Usuario, Dirección y Habita', '2020-05-12'),
+(324, '17231222@itslerdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itslerdo.edu.mx', 'Usuario', '2020-05-12'),
+(325, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-05-12'),
+(326, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-05-12'),
+(327, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:125', 'Cita', '2020-05-12'),
+(328, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:125', 'Cita', '2020-05-12'),
+(329, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:125', 'Cita', '2020-05-12');
 
 -- --------------------------------------------------------
 
@@ -692,7 +682,10 @@ INSERT INTO `cita` (`Folio`, `N_De_Usuario`, `Id_Asesor`, `Id_Tarjeta`, `Direcci
 (4, 39, 130, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-26', '17:00', '18:00', 1, '100.00'),
 (5, 39, 128, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-30', '14:00', '17:00', 3, '250.00'),
 (6, 39, 145, NULL, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-05-07', '09:00', '10:00', 1, '100.00'),
-(7, 39, 145, 3, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-05-06', '11:00', '12:00', 1, '100.00');
+(7, 39, 145, 3, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-05-06', '11:00', '12:00', 1, '100.00'),
+(8, 39, 125, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada Verde, Porton Azul', '2020-05-14', '11:00', '10:00', -1, NULL),
+(9, 39, 125, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada Verde, Porton Azul', '2020-05-14', '11:00', '10:00', -1, NULL),
+(10, 39, 125, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada Verde, Porton Azul', '2020-05-14', '11:00', '10:00', -1, NULL);
 
 -- --------------------------------------------------------
 
@@ -721,8 +714,7 @@ INSERT INTO `cuenta` (`Correo`, `Contrasena`, `Validacion`, `Tipo`, `Activacion`
 ('davida7x77@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 1, 0, 1478),
 ('david_tier@hotmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', NULL, NULL, NULL),
 ('felipe@mail.com', '123', 'Validada', NULL, NULL, NULL),
-('prueba1@hotmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', NULL, NULL, NULL),
-('sillapone@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 2, 1, 4291);
+('prueba1@hotmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -755,9 +747,7 @@ INSERT INTO `direccion` (`Id_Direccion`, `Pais`, `Estado`, `Ciudad`, `Colonia`, 
 (24, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde. Porton Azul'),
 (25, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde, Porton Azul, Arboles Enfrente'),
 (26, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde, Porton Azul, Arboles Enfrente'),
-(27, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 185, 35043, 'Fachada verde, porton azul, 2 arboles enfrente'),
-(28, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde. Porton Azul'),
-(30, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 195, 35043, 'Fachada Verde. Porton Azul');
+(32, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 185, 35043, 'Fachada Verde, Porton Azul');
 
 -- --------------------------------------------------------
 
@@ -780,9 +770,7 @@ INSERT INTO `habita` (`N_De_Usuario`, `Id_Direccion`) VALUES
 (6, 24),
 (7, 25),
 (7, 26),
-(39, 27),
-(39, 28),
-(39, 30);
+(39, 32);
 
 -- --------------------------------------------------------
 
@@ -805,10 +793,10 @@ CREATE TABLE `material` (
 
 INSERT INTO `material` (`Id_Material`, `Correo`, `Titulo`, `Fecha`, `Materia`, `Documento`) VALUES
 (1, 'administrador1@gmail.com', 'Formulario Fisica', '2020-05-05', 'Fisica', 'asdasdasdasd'),
-(2, 'administrador1@gmail.com', 'Hola Mundo', NULL, '2020-05-05', 'materialdidactico/LENGUAJES DE INTERFAZ - 3.docx'),
-(3, 'administrador1@gmail.com', 'Hola Mundo', '0000-00-00', '2020-05-05', 'materialdidactico/P2PULIDOVALDEZ.doc'),
 (4, 'administrador1@gmail.com', 'Hola Mundo', '2020-05-05', 'Ingles', 'materialdidactico/'),
-(5, 'chino@gmail.com', 'Hola Mundo', '2020-05-07', 'Matematicas', 'materialdidactico/David_Pulido_04052020_0-65536.docx');
+(5, 'chino@gmail.com', 'Hola Mundo', '2020-05-07', 'Matematicas', 'materialdidactico/David_Pulido_04052020_0-65536.docx'),
+(6, 'administrador1@gmail.com', 'Verbo ToBE', '2020-05-12', 'Ingles', 'materialdidactico/LENGUAJES DE INTERFAZ - 4.docx'),
+(7, 'administrador1@gmail.com', 'Formulario Integrales', '2020-05-12', 'Matematicas', 'materialdidactico/LENGUAJES DE INTERFAZ - 4.docx');
 
 -- --------------------------------------------------------
 
@@ -832,18 +820,9 @@ CREATE TABLE `noticia` (
 --
 
 INSERT INTO `noticia` (`Id_Noticia`, `Correo`, `Titulo`, `Subtitulo`, `Fecha`, `Fuentes`, `Informacion`, `Imagen`) VALUES
-(1, 'administrador1@gmail.com', 'sadasd', 'asdasda', '2020-05-05', 'Fuentes Biblograficas...', 'Contenido Tematico...', 'fotosnoticias/'),
-(2, 'administrador1@gmail.com', '', '', '2020-05-05', 'Fuentes Biblograficas...', 'Contenido Tematico...', 'fotosnoticias/'),
-(3, 'administrador1@gmail.com', '', '', '2020-05-05', 'Fuentes Biblograficas...', 'Contenido Tematico...', 'fotosnoticias/'),
-(4, 'administrador1@gmail.com', 'saddasda', 'asdasd', '2020-05-05', 'Fuentes Biblograficas...', 'Contenido Tematico...', 'fotosnoticias/'),
-(5, 'administrador1@gmail.com', 'Hola Mundo', 'Soy un pro', '2020-05-05', 'Fuentes Biblograficas...', 'Contenido Tematico...', 'fotosnoticias/vscode-dark-1024x768.png'),
-(6, 'administrador1@gmail.com', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem, illo!', 'Lorem ipsum dolor sit amet, consectetur adipisicing.', '2020-05-05', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis dolor sit illum numquam provident pariatur distinctio ex iure nostrum assumenda.', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio vitae officia dolorem, atque recusandae tempora, at nesciunt quisquam debitis assumenda id animi velit est aperiam similique nobis! Fugit, eligendi hic cupiditate mollitia quam fugiat eaque delectus dolore sapiente aliquid inventore blanditiis molestiae quaerat provident aperiam, quo neque, dolorum velit vel possimus. Laboriosam molestiae quae perspiciatis beatae, distinctio fugiat vero modi est aspernatur eius. Accusantium odit dolore quae, magni praesentium, dolorem possimus a enim atque aut asperiores? Pariatur est aliquam quam dolorem laborum laboriosam cumque officiis voluptatum, eius error quo iusto porro sed ab? Dignissimos molestias maiores molestiae, fuga doloribus nostrum!', 'fotosnoticias/vscode-dark-1366x768.png'),
 (7, 'administrador1@gmail.com', 'El Esqueleto Humano', 'El sistema oseo visto de cerca', '2020-05-05', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis dolor sit illum numquam provident pariatur distinctio ex iure nostrum assumenda.', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio vitae officia dolorem, atque recusandae tempora, at nesciunt quisquam debitis assumenda id animi velit est aperiam similique nobis! Fugit, eligendi hic cupiditate mollitia quam fugiat eaque delectus dolore sapiente aliquid inventore blanditiis molestiae quaerat provident aperiam, quo neque, dolorum velit vel possimus. Laboriosam molestiae quae perspiciatis beatae, distinctio fugiat vero modi est aspernatur eius. Accusantium odit dolore quae, magni praesentium, dolorem possimus a enim atque aut asperiores? Pariatur est aliquam quam dolorem laborum laboriosam cumque officiis voluptatum, eius error quo iusto porro sed ab? Dignissimos molestias maiores molestiae, fuga doloribus nostrum!', 'fotosnoticias/new1.jpg'),
 (8, 'administrador1@gmail.com', 'Bacterias importantes', 'Bacterias que debes conocer', '2020-05-05', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.', 'fotosnoticias/new2.jpg'),
-(9, 'administrador1@gmail.com', 'Bacterias importantes', 'Bacterias que debes conocer', '2020-05-05', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.', 'fotosnoticias/new2.jpg'),
-(10, 'chino@gmail.com', 'Hola Mundo', 'asdasd', '2020-05-07', 'Fuentes Biblograficas...', 'Contenido Tematico...', 'fotosnoticias/'),
-(11, 'chino@gmail.com', 'Hola Mundo', 'Soy un pro', '2020-05-07', 'Fuentes Biblograficas...', 'Contenido Tematico...', 'fotosnoticias/'),
-(12, 'chino@gmail.com', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem, illo!', 'Lorem ipsum dolor sit amet, consectetur adipisicing.', '2020-05-07', 'Fuentes Biblograficas...', 'Contenido Tematico...', 'fotosnoticias/Alambrico.png');
+(9, 'administrador1@gmail.com', 'Bacterias importantes', 'Bacterias que debes conocer', '2020-05-05', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.', 'fotosnoticias/new2.jpg');
 
 -- --------------------------------------------------------
 
@@ -887,7 +866,7 @@ CREATE TABLE `tarjeta` (
 --
 
 INSERT INTO `tarjeta` (`Id_Tarjeta`, `N_De_Usuario`, `Nombre_T`, `Num_T`, `Mes`, `Year`, `Codigo_S`) VALUES
-(3, 39, 'David Pulido', '1231231231231231', 11, 20, 394);
+(4, 39, 'David Pulido', '1234567890123456', 11, 2020, 392);
 
 -- --------------------------------------------------------
 
@@ -918,8 +897,7 @@ INSERT INTO `usuario` (`N_De_Usuario`, `Correo`, `Nombres`, `A_Paterno`, `A_Mate
 (7, 'prueba1@hotmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/WhatsApp Image 2019-11-26 at 13.18.51.jpeg'),
 (8, 'administrador1@gmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg'),
 (9, 'davida7x77@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL),
-(38, 'sillapone@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL),
-(39, '17231222@itslerdo.edu.mx', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/26171846_1670030629727736_6166157510929192402_o.jpg');
+(39, '17231222@itslerdo.edu.mx', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg');
 
 --
 -- Disparadores `usuario`
@@ -1021,25 +999,25 @@ ALTER TABLE `asesor`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
+  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `material`
 --
 ALTER TABLE `material`
-  MODIFY `Id_Material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Id_Material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `noticia`
@@ -1057,13 +1035,13 @@ ALTER TABLE `precio`
 -- AUTO_INCREMENT de la tabla `tarjeta`
 --
 ALTER TABLE `tarjeta`
-  MODIFY `Id_Tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_Tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `N_De_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `N_De_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Restricciones para tablas volcadas
