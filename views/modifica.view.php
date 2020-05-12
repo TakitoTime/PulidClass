@@ -29,7 +29,7 @@
                     <a href="admin.php">Perfil</a>
                     <a href="logout.php">Cerrar Sesión</a>
                 <?php elseif(isset($_SESSION['asesor'])): ?>
-                    <a href="asesor.php">Perfil</a>
+                    <a href="perfil_asesor.php">Perfil</a>
                     <a href="logout.php">Cerrar Sesión</a>
                 <?php else: ?>    
                     <a href="register.php">Registrate</a>
@@ -53,7 +53,7 @@
             <div class="formulario">
                 <h3>Modifica tu cuenta</h3>
                 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                    <input type="text" name="correonew" id="correonew" placeholder="Correo Nuevo:">
+                    <input type="text" name="correo" id="correo" value="<?php echo $correo?>" disabled>
                     <input type="password" name="contranew" id="contranew" placeholder="Contraseña Nueva:">
                     <input type="password" name="contranew2" id="contranew" placeholder="Repite Contraseña:">
                     <?php if(!empty($errores)): ?>

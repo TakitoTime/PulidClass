@@ -2,7 +2,7 @@
     require('conexion.php');
 
     if (!isset($_SESSION['cliente'])) {
-        header('Location: index.html');
+        header('Location: index.php');
         die();
     }
 
@@ -11,7 +11,6 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
-        $correonew = filter_var($_POST['correonew'], FILTER_SANITIZE_EMAIL);
         $contranew = $_POST["contranew"];
         $contranew2 = $_POST["contranew2"];
         $contranew = hash('sha512', $contranew);
@@ -19,17 +18,11 @@
     
         $errores = '';
 
-        if (empty($correonew) or empty($contranew) or empty($contranew2)) {
+        if (empty($contranew) or empty($contranew2)) {
 
             $errores.= '<li>Por favor rellena todos los datos correctamente</li>';
 
-        } else{
-
-            if (!filter_var($correonew, FILTER_VALIDATE_EMAIL)) {
-
-                $errores.= "<li>Por favor ingresa un correo valido</li>";
-
-            }    
+        } else{  
 
             if ($contranew != $contranew2) {
 
@@ -37,11 +30,9 @@
 
             }else{
             
-                $statement = $conexion->prepare('call pulidclass.spModificarCuenta(:correo,:contra,:correonew,:contranew)');
+                $statement = $conexion->prepare('call pulidclass.spModificarCuenta(:correo,:contranew)');
                 $statement->execute(array(
                         ':correo' => $correo,
-                        ':contra' => $contra,
-                        ':correonew'=>$correonew,
                         ':contranew'=>$contranew
                     ));
     
@@ -51,15 +42,7 @@
                     case 1: 
                         session_unset();
                         session_destroy();
-                        header('Location: index.html');
-                    break;
-
-                    case 2: 
-                        $errores='<li>La cuenta no existe</li>';
-                    break;
-
-                    case 0: 
-                        $errores='<li>La cuenta con el nuevo correo ya existe</li>';
+                        header('Location: index.php');
                     break;
                 }
             }   

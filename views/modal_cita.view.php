@@ -2,7 +2,7 @@
             <?php                
                 if(isset($_SESSION['cliente'])){
 
-                    if($direcciones!=null){
+                    if($direcciones!=null && $tarjetas!=null){
             ?>
                 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id_asesor=$id_asesor"; ?>" method="POST">
                     <h2 class="titulo">Agendar Cita</h2>
@@ -71,8 +71,8 @@
             else{
         ?>
 
-            <h2 class="titulo">Direccion</h2>
-            <p>No puede generar cita porque no ha ingresado alguna direccion, por favor registe una direccion para continuar</p>
+            <h2 class="titulo">Perfil Incompleto</h2>
+            <p>No puede generar cita porque no ha ingresado alguna direccion o alguna tarjeta a su cuenta por favor complete correctamente su perfil para continuar</p>
             <a href="perfil.php">Continuar</a>
 
         <?php

@@ -29,7 +29,7 @@
                     <a href="admin.php">Perfil</a>
                     <a href="logout.php">Cerrar Sesión</a>
                 <?php elseif(isset($_SESSION['asesor'])): ?>
-                    <a href="asesor.php">Perfil</a>
+                    <a href="perfil_asesor.php">Perfil</a>
                     <a href="logout.php">Cerrar Sesión</a>
                 <?php else: ?>    
                     <a href="register.php">Registrate</a>

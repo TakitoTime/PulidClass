@@ -7,7 +7,6 @@ require('conexion.php');
     $noticias=$statement->fetchAll();
 
     if (isset($_GET['id_noticia'])) {
-        $abrir_modal="true";
 
         $id_noticia=$_GET['id_noticia'];
 
@@ -18,7 +17,12 @@ require('conexion.php');
     
         $noticia=$statement->fetch();
 
-        require('views/modal_noticia.view.php');
+        if($noticia['Id_Noticia'] == NULL){
+            $abrir_modal="false";
+        }else{
+            $abrir_modal="true";
+            require('views/modal_noticia.view.php');
+        }
     }
 
 require('views/index.view.php');

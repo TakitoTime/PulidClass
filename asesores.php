@@ -1,6 +1,11 @@
 <?php session_start();
     require('conexion.php');
 
+    $statement = $conexion->prepare('SELECT DISTINCT Materia FROM material');
+    $statement->execute();
+
+    $materias=$statement->fetchAll();
+
     $statement = $conexion->prepare('SELECT * FROM Asesor');
     $statement->execute();
 

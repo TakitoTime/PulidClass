@@ -200,7 +200,7 @@ main .recursos {
   width: 30%;
   color: #333;
 }
-main .recursos .materiales h3 {
+main .recursos h2 {
   font-size: 2em;
   margin: 0;
   margin-right: 100px;
@@ -208,26 +208,61 @@ main .recursos .materiales h3 {
   border-bottom: 1px solid #ccc;
   font-weight: 400;
 }
-main .recursos .materiales .material .titulo {
+main .recursos .materiales h3 {
+  width: 70%;
+  color: #fff;
+  background: #23374d;
+  border-radius: 5px;
+  margin: 0;
+  margin-top: 5px;
+  padding: 10px 20px;
+}
+main .recursos .materiales .material {
+  width: 75%;
+  padding: 10px;
+  background: #fff;
+}
+main .recursos .materiales .material .contenedor {
+  border-style: solid;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+main .recursos .materiales .material .contenedor .principal {
+  display: flex;
+}
+main .recursos .materiales .material .contenedor .principal .titulo {
   font-size: 1em;
-}
-main .recursos .materiales .material .imagen {
-  width: 50%;
-  height: 300px;
-  overflow: hidden;
-}
-main .recursos .materiales .material .imagen img {
-  width: 100%;
-}
-main .recursos .materiales .material a {
   display: block;
-  margin-top: 20px;
+  width: 70%;
+  margin-left: 10px;
+  float: left;
+}
+main .recursos .materiales .material .contenedor .principal .fecha {
+  font-size: 1em;
+  width: 30%;
+  display: block;
+  float: right;
+}
+main .recursos .materiales .material .contenedor .secundario {
+  width: 100%;
+  padding: 10px;
+  display: block;
+}
+main .recursos .materiales .material .contenedor .secundario .download {
+  margin: auto;
+  display: block;
+}
+main .recursos .materiales .material .contenedor .secundario .download a{
+  display: block;
   text-decoration: none;
   font-weight: 900;
   color: #f3a953;
 }
-main .recursos .materiales .material a:hover {
-  text-decoration: underline;
+main .recursos .materiales .material .contenedor .secundario .download a:hover{
+  display: block;
+  text-decoration: none;
+  font-weight: 900;
+  color: #2d3436;
 }
 main .recursos .movimientos {
   margin-bottom: 50px;

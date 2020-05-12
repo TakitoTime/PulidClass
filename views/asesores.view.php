@@ -29,7 +29,7 @@
                     <a href="admin.php">Perfil</a>
                     <a href="logout.php">Cerrar Sesión</a>
                 <?php elseif(isset($_SESSION['asesor'])): ?>
-                    <a href="asesor.php">Perfil</a>
+                    <a href="perfil_asesor.php">Perfil</a>
                     <a href="logout.php">Cerrar Sesión</a>
                 <?php else: ?>    
                     <a href="register.php">Registrate</a>
@@ -109,29 +109,40 @@
             </div>
         </div>
         <div class="recursos">
+        <h2>Material de apoyo</h2>
             <div class="materiales">
-                <h3>Material de apoyo</h3>
+                <?php
+                    foreach($materias as $materia){
+                ?>
+                <h3 class="materia"><?php echo $materia['Materia']?></h3>
                 <div class="material">
-                    <h4 class="titulo">Formulario Integrales</h4>
-                    <div class="imagen">
-                        <img src="img/formulario.jpg" alt="">
-                    </div>
-                    <a href="#">Descargar</a>
+                    <?php 
+                        $statement = $conexion->prepare('SELECT Titulo, Fecha, Documento FROM material WHERE materia=:materia');
+                        $statement->execute(array(':materia' => $materia['Materia']));
+                    
+                        $datos_materia=$statement->fetchAll();
+
+                        foreach($datos_materia as $dato_materia){
+                    ?>
+                        <div class="contenedor">
+                            <div class="principal">
+                                <div class="titulo">
+                                    <h4><?php echo $dato_materia['Titulo']?></h4>
+                                </div>
+                                <div class="fecha">
+                                    <h4><?php echo $dato_materia['Fecha']?></h4>
+                                </div>
+                            </div>
+                            <div class="secundario">
+                                <div class="download">
+                                    <a href="<?php echo $dato_materia['Documento']?>" download="<?php echo $dato_materia['Documento']?>">Descargar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <?php }?>
                 </div>
-                <div class="material">
-                    <h4 class="titulo">Formulario Derivadas</h4>
-                    <div class="imagen">
-                        <img src="img/formulario.jpg" alt="">
-                    </div>
-                    <a href="#">Descargar</a>
-                </div>
-                <div class="material">
-                    <h4 class="titulo">Formulario Termodinamica</h4>
-                    <div class="imagen">
-                        <img src="img/formulario.jpg" alt="">
-                    </div>
-                    <a href="#">Descargar</a>
-                </div>
+                <?php
+                }?>
             </div>
             <div class="movimientos">
                 <h3>Movimientos recientes</h3>
@@ -152,5 +163,11 @@
         </div>
     </footer>
     <script src="https://kit.fontawesome.com/03ad672f06.js" crossorigin="anonymous"></script>
+    <!-- Remember to include jQuery :) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+    <!--JQueryUI-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/material.js"></script>
 </body>
 </html>
