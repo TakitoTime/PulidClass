@@ -207,6 +207,10 @@ body {
   text-align: center;
 }
 
+#ex1 .mensaje{
+  text-align: center;
+}
+
 #ex1 input{
   padding: 10px;
   width: 80%;
@@ -233,7 +237,7 @@ body {
   border: none;
 }
 
-#ex1 #ticket{
+#ex1 .boton{
   display: block;
   width: 50%;
   margin: 0 auto;
@@ -247,7 +251,7 @@ body {
   text-decoration: none;
   text-align: center;
 }
-#ex1 #ticket:hover{
+#ex1 .boton:hover{
   transition: 300ms;
   background: #333;
 }

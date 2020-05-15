@@ -413,6 +413,7 @@ main .pages button{
   display: inline-block;
   margin: 10px 50px;
   color: #1089ff;
+  border-style: none;
 }
 
 main #delete{

@@ -11,7 +11,12 @@
         $statement->execute(array(':id_asesor'=> $id_asesor));
 
         $asesor=$statement->fetch();
+
         $nombre_asesor=$asesor['Nombres']." ".$asesor['A_Paterno']." ".$asesor['A_Materno'];
+
+        if($asesor['Id_Asesor']==NULL){
+            header('Location:asesores.php');
+        }
 
         if(isset($_SESSION['cliente'])){
 
@@ -72,87 +77,102 @@
                 
                 $citas_existentes=$statement->fetchAll();
 
-                    if($hora_inicial==$hora_final){
+                if($fecha==NULL){
+
+                    $errores="<li>Proporcione una fecha valida</li>";
+                    $cita_confirmada="confirmar_cita";
+                    $confirmar="Confirmar";
+
+                }else{
+                        if($hora_inicial==$hora_final){
             
-                        $errores="<li>Las horas no pueden ser iguales, por favor indique otra fecha.</li>";
-                        $cita_confirmada="confirmar_cita";
-                        $confirmar="Confirmar";
-        
-                    }else{
-
-                        $incial=substr($hora_inicial,0,-3);
-                        $final=substr($hora_final,0,-3);
-
-                        
-
-                        if($incial>$final){
-
-                            $errores="<li>Las horas inicial no puede ser mayor que la final, por favor modifique dichos campos.</li>";
+                            $errores="<li>Las horas no pueden ser iguales, por favor indique otra hora.</li>";
                             $cita_confirmada="confirmar_cita";
                             $confirmar="Confirmar";
-
+            
                         }else{
+    
+                            $inicial=substr($hora_inicial,0,-3);
+                            $final=substr($hora_final,0,-3);
+                            date_default_timezone_set('America/Mexico_City');
+                            $hoy=date("H");
 
-                            if($final-$incial>4){
-
-                                $errores="<li>No puede generar una cita mayor a 4 horas continuas, por favor modifique dichos campos.</li>";
+                            if($fecha==date("Y-m-d") && $inicial<=$hoy){
+                                $errores="<li>La hora inicial ya no esta disponible, por favor ingrese una hora direfente.</li>";
                                 $cita_confirmada="confirmar_cita";
                                 $confirmar="Confirmar";
                             }else{
-
-                                if($citas_existentes==null){
-
-                                    $errores="<li>Por favor, confirme los datos para continuar.</li>";
-                                    $cita_confirmada="generar_cita";
-                                    $confirmar="Confirmar Cita";
-                
-                                }else{
     
-                                    $flag=false;
-
-                                    foreach($citas_existentes as $cita_existente){
-                                        
-
-                                        if($hora_inicial==$cita_existente['Hora_Inicial']){
-                    
-                                            $flag=true;
-                                            
+                                if($inicial>$final){
+        
+                                    $errores="<li>Las horas inicial no puede ser mayor que la final, por favor modifique dichos campos.</li>";
+                                    $cita_confirmada="confirmar_cita";
+                                    $confirmar="Confirmar";
+        
+                                }else{
+        
+                                    if($final-$inicial>4){
+        
+                                        $errores="<li>No puede generar una cita mayor a 4 horas continuas, por favor modifique dichos campos.</li>";
+                                        $cita_confirmada="confirmar_cita";
+                                        $confirmar="Confirmar";
+                                    }else{
+        
+                                        if($citas_existentes==null){
+        
+                                            $errores="<li>Por favor, confirme los datos para continuar.</li>";
+                                            $cita_confirmada="generar_cita";
+                                            $confirmar="Confirmar Cita";
+                        
                                         }else{
-                                            
-                                            $cita_existenteInicial=substr($cita_existente['Hora_Inicial'],0,-3);
-                                            $cita_existenteFinal=substr($cita_existente['Hora_Final'],0,-3);
-
-                                            if(($incial>=$cita_existenteInicial && $incial<$cita_existenteFinal) || ($final>$cita_existenteInicial && $final<=$cita_existenteFinal) ){
-
-                                                $flag=true;                                               
-
-                                            }else{
-
-                                                $errores="<li>Por favor, confirme los datos para continuar.</li>";
-                                                $cita_confirmada="generar_cita";
-                                                $confirmar="Confirmar Cita";
-
+            
+                                            $flag=false;
+        
+                                            foreach($citas_existentes as $cita_existente){
+                                                
+        
+                                                if($hora_inicial==$cita_existente['Hora_Inicial']){
+                            
+                                                    $flag=true;
+                                                    
+                                                }else{
+                                                    
+                                                    $cita_existenteInicial=substr($cita_existente['Hora_Inicial'],0,-3);
+                                                    $cita_existenteFinal=substr($cita_existente['Hora_Final'],0,-3);
+        
+                                                    if(($inicial>=$cita_existenteInicial && $inicial<$cita_existenteFinal) || ($final>$cita_existenteInicial && $final<=$cita_existenteFinal) ){
+        
+                                                        $flag=true;                                               
+        
+                                                    }else{
+        
+                                                        $errores="<li>Por favor, confirme los datos para continuar.</li>";
+                                                        $cita_confirmada="generar_cita";
+                                                        $confirmar="Confirmar Cita";
+        
+                                                    }
+                                                    
+                                                }
+                
                                             }
-                                            
+        
+                                            if($flag==true){
+        
+                                                $errores="<li>El asesor no esta disponible en dicha hora, por favor proporcione otro dia u hora.</li>";
+                                                $cita_confirmada="confirmar_cita";
+                                                $confirmar="Confirmar";
+        
+                                            }
+        
                                         }
         
                                     }
-
-                                    if($flag==true){
-
-                                        $errores="<li>El asesor no esta disponible en dicha hora, por favor proporcione otro dia u hora.</li>";
-                                        $cita_confirmada="confirmar_cita";
-                                        $confirmar="Confirmar";
-
-                                    }
-
+        
                                 }
-
-                            }
-
+                    
                         }
-            
                     }
+                }    
     
                 $nhoras=substr($hora_final,0,-3)-substr($hora_inicial,0,-3);
 

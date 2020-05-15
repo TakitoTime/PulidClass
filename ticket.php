@@ -7,6 +7,10 @@
         
     $cita=$statement->fetch();
 
+    if($cita['Folio']==NULL){
+        header('Location: index.php');
+    }
+
 
     $fecha=$cita['Fecha'];
 

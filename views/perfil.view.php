@@ -132,7 +132,12 @@
             <?php else: ?>
                 <input type="button" value="Agregar Direccion" onclick="Agregar_Direccion(<?php echo $cont_agregar?>)">
             <?php endif; ?>
+            <?php if($cont_agregar==1): ?>
+                <input type="button" value="Eliminar Direccion" onclick="Habilitar_Boton()" disabled style="background:#23374d;">
+            <?php else: ?>
                 <input type="button" value="Eliminar Direccion" onclick="Habilitar_Boton()">
+            <?php endif; ?>
+                
             </div>
         </div>
         <h2>Tarjetas</h2>

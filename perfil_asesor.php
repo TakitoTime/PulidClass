@@ -96,7 +96,7 @@ if(!isset($_SESSION['asesor'])){
                 $resultado = $statement->fetchColumn();
 
                 echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctamente</div>";
-                header("Refresh:10; url=perfil_asesor.php");
+                header("Refresh:5; url=perfil_asesor.php");
             }
 
             if(isset($_POST['alta_noticia'])){
@@ -139,7 +139,7 @@ if(!isset($_SESSION['asesor'])){
                     $resultado = $statement->fetchColumn();
 
                     echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctemente</div>";
-                    header("Refresh:10; url=perfil_asesor.php");
+                    header("Refresh:5; url=perfil_asesor.php");
 
             }
 
@@ -151,7 +151,7 @@ if(!isset($_SESSION['asesor'])){
                 $statement->execute(array(':id_noticia' => $id_bajanoticia));
 
                  echo "<div class='alert alert-danger mt-4' role='alert'>El registro se borro correctamente</div>";
-                 header("Refresh:10; url=perfil_asesor.php");
+                 header("Refresh:5; url=perfil_asesor.php");
 
             }
 
@@ -187,7 +187,7 @@ if(!isset($_SESSION['asesor'])){
                     $resultado = $statement->fetchColumn();
 
                     echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctemente</div>";
-                    header("Refresh:10; url=perfil_asesor.php");
+                    header("Refresh:5; url=perfil_asesor.php");
 
             }
 
@@ -199,7 +199,7 @@ if(!isset($_SESSION['asesor'])){
                 $statement->execute(array(':id_material' => $id_bajamaterial));
 
                  echo "<div class='alert alert-danger mt-4' role='alert'>El registro se borro correctamente</div>";
-                 header("Refresh:10; url=perfil_asesor.php");
+                 header("Refresh:5; url=perfil_asesor.php");
 
             }
 

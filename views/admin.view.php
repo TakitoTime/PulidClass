@@ -83,8 +83,8 @@
             </table>
             <div class="loader" id="loader_asesores"></div>
             <div class="pages">
-                <a href="#" id="btn_previous_asesores"><i class="fas fa-chevron-left"></i></a>
-                <a href="#" id="btn_next_asesores"><i class="fas fa-chevron-right"></i></a>
+                <button id="btn_previous_asesores"><i class="fas fa-chevron-left"></i></button>
+                <button id="btn_next_asesores"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
 
@@ -110,8 +110,8 @@
             </form>
             <div class="loader" id="loader_noticias"></div>
             <div class="pages">
-                <a href="#" id="btn_previous_noticias"><i class="fas fa-chevron-left"></i></a>
-                <a href="#" id="btn_next_noticias"><i class="fas fa-chevron-right"></i></a>
+                <button id="btn_previous_noticias"><i class="fas fa-chevron-left"></i></button>
+                <button id="btn_next_noticias"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
 
@@ -136,8 +136,8 @@
             </form>
             <div class="loader" id="loader_material"></div>
             <div class="pages">
-                <a href="#" id="btn_previous_material"><i class="fas fa-chevron-left"></i></a>
-                <a href="#" id="btn_next_material"><i class="fas fa-chevron-right"></i></a>
+                <button id="btn_previous_material"><i class="fas fa-chevron-left"></i></button>
+                <button id="btn_next_material"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
 
@@ -157,8 +157,8 @@
             </table>
             <div class="loader" id="loader_bitacora"></div>
             <div class="pages">
-                <a href="" id="btn_previous_bitacora"><i class="fas fa-chevron-left"></i></a>
-                <a href="" id="btn_next_bitacora"><i class="fas fa-chevron-right"></i></a>
+                <button id="btn_previous_bitacora"><i class="fas fa-chevron-left"></i></button>
+                <button id="btn_next_bitacora"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
         <div class="usuarios">

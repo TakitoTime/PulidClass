@@ -69,7 +69,7 @@ if(!isset($_SESSION['admin'])){
                 $resultado = $statement->fetchColumn();
 
                 echo "<div class='alert alert-danger mt-4' role='alert'>La cuenta No Existe En La Base De Datos</div>";
-                header('Location: /admin.php');
+                header('Location: admin.php');
             }
 
             if(isset($_POST['respaldar_db'])){
@@ -235,7 +235,7 @@ if(!isset($_SESSION['admin'])){
                     $resultado = $statement->fetchColumn();
 
                     echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctemente</div>";
-                    header("Refresh:20; url=admin.php");
+                    header("Refresh:5; url=admin.php");
 
             }
 
@@ -247,7 +247,7 @@ if(!isset($_SESSION['admin'])){
                    $statement->execute(array(':id_noticia' => $id_bajanoticia));
 
                     echo "<div class='alert alert-danger mt-4' role='alert'>El registro se borro correctamente</div>";
-                    header("Refresh:10; url=admin.php");
+                    header("Refresh:5; url=admin.php");
 
             }
 
@@ -283,7 +283,7 @@ if(!isset($_SESSION['admin'])){
                     $resultado = $statement->fetchColumn();
 
                     echo "<div class='alert alert-danger mt-4' role='alert'>Datos Guardados Correctemente</div>";
-                    header("Refresh:20; url=admin.php");
+                    header("Refresh:5; url=admin.php");
 
             }
 
@@ -295,7 +295,7 @@ if(!isset($_SESSION['admin'])){
                 $statement->execute(array(':id_material' => $id_bajamaterial));
 
                  echo "<div class='alert alert-danger mt-4' role='alert'>El registro se borro correctamente</div>";
-                 header("Refresh:10; url=admin.php");
+                 header("Refresh:5; url=admin.php");
 
             }
 

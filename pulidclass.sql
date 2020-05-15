@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2020 a las 00:09:51
+-- Tiempo de generación: 15-05-2020 a las 05:13:00
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.30
 
@@ -183,6 +183,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCuenta` (IN `_Correo` VARCHAR
 			set _Id_Usuario=(Select N_De_Usuario from Usuario where Correo=_Correo);
             delete from direccion, habita using direccion, habita where habita.N_De_Usuario=_Id_Usuario and habita.Id_direccion=Direccion.Id_Direccion;
             delete from habita where N_De_Usuario=_Id_Usuario;
+            delete from tarjeta where N_De_Usuario=_Id_Usuario;
             delete from Usuario where Correo=_Correo;
             delete from Cuenta where Correo=_Correo;
             delete from Cita where N_De_Usuario=_Id_Usuario;
@@ -330,326 +331,14 @@ INSERT INTO `bitacora` (`Id_Bitacora`, `Correo`, `Accion_Realizada`, `TablaAfect
 (3, 'correo@correo.com', 'Se actualizaron los datos del usuario con el correo correo@correo.com', 'Usuario', '2019-11-26'),
 (4, 'correo@correo.com', 'Se actualizaron los datos del usuario con el correo correo@correo.com', 'Usuario', '2019-11-26'),
 (5, 'correo@correo.com', 'Se agrego una dirección de el usuario con el correo correo@correo.com', 'Direccion y Habita', '2019-11-26'),
-(6, 'correo@correo.com', 'Se actualizaron los datos del usuario con el correo correo@correo.com', 'Usuario', '2019-11-26'),
-(7, 'correo@correo.com', 'Se actualizaron los datos del usuario con el correo correo@correo.com', 'Usuario', '2019-11-26'),
-(8, 'correo@correo.com', 'Se agrego una dirección de el usuario con el correo correo@correo.com', 'Direccion y Habita', '2019-11-26'),
-(9, 'correo@correo.com', 'El usuario con el Numero De Usuario: 1Genero Una Cita con el asesor:123', 'Cita', '2019-11-26'),
-(10, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-07'),
-(11, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-02-07'),
-(12, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(13, '17231222@itslerdo.edu.mx', 'El usuario con el correo:  17231222@itslerdo.edu.mxcreo una cuenta de asesor, con el nombre de usuario: Erenkiller', 'Asesor', '2020-02-07'),
-(14, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(15, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(16, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(17, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(18, NULL, NULL, 'Direccion y Habita', '2020-02-07'),
-(19, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(20, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(21, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(22, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(23, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(24, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(25, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(26, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(27, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(28, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(29, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(30, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(31, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(32, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(33, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(34, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(35, 'sillapone@gmail.com', 'Se agrego una dirección de el usuario con el correo sillapone@gmail.com', 'Direccion y Habita', '2020-02-07'),
-(36, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(37, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(38, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(39, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(40, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(41, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(42, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(43, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(44, 'sillapone@gmail.com', 'Se actualizaron los datos del usuario con el correo sillapone@gmail.com', 'Usuario', '2020-02-07'),
-(45, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-07'),
-(50, 'correo@correo.com', 'El usuario con el Numero De Usuario: 1Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(51, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(52, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(53, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(54, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(55, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(56, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(57, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(58, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(59, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(60, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(61, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(62, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(63, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(64, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(65, '17231222@itlserdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itlserdo.edu.mx', 'Cuenta y Usuario', '2020-02-11'),
-(66, '17231222@itlserdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itlserdo.edu.mx', 'Usuario', '2020-02-11'),
-(67, '17231222@itlserdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itlserdo.edu.mx', 'Direccion y Habita', '2020-02-11'),
-(68, '17231222@itlserdo.edu.mx', 'El usuario con el Numero De Usuario: 5Genero Una Cita con el asesor:123', 'Cita', '2020-02-11'),
-(69, 'sillapone@gmail.com', 'El usuario con el Numero De Usuario: 4Genero Una Cita con el asesor:123', 'Cita', '2020-02-13'),
-(70, 'david_tier@hotmail.com', 'Se creo una cuenta con el correo david_tier@hotmail.com', 'Cuenta y Usuario', '2020-02-13'),
-(71, 'david_tier@hotmail.com', 'Se actualizaron los datos del usuario con el correo david_tier@hotmail.com', 'Usuario', '2020-02-13'),
-(72, 'david_tier@hotmail.com', 'Se agrego una dirección de el usuario con el correo david_tier@hotmail.com', 'Direccion y Habita', '2020-02-13'),
-(73, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-13'),
-(74, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-13'),
-(75, 'david_tier@hotmail.com', 'Se agrego una dirección de el usuario con el correo david_tier@hotmail.com', 'Direccion y Habita', '2020-02-13'),
-(76, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-13'),
-(77, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-13'),
-(78, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-13'),
-(79, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-13'),
-(80, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-13'),
-(81, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-13'),
-(82, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:124', 'Cita', '2020-02-13'),
-(83, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:124', 'Cita', '2020-02-13'),
-(84, 'prueba1@hotmail.com', 'Se creo una cuenta con el correo prueba1@hotmail.com', 'Cuenta y Usuario', '2020-02-14'),
-(85, 'prueba1@hotmail.com', 'Se actualizaron los datos del usuario con el correo prueba1@hotmail.com', 'Usuario', '2020-02-14'),
-(86, 'prueba1@hotmail.com', 'Se actualizaron los datos del usuario con el correo prueba1@hotmail.com', 'Usuario', '2020-02-14'),
-(87, 'prueba1@hotmail.com', 'Se actualizaron los datos del usuario con el correo prueba1@hotmail.com', 'Usuario', '2020-02-14'),
-(88, 'prueba1@hotmail.com', 'Se actualizaron los datos del usuario con el correo prueba1@hotmail.com', 'Usuario', '2020-02-14'),
-(89, 'prueba1@hotmail.com', 'Se actualizaron los datos del usuario con el correo prueba1@hotmail.com', 'Usuario', '2020-02-14'),
-(90, 'prueba1@hotmail.com', 'Se agrego una dirección de el usuario con el correo prueba1@hotmail.com', 'Direccion y Habita', '2020-02-18'),
-(91, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(92, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(93, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(94, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(95, 'prueba1@hotmail.com', 'Se agrego una dirección de el usuario con el correo prueba1@hotmail.com', 'Direccion y Habita', '2020-02-21'),
-(96, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(97, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(98, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(99, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(100, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(101, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(102, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(103, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(104, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(105, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(106, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(107, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(108, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(109, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(110, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(111, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(112, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(113, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(114, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(115, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(116, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(117, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(118, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(119, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(120, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(121, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(122, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(123, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(124, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(125, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(126, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(127, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(128, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(129, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(130, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(131, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(132, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(133, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(134, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(135, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(136, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(137, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(138, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(139, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(140, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(141, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(142, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(143, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(144, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(145, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(146, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(147, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(148, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(149, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(150, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(151, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(152, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(153, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(154, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(155, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(156, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(157, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(158, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(159, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(160, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(161, 'david_tier@hotmail.com', 'El usuario con el Numero De Usuario: 6Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(162, 'administrador1@gmail.com', 'Se creo una cuenta con el correo administrador1@gmail.com', 'Cuenta y Usuario', '2020-02-21'),
-(163, 'administrador1@gmail.com', 'Se actualizaron los datos del usuario con el correo administrador1@gmail.com', 'Usuario', '2020-02-21'),
-(164, 'administrador1@gmail.com', 'Se actualizaron los datos del usuario con el correo administrador1@gmail.com', 'Usuario', '2020-02-21'),
-(165, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(166, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(167, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(168, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(169, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(170, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(171, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(172, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(173, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(174, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(175, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(176, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(177, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(178, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(179, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(180, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(181, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(182, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(183, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(184, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(185, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(186, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(187, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(188, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(189, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(190, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(191, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(192, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(193, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(194, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(195, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(196, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(197, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(198, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(199, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(200, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(201, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(202, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(203, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(204, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(205, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(206, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(207, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(208, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(209, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(210, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(211, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(212, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(213, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(214, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(215, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(216, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(217, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(218, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(219, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(220, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(221, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(222, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(223, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(224, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(225, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(226, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(227, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(228, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(229, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(230, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(231, 'prueba1@hotmail.com', 'El usuario con el Numero De Usuario: 7Genero Una Cita con el asesor:123', 'Cita', '2020-02-21'),
-(232, 'davida7x77@gmail.com', 'Se creo una cuenta con el correo davida7x77@gmail.com', 'Cuenta y Usuario', '2020-02-21'),
-(233, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(234, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(235, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(236, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(237, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(238, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(239, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(240, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(241, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(242, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(243, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(244, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(245, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(246, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(247, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(248, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(249, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(250, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(251, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(252, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(253, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(254, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(255, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(256, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(257, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(258, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-21'),
-(259, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-02-24'),
-(260, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-24'),
-(261, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-02-24'),
-(262, '17231222@itslerdo.edu.mx', 'Se creo una cuenta con el correo 17231222@itslerdo.edu.mx', 'Cuenta y Usuario', '2020-02-26'),
-(263, '17231222@itslerdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itslerdo.edu.mx', 'Usuario', '2020-02-26'),
-(264, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-02-26'),
-(265, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-02-26'),
-(266, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-02-26'),
-(267, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-02-26'),
-(268, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-02-26'),
-(269, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-02-26'),
-(270, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:124', 'Cita', '2020-02-26'),
-(271, NULL, NULL, 'Usuario', '2020-03-09'),
-(272, NULL, NULL, 'Usuario', '2020-03-09'),
-(273, '17231222@itslerdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itslerdo.edu.mx', 'Usuario', '2020-03-09'),
-(274, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-03-09'),
-(275, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-03-09'),
-(276, '17231222@itslerdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itslerdo.edu.mx', 'Usuario', '2020-03-09'),
-(277, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-03-09'),
-(278, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:123', 'Cita', '2020-03-10'),
-(279, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-03-10'),
-(280, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: TakitoTime', 'Asesor', '2020-03-10'),
-(281, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Chinofloo', 'Asesor', '2020-03-10'),
-(282, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Gerita', 'Asesor', '2020-03-10'),
-(283, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Meny98', 'Asesor', '2020-03-10'),
-(284, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Karlita23', 'Asesor', '2020-03-10'),
-(285, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:128', 'Cita', '2020-03-12'),
-(286, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Serious', 'Asesor', '2020-03-12'),
-(287, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: GomezQueen', 'Asesor', '2020-03-12'),
-(288, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Lorem', 'Asesor', '2020-03-12'),
-(289, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Lorem1', 'Asesor', '2020-03-12'),
-(290, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Lorem2', 'Asesor', '2020-03-12'),
-(291, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:130', 'Cita', '2020-03-12'),
-(292, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:130', 'Cita', '2020-03-12'),
-(293, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:128', 'Cita', '2020-03-12'),
-(294, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: ', 'Asesor', '2020-03-17'),
-(295, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Sillapone', 'Asesor', '2020-03-17'),
-(296, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Sillapone', 'Asesor', '2020-03-17'),
-(297, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Sillapone', 'Asesor', '2020-03-17'),
-(298, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Sillapone', 'Asesor', '2020-03-17'),
-(299, 'administrador1@gmail.com', 'Se actualizaron los datos del usuario con el correo administrador1@gmail.com', 'Usuario', '2020-05-04'),
-(300, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Helgino', 'Asesor', '2020-05-06'),
-(301, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Daniel@', 'Asesor', '2020-05-06'),
-(302, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Helgin', 'Asesor', '2020-05-06'),
-(303, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Fco', 'Asesor', '2020-05-06'),
-(304, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: mayela', 'Asesor', '2020-05-06'),
-(305, 'administrador1@gmail.com', 'El usuario con el correo:  administrador1@gmail.comcreo una cuenta de asesor, con el nombre de usuario: chino', 'Asesor', '2020-05-06'),
-(306, 'administrador1@gmail.com', 'Se creo una cuenta con el correo chino@gmail.com', 'Cuenta y Usuario', '2020-05-06'),
-(307, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:145', 'Cita', '2020-05-06'),
-(308, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:145', 'Cita', '2020-05-06'),
-(309, 'chino@gmail.com', 'Se actualizaron los datos del usuario con el correo chino@gmail.com', 'Usuario', '2020-05-07'),
-(310, 'chino@gmail.com', 'Se actualizaron los datos del usuario con el correo chino@gmail.com', 'Usuario', '2020-05-07'),
-(311, 'chino@gmail.com', 'Se actualizaron los datos del usuario con el correo chino@gmail.com', 'Usuario', '2020-05-07'),
-(312, 'chino@gmail.com', 'Se actualizaron los datos del usuario con el correo chino@gmail.com', 'Usuario', '2020-05-07'),
-(313, 'pulidovaldezg@gmail.com', 'Se creo una cuenta con el correo pulidovaldezg@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
-(314, 'sillapone@gmail.com', 'Se modifico una cuenta con el correo sillapone@gmail.com', 'Cuenta', '2020-05-12'),
-(315, 'pulidovaldezg@gmail.com', 'Se creo una cuenta con el correo pulidovaldezg@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
-(316, 'pulidovaldezg@gmail.com', 'Se creo una cuenta con el correo pulidovaldezg@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
-(317, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
-(318, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
-(319, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-05-12'),
-(320, 'sillapone@gmail.com', 'Se modifico una cuenta con el correo sillapone@gmail.com', 'Cuenta', '2020-05-12'),
-(321, 'david@gmail.com', 'Se modifico una cuenta con el correo david@gmail.com', 'Cuenta', '2020-05-12'),
-(322, 'david@gmail.com', 'Se modifico una cuenta con el correo david@gmail.com', 'Cuenta', '2020-05-12'),
-(323, 'david@gmail.com', 'Se elimino la cuenta con el correo david@gmail.com', 'Cuenta, Usuario, Dirección y Habita', '2020-05-12'),
-(324, '17231222@itslerdo.edu.mx', 'Se actualizaron los datos del usuario con el correo 17231222@itslerdo.edu.mx', 'Usuario', '2020-05-12'),
-(325, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-05-12'),
-(326, '17231222@itslerdo.edu.mx', 'Se agrego una dirección de el usuario con el correo 17231222@itslerdo.edu.mx', 'Direccion y Habita', '2020-05-12'),
-(327, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:125', 'Cita', '2020-05-12'),
-(328, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:125', 'Cita', '2020-05-12'),
-(329, '17231222@itslerdo.edu.mx', 'El usuario con el Numero De Usuario: 39Genero Una Cita con el asesor:125', 'Cita', '2020-05-12');
+(330, 'davida7x77@gmail.com', 'Se creo una cuenta con el correo davida7x77@gmail.com', 'Cuenta y Usuario', '2020-05-14'),
+(331, 'davida7x77@gmail.com', 'Se actualizaron los datos del usuario con el correo davida7x77@gmail.com', 'Usuario', '2020-05-14'),
+(332, 'davida7x77@gmail.com', 'Se agrego una dirección de el usuario con el correo davida7x77@gmail.com', 'Direccion y Habita', '2020-05-14'),
+(333, 'davida7x77@gmail.com', 'El usuario con el Numero De Usuario: 48Genero Una Cita con el asesor:125', 'Cita', '2020-05-14'),
+(334, 'davida7x77@gmail.com', 'Se elimino la cuenta con el correo davida7x77@gmail.com', 'Cuenta, Usuario, Dirección y Habita', '2020-05-14'),
+(335, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-05-14'),
+(336, 'sillapone@gmail.com', 'Se elimino la cuenta con el correo sillapone@gmail.com', 'Cuenta, Usuario, Dirección y Habita', '2020-05-14'),
+(337, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-05-14');
 
 -- --------------------------------------------------------
 
@@ -682,10 +371,7 @@ INSERT INTO `cita` (`Folio`, `N_De_Usuario`, `Id_Asesor`, `Id_Tarjeta`, `Direcci
 (4, 39, 130, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-26', '17:00', '18:00', 1, '100.00'),
 (5, 39, 128, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-30', '14:00', '17:00', 3, '250.00'),
 (6, 39, 145, NULL, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-05-07', '09:00', '10:00', 1, '100.00'),
-(7, 39, 145, 3, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-05-06', '11:00', '12:00', 1, '100.00'),
-(8, 39, 125, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada Verde, Porton Azul', '2020-05-14', '11:00', '10:00', -1, NULL),
-(9, 39, 125, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada Verde, Porton Azul', '2020-05-14', '11:00', '10:00', -1, NULL),
-(10, 39, 125, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada Verde, Porton Azul', '2020-05-14', '11:00', '10:00', -1, NULL);
+(7, 39, 145, 3, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-05-06', '11:00', '12:00', 1, '100.00');
 
 -- --------------------------------------------------------
 
@@ -710,11 +396,7 @@ INSERT INTO `cuenta` (`Correo`, `Contrasena`, `Validacion`, `Tipo`, `Activacion`
 ('17231222@itslerdo.edu.mx', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 2, 1, 2422),
 ('administrador1@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 1, NULL, NULL),
 ('chino@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 3, NULL, NULL),
-('correo@correo.com', '123', 'Validada', NULL, NULL, NULL),
-('davida7x77@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 1, 0, 1478),
-('david_tier@hotmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', NULL, NULL, NULL),
-('felipe@mail.com', '123', 'Validada', NULL, NULL, NULL),
-('prueba1@hotmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', NULL, NULL, NULL);
+('sillapone@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', NULL, 2, 0, 2857);
 
 -- --------------------------------------------------------
 
@@ -739,14 +421,6 @@ CREATE TABLE `direccion` (
 --
 
 INSERT INTO `direccion` (`Id_Direccion`, `Pais`, `Estado`, `Ciudad`, `Colonia`, `Calle`, `Numero`, `Codigo_Postal`, `Descripcion`) VALUES
-(1, 'Mexico', 'Durango', 'Lerdo', 'San Isidro', 'Mapimi ', 5, 35159, 'Casa mia'),
-(8, 'MÃ©xico', 'DGO', 'Lerdo', '#103', 'Calle Mina', 0, 35154, ''),
-(19, 'MÃ©xico', 'DGO', 'Lerdo', '#103', 'Calle Mina', 0, 35154, ''),
-(20, 'MÃ©xico', 'DGO', 'Lerdo', '#103', 'Calle Mina', 0, 35154, 'hola k ase'),
-(22, 'MÃ©xico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 185, 35043, 'Fachada Verde, Porton Azul Rey'),
-(24, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde. Porton Azul'),
-(25, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde, Porton Azul, Arboles Enfrente'),
-(26, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 288, 35043, 'Fachada Verde, Porton Azul, Arboles Enfrente'),
 (32, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 185, 35043, 'Fachada Verde, Porton Azul');
 
 -- --------------------------------------------------------
@@ -765,11 +439,6 @@ CREATE TABLE `habita` (
 --
 
 INSERT INTO `habita` (`N_De_Usuario`, `Id_Direccion`) VALUES
-(1, 1),
-(NULL, 8),
-(6, 24),
-(7, 25),
-(7, 26),
 (39, 32);
 
 -- --------------------------------------------------------
@@ -891,13 +560,9 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`N_De_Usuario`, `Correo`, `Nombres`, `A_Paterno`, `A_Materno`, `Edad`, `Telefono`, `Foto`) VALUES
 (0, 'chino@gmail.com', 'Cesar', 'Mendoza', 'Reyes', 20, '12345678', 'fotosusuarios/asesorpro2.jpeg'),
-(1, 'correo@correo.com', 'Juan', 'Perez', 'Perez', 189, '871237182', 'fotosusuarios/rj01400-01-thumbnail-1080x1080-70.jpg'),
-(2, 'felipe@mail.com', NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'david_tier@hotmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg'),
-(7, 'prueba1@hotmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/WhatsApp Image 2019-11-26 at 13.18.51.jpeg'),
 (8, 'administrador1@gmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg'),
-(9, 'davida7x77@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL),
-(39, '17231222@itslerdo.edu.mx', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg');
+(39, '17231222@itslerdo.edu.mx', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg'),
+(50, 'sillapone@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Disparadores `usuario`
@@ -999,19 +664,19 @@ ALTER TABLE `asesor`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330;
+  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
 
 --
 -- AUTO_INCREMENT de la tabla `cita`
 --
 ALTER TABLE `cita`
-  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
 --
 ALTER TABLE `direccion`
-  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `material`
@@ -1035,13 +700,13 @@ ALTER TABLE `precio`
 -- AUTO_INCREMENT de la tabla `tarjeta`
 --
 ALTER TABLE `tarjeta`
-  MODIFY `Id_Tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id_Tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `N_De_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `N_De_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Restricciones para tablas volcadas
