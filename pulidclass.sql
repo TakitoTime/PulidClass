@@ -267,6 +267,9 @@ END$$
 
 DELIMITER ;
 
+CREATE DATABASE PulidClass;
+use PulidClass;
+
 -- --------------------------------------------------------
 
 --
@@ -282,9 +285,6 @@ CREATE TABLE `asesor` (
   `A_Paterno` varchar(30) DEFAULT NULL,
   `A_Materno` varchar(30) DEFAULT NULL,
   `Ocupacion` varchar(50) DEFAULT NULL,
-  `Materia1` varchar(70) DEFAULT NULL,
-  `Materia2` varchar(70) DEFAULT NULL,
-  `Materia3` varchar(70) DEFAULT NULL,
   `Descripcion` varchar(250) DEFAULT NULL,
   `Correo` varchar(70) DEFAULT NULL,
   `Telefono` varchar(16) DEFAULT NULL,
@@ -292,20 +292,32 @@ CREATE TABLE `asesor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Estructura de tabla para la tabla `Materia`
+--
+create table `materia`(
+	`Id_Materia` int(11) not null,
+    `Nombre` varchar(70) not null,
+    `Area_Conocimiento` varchar(50),
+    `Id_Asesor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+SELECT * FROM Asesor;
+SELECT * FROM materia;
+--
 -- Volcado de datos para la tabla `asesor`
 --
 
-INSERT INTO `asesor` (`Id_Asesor`, `Nombre_Usuario`, `Edad`, `Grado_Estudios`, `Nombres`, `A_Paterno`, `A_Materno`, `Ocupacion`, `Materia1`, `Materia2`, `Materia3`, `Descripcion`, `Correo`, `Telefono`, `Foto`) VALUES
-(125, 'TakitoTime', 22, 'Universidad', 'David Guadalupe', 'Pulido', 'Valdez', 'Estudiante', 'Matematicas', 'Fisica', 'Programacion', 'Joven universitario con habilidades principalmente en matematicas, y con capacidad de enseñar a otros', '17231222@itslerdo.edu.mx', '8713975674', 'fotoasesores/asesorpro1.jpg'),
-(127, 'Gerita', 30, 'Posgrado', 'Gerardo', 'Ortiz', 'Salas', 'Arquitecto', 'Algebra Lineal', 'Termodinamica', 'Mecanica De Fluidos', 'Profesionista experto en la realizacion de obras de ingenieria, capacitado para poder asistir a jovenes en los ambitos relacionados con las matematicas.', 'gerardortiz@gmail.com', '8714685762', 'fotoasesores/face2.jpg'),
-(128, 'Meny98', 21, 'Universidad', 'Manuel Alejandro', 'Herrera', 'Ceniceros', 'Estudiante', 'Contabilidad', 'Base De Datos', 'Redes', 'Lo más bello de este Mundo son las mujeres y la naturaleza.', 'ManuelAlejandroH@outlook.com', '8714038669', 'fotoasesores/asesorpro3.png'),
-(129, 'Karlita23', 23, 'Universidad', 'Karla', 'Guerrero', 'Hernandez', 'Estudiante', 'Contabilidad', 'Ingles', 'Marketing', 'Soy una joven estudiante con la capacidad de emprender e inonvar con nuevas metodologias y con el estudio del mercado.', 'karlaguerrero@gmail.com', '8714440458', 'fotoasesores/face1.jpg'),
-(130, 'Serious', 20, 'Universidad', 'Luis Felipe', 'Carrillo', 'Alvarado', 'Estudiante', 'Programacion', 'Matematicas', 'Diseño Web', 'Joven apacionado por la programacion web, y especializado en diseño de paginas web', 'felipec@gmail.com', '8717754896', 'fotoasesores/asesorpro4.jpg'),
-(131, 'GomezQueen', 20, 'Universidad', 'Erika', 'Gomez', 'Valdez', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'ErikaGomez@gmail.com', '8717958896', 'fotoasesores/face3.jpg'),
-(132, 'Lorem', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem@gmail.com', '8717958896', 'fotoasesores/face5.jpg'),
-(133, 'Lorem1', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem1@gmail.com', '8717958896', 'fotoasesores/face6.jpg'),
-(134, 'Lorem2', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Geometria', 'Calculo', 'Desarrollo Movil', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem2@gmail.com', '8717958896', 'fotoasesores/face4.jpg'),
-(145, 'chino', 20, 'Preparatoria', 'Cesar', 'Mendoza', 'Reyes', 'Estudiante', 'Fisica', 'Matematicas', 'Ingles', 'Breve Descripcion De El Asesor', 'chino@gmail.com', '12345678', 'fotosusuarios/asesorpro2.jpeg');
+INSERT INTO `asesor` (`Id_Asesor`, `Nombre_Usuario`, `Edad`, `Grado_Estudios`, `Nombres`, `A_Paterno`, `A_Materno`, `Ocupacion`, `Descripcion`, `Correo`, `Telefono`, `Foto`) VALUES
+(125, 'TakitoTime', 22, 'Universidad', 'David Guadalupe', 'Pulido', 'Valdez', 'Estudiante', 'Joven universitario con habilidades principalmente en matematicas, y con capacidad de enseñar a otros', '17231222@itslerdo.edu.mx', '8713975674', 'fotoasesores/asesorpro1.jpg'),
+(127, 'Gerita', 30, 'Posgrado', 'Gerardo', 'Ortiz', 'Salas', 'Arquitecto', 'Profesionista experto en la realizacion de obras de ingenieria, capacitado para poder asistir a jovenes en los ambitos relacionados con las matematicas.', 'gerardortiz@gmail.com', '8714685762', 'fotoasesores/face2.jpg'),
+(128, 'Meny98', 21, 'Universidad', 'Manuel Alejandro', 'Herrera', 'Ceniceros', 'Estudiante', 'Lo más bello de este Mundo son las mujeres y la naturaleza.', 'ManuelAlejandroH@outlook.com', '8714038669', 'fotoasesores/asesorpro3.png'),
+(129, 'Karlita23', 23, 'Universidad', 'Karla', 'Guerrero', 'Hernandez', 'Estudiante', 'Soy una joven estudiante con la capacidad de emprender e inonvar con nuevas metodologias y con el estudio del mercado.', 'karlaguerrero@gmail.com', '8714440458', 'fotoasesores/face1.jpg'),
+(130, 'Serious', 20, 'Universidad', 'Luis Felipe', 'Carrillo', 'Alvarado', 'Estudiante', 'Joven apacionado por la programacion web, y especializado en diseño de paginas web', 'felipec@gmail.com', '8717754896', 'fotoasesores/asesorpro4.jpg'),
+(131, 'GomezQueen', 20, 'Universidad', 'Erika', 'Gomez', 'Valdez', 'Estudiante', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'ErikaGomez@gmail.com', '8717958896', 'fotoasesores/face3.jpg'),
+(132, 'Lorem', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem@gmail.com', '8717958896', 'fotoasesores/face5.jpg'),
+(133, 'Lorem1', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem1@gmail.com', '8717958896', 'fotoasesores/face6.jpg'),
+(134, 'Lorem2', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem2@gmail.com', '8717958896', 'fotoasesores/face4.jpg'),
+(145, 'chino', 20, 'Preparatoria', 'Cesar', 'Mendoza', 'Reyes', 'Estudiante', 'Breve Descripcion De El Asesor', 'chino@gmail.com', '12345678', 'fotosusuarios/asesorpro2.jpeg');
 
 -- --------------------------------------------------------
 
@@ -379,7 +391,7 @@ INSERT INTO `cita` (`Folio`, `N_De_Usuario`, `Id_Asesor`, `Id_Tarjeta`, `Direcci
 -- Estructura de tabla para la tabla `cuenta`
 --
 
-CREATE TABLE `cuenta` (
+CREATE TABLE `usuario` (
   `Correo` varchar(70) NOT NULL,
   `Contrasena` varchar(200) DEFAULT NULL,
   `Validacion` varchar(20) DEFAULT NULL,
@@ -392,7 +404,7 @@ CREATE TABLE `cuenta` (
 -- Volcado de datos para la tabla `cuenta`
 --
 
-INSERT INTO `cuenta` (`Correo`, `Contrasena`, `Validacion`, `Tipo`, `Activacion`, `Codigo_Activacion`) VALUES
+INSERT INTO `usuario` (`Correo`, `Contrasena`, `Validacion`, `Tipo`, `Activacion`, `Codigo_Activacion`) VALUES
 ('17231222@itslerdo.edu.mx', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 2, 1, 2422),
 ('administrador1@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 1, NULL, NULL),
 ('chino@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 3, NULL, NULL),
@@ -543,7 +555,7 @@ INSERT INTO `tarjeta` (`Id_Tarjeta`, `N_De_Usuario`, `Nombre_T`, `Num_T`, `Mes`,
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE `usuario_info` (
   `N_De_Usuario` int(11) NOT NULL,
   `Correo` varchar(70) DEFAULT NULL,
   `Nombres` varchar(50) DEFAULT NULL,
@@ -558,7 +570,7 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`N_De_Usuario`, `Correo`, `Nombres`, `A_Paterno`, `A_Materno`, `Edad`, `Telefono`, `Foto`) VALUES
+INSERT INTO `usuario_info` (`N_De_Usuario`, `Correo`, `Nombres`, `A_Paterno`, `A_Materno`, `Edad`, `Telefono`, `Foto`) VALUES
 (0, 'chino@gmail.com', 'Cesar', 'Mendoza', 'Reyes', 20, '12345678', 'fotosusuarios/asesorpro2.jpeg'),
 (8, 'administrador1@gmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg'),
 (39, '17231222@itslerdo.edu.mx', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg'),
@@ -581,6 +593,14 @@ DELIMITER ;
 --
 ALTER TABLE `asesor`
   ADD PRIMARY KEY (`Id_Asesor`);
+  
+--
+-- Indices de la tabla `materia`
+--
+ALTER TABLE `materia`
+	ADD PRIMARY KEY (`Id_Materia`),
+    ADD KEY `Id_Asesor` (`Id_Asesor`);
+  
 
 --
 -- Indices de la tabla `bitacora`
@@ -600,7 +620,7 @@ ALTER TABLE `cita`
 --
 -- Indices de la tabla `cuenta`
 --
-ALTER TABLE `cuenta`
+ALTER TABLE `usuario`
   ADD PRIMARY KEY (`Correo`);
 
 --
@@ -646,7 +666,7 @@ ALTER TABLE `tarjeta`
 --
 -- Indices de la tabla `usuario`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `usuario_info`
   ADD PRIMARY KEY (`N_De_Usuario`),
   ADD KEY `Correo` (`Correo`);
 
@@ -705,7 +725,7 @@ ALTER TABLE `tarjeta`
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `usuario_info`
   MODIFY `N_De_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
