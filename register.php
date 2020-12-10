@@ -67,7 +67,7 @@
 				
 				/*Inicio captura de datos enviados por $_POST para enviar el correo */
 				$mail_setFromEmail=$correo;
-				$txt_message='Hola '."\r\n"." Sigue este vinculo para activar tu cuenta"."\r\n\r\n"." http://localhost/xampp/pulidclass/confirm.php?correo=".$correo."&codigo_activacion=".$codigo_activacion."\r\n";;
+				$txt_message='Hola '."\r\n"." Sigue este vinculo para activar tu cuenta"."\r\n\r\n"." http://localhost/pulidclass/confirm.php?correo=".$correo."&codigo_activacion=".$codigo_activacion."\r\n";;
 				$mail_subject="Correo De Validacion PulidClass";
 				
 				sendemail($mail_username,$mail_userpassword,$mail_setFromEmail,$mail_addAddress,$txt_message,$mail_subject,$template);//Enviar el mensaje

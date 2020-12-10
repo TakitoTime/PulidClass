@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     }else{
 
-        $statement = $conexion->prepare('SELECT * FROM cuenta WHERE Correo = :correo AND Contrasena = :contra LIMIT 1');
+        $statement = $conexion->prepare('SELECT * FROM Usuario WHERE Correo = :correo AND Contrasena = :contra LIMIT 1');
         $statement->execute(array(
                 ':correo' => $correo,
                 ':contra' => $contra

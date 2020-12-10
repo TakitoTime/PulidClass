@@ -68,15 +68,27 @@
                             </div>
                             <div class="materia1">
                                 <p>Materia 1:</p> 
-                                <input type="text" name="materia1" value="">
+                                <select name="materia1" >
+                                    <?php foreach($materias as $materia){ ?>
+                                        <option value="<?php echo $materia['Id_Materia']?>"><?php echo $materia['Nombre']?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                             <div class="materia2">
                                 <p>Materia 2:</p> 
-                                <input type="text" name="materia2" value="">
+                                <select name="materia2" >
+                                    <?php foreach($materias as $materia){ ?>
+                                        <option value="<?php echo $materia['Id_Materia']?>"><?php echo $materia['Nombre']?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                             <div class="materia3">
                                 <p>Materia 3:</p> 
-                                <input type="text" name="materia3" value="">
+                                <select name="materia3" >
+                                    <?php foreach($materias as $materia){ ?>
+                                        <option value="<?php echo $materia['Id_Materia']?>"><?php echo $materia['Nombre']?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                             <div class="descripcion">
                                 <p>Breve Descripcion:</p> 

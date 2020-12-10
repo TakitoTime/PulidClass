@@ -38,13 +38,8 @@
     
                 $resultado = $statement->fetchColumn();
                 
-                switch($resultado){
-                    case 1: 
-                        session_unset();
-                        session_destroy();
-                        header('Location: index.php');
-                    break;
-                }
+                header('Location: perfil.php');
+
             }   
         }
     }

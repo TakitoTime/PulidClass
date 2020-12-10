@@ -1,9 +1,9 @@
 <?php
 
-    $servidor='SG-pulidclass-2383-master.servers.mongodirector.com';
+    $servidor='localhost';
     $database='pulidclass';
-    $user='sgroot';
-    $password='J4.bV2ou3lILmfhN';
+    $user='root';
+    $password='';
 
     try {
         $conexion = new PDO("mysql:host=$servidor;dbname=$database", $user, $password);

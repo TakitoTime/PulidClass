@@ -9,12 +9,12 @@
         $correo=$_SESSION['cliente'];
         $contra=$_SESSION['contra'];
     
-        $statement = $conexion->prepare('SELECT * FROM Usuario WHERE correo = :correo LIMIT 1');
+        $statement = $conexion->prepare('SELECT * FROM Usuario_Info WHERE usuario_correo = :correo LIMIT 1');
         $statement->execute(array(':correo' => $correo));
     
         $info_personal=$statement->fetch();
     
-        $statement = $conexion->prepare('SELECT N_De_Usuario FROM Usuario WHERE correo = :correo LIMIT 1');
+        $statement = $conexion->prepare('SELECT N_De_Usuario FROM Usuario_Info WHERE usuario_correo = :correo LIMIT 1');
         $statement->execute(array(':correo' => $correo));
     
         $sql=$statement->fetch();
@@ -22,12 +22,11 @@
         
         $_SESSION['n_de_usuario']=$n_de_usuario;
     
-        $statement = $conexion->prepare('SELECT Id_Direccion FROM habita WHERE N_De_Usuario = :n_de_usuario LIMIT 3');
+        $statement = $conexion->prepare('SELECT * FROM Direccion WHERE usuario_info_N_De_Usuario = :n_de_usuario LIMIT 3');
         $statement->execute(array(':n_de_usuario' => $n_de_usuario));
         
         $direcciones=$statement->fetchAll();
-    
-    
+        
         $statement = $conexion->prepare('SELECT * FROM Cita WHERE N_De_Usuario = :n_de_usuario');
         $statement->execute(array(':n_de_usuario' => $n_de_usuario));
 

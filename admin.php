@@ -13,16 +13,21 @@ if(!isset($_SESSION['admin'])){
     $abrir_modal_noticia="false";
     $abrir_modal_material="false";
 
-    $statement = $conexion->prepare('SELECT * FROM Usuario WHERE correo = :correo LIMIT 1');
+    $statement = $conexion->prepare('SELECT * FROM Usuario_info WHERE usuario_correo = :correo LIMIT 1');
             $statement->execute(array(':correo' => $correo));
 
             $info_personal=$statement->fetch();
 
-            $statement = $conexion->prepare('SELECT N_De_Usuario FROM Usuario WHERE correo = :correo LIMIT 1');
+            $statement = $conexion->prepare('SELECT N_De_Usuario FROM Usuario_info WHERE usuario_correo = :correo LIMIT 1');
             $statement->execute(array(':correo' => $correo));
 
             $sql=$statement->fetch();
             $n_de_usuario=$sql['N_De_Usuario'];
+
+            $statement = $conexion->prepare('SELECT * FROM Materia');
+            $statement->execute();
+
+            $materias=$statement->fetchAll();
 
             $_SESSION['n_de_usuario']=$n_de_usuario;
 
@@ -302,14 +307,14 @@ if(!isset($_SESSION['admin'])){
             if(isset($_POST['n-pass'])){
                 $n_correo = $_POST['n-correo'];
                 $n_pass = hash('sha512', $_POST['n-pass']);
-                $n_statement = $conexion->prepare('UPDATE cuenta SET Contrasena = :pass WHERE correo = :correo');
+                $n_statement = $conexion->prepare('UPDATE usuario SET Contrasena = :pass WHERE correo = :correo');
                 $n_statement->execute(array(':correo'=>$n_correo, ':pass'=>$n_pass));
             }
 
             if(isset($_POST['m-correo'])){
                 $m_correo = $_POST['m-correo'];
                 $m_tipo = 2;
-                $m_statement = $conexion->prepare('UPDATE cuenta SET Tipo = :tipo WHERE correo = :correo');
+                $m_statement = $conexion->prepare('UPDATE usuario SET Tipo = :tipo WHERE correo = :correo');
                 $m_statement->execute(array(':tipo'=>$m_tipo, ':correo'=>$m_correo));
             }
 

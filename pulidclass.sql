@@ -1,31 +1,393 @@
--- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2020 a las 05:13:00
--- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.2.30
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: 127.0.0.1    Database: pulidclass
+-- ------------------------------------------------------
+-- Server version	5.7.24
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Base de datos: `pulidclass`
+-- Table structure for table `asesor`
 --
 
-DELIMITER $$
+DROP TABLE IF EXISTS `asesor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `asesor` (
+  `Id_Asesor` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre_Usuario` varchar(30) NOT NULL,
+  `Edad` int(11) DEFAULT NULL,
+  `Grado_Estudios` varchar(40) DEFAULT NULL,
+  `Nombres` varchar(50) DEFAULT NULL,
+  `A_Paterno` varchar(30) DEFAULT NULL,
+  `A_Materno` varchar(30) DEFAULT NULL,
+  `Ocupacion` varchar(50) DEFAULT NULL,
+  `Descripcion` varchar(250) DEFAULT NULL,
+  `Correo` varchar(70) DEFAULT NULL,
+  `Telefono` varchar(16) DEFAULT NULL,
+  `Foto` text,
+  PRIMARY KEY (`Id_Asesor`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 --
--- Procedimientos
+-- Dumping data for table `asesor`
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAdministrador` (IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(200), IN `_Tipo` INT)  BEGIN
+
+LOCK TABLES `asesor` WRITE;
+/*!40000 ALTER TABLE `asesor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `asesor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bitacora`
+--
+
+DROP TABLE IF EXISTS `bitacora`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bitacora` (
+  `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT,
+  `Accion_Realizada` varchar(250) DEFAULT NULL,
+  `TablaAfectada` varchar(250) DEFAULT NULL,
+  `Fecha` date DEFAULT NULL,
+  `usuario_Correo` varchar(70) NOT NULL,
+  PRIMARY KEY (`Id_Bitacora`),
+  KEY `fk_bitacora_usuario1_idx` (`usuario_Correo`),
+  CONSTRAINT `fk_bitacora_usuario1` FOREIGN KEY (`usuario_Correo`) REFERENCES `usuario` (`Correo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bitacora`
+--
+
+LOCK TABLES `bitacora` WRITE;
+/*!40000 ALTER TABLE `bitacora` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bitacora` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cita`
+--
+
+DROP TABLE IF EXISTS `cita`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cita` (
+  `Folio` int(11) NOT NULL AUTO_INCREMENT,
+  `N_De_Usuario` int(11) DEFAULT NULL,
+  `Fecha` date DEFAULT NULL,
+  `Hora_Inicial` varchar(15) DEFAULT NULL,
+  `Hora_Final` varchar(15) DEFAULT NULL,
+  `N_De_Horas` int(11) DEFAULT NULL,
+  `usuario_info_N_De_Usuario` int(11) NOT NULL,
+  `asesor_Id_Asesor` int(11) NOT NULL,
+  `direccion_Id_Direccion` int(11) NOT NULL,
+  `precio_Id_Precio` int(11) NOT NULL,
+  PRIMARY KEY (`Folio`),
+  KEY `cita_ibfk_1` (`N_De_Usuario`),
+  KEY `fk_cita_usuario_info1_idx` (`usuario_info_N_De_Usuario`),
+  KEY `fk_cita_asesor1_idx` (`asesor_Id_Asesor`),
+  KEY `fk_cita_direccion1_idx` (`direccion_Id_Direccion`),
+  KEY `fk_cita_precio1_idx` (`precio_Id_Precio`),
+  CONSTRAINT `fk_cita_asesor1` FOREIGN KEY (`asesor_Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cita_direccion1` FOREIGN KEY (`direccion_Id_Direccion`) REFERENCES `direccion` (`Id_Direccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cita_precio1` FOREIGN KEY (`precio_Id_Precio`) REFERENCES `precio` (`Id_Precio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cita_usuario_info1` FOREIGN KEY (`usuario_info_N_De_Usuario`) REFERENCES `usuario_info` (`N_De_Usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cita`
+--
+
+LOCK TABLES `cita` WRITE;
+/*!40000 ALTER TABLE `cita` DISABLE KEYS */;
+/*!40000 ALTER TABLE `cita` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `direccion`
+--
+
+DROP TABLE IF EXISTS `direccion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `direccion` (
+  `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT,
+  `Pais` varchar(30) DEFAULT NULL,
+  `Estado` varchar(30) DEFAULT NULL,
+  `Ciudad` varchar(30) DEFAULT NULL,
+  `Colonia` varchar(50) DEFAULT NULL,
+  `Calle` varchar(50) DEFAULT NULL,
+  `Numero` int(11) DEFAULT NULL,
+  `Codigo_Postal` int(11) DEFAULT NULL,
+  `Descripcion` varchar(250) DEFAULT NULL,
+  `usuario_info_N_De_Usuario` int(11) NOT NULL,
+  PRIMARY KEY (`Id_Direccion`),
+  KEY `fk_direccion_usuario_info1_idx` (`usuario_info_N_De_Usuario`),
+  CONSTRAINT `fk_direccion_usuario_info1` FOREIGN KEY (`usuario_info_N_De_Usuario`) REFERENCES `usuario_info` (`N_De_Usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `direccion`
+--
+
+LOCK TABLES `direccion` WRITE;
+/*!40000 ALTER TABLE `direccion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `direccion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `materia`
+--
+
+DROP TABLE IF EXISTS `materia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `materia` (
+  `Id_Materia` int(11) NOT NULL,
+  `Nombre` varchar(70) NOT NULL,
+  `Area_Conocimiento` varchar(50) DEFAULT NULL,
+  `asesor_Id_Asesor` int(11) NOT NULL,
+  PRIMARY KEY (`Id_Materia`),
+  KEY `fk_materia_asesor1_idx` (`asesor_Id_Asesor`),
+  CONSTRAINT `fk_materia_asesor1` FOREIGN KEY (`asesor_Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `materia`
+--
+
+LOCK TABLES `materia` WRITE;
+/*!40000 ALTER TABLE `materia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `materia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `material`
+--
+
+DROP TABLE IF EXISTS `material`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `material` (
+  `Id_Material` int(11) NOT NULL AUTO_INCREMENT,
+  `Correo` varchar(70) DEFAULT NULL,
+  `Titulo` varchar(50) DEFAULT NULL,
+  `Fecha` date DEFAULT NULL,
+  `Materia` varchar(70) DEFAULT NULL,
+  `Documento` text,
+  `asesor_Id_Asesor` int(11) NOT NULL,
+  PRIMARY KEY (`Id_Material`),
+  KEY `material_ibfk_1` (`Correo`),
+  KEY `fk_material_asesor1_idx` (`asesor_Id_Asesor`),
+  CONSTRAINT `fk_material_asesor1` FOREIGN KEY (`asesor_Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `material`
+--
+
+LOCK TABLES `material` WRITE;
+/*!40000 ALTER TABLE `material` DISABLE KEYS */;
+/*!40000 ALTER TABLE `material` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `noticia`
+--
+
+DROP TABLE IF EXISTS `noticia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `noticia` (
+  `Id_Noticia` int(11) NOT NULL AUTO_INCREMENT,
+  `Correo` varchar(70) DEFAULT NULL,
+  `Titulo` varchar(100) NOT NULL,
+  `Subtitulo` varchar(150) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Fuentes` text NOT NULL,
+  `Informacion` text NOT NULL,
+  `Imagen` text,
+  `asesor_Id_Asesor` int(11) NOT NULL,
+  PRIMARY KEY (`Id_Noticia`),
+  KEY `cita_ibfk_1` (`Correo`),
+  KEY `fk_noticia_asesor1_idx` (`asesor_Id_Asesor`),
+  CONSTRAINT `fk_noticia_asesor1` FOREIGN KEY (`asesor_Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `noticia`
+--
+
+LOCK TABLES `noticia` WRITE;
+/*!40000 ALTER TABLE `noticia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `noticia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `precio`
+--
+
+DROP TABLE IF EXISTS `precio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `precio` (
+  `Id_Precio` int(11) NOT NULL AUTO_INCREMENT,
+  `Costo` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`Id_Precio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `precio`
+--
+
+LOCK TABLES `precio` WRITE;
+/*!40000 ALTER TABLE `precio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `precio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tarjeta`
+--
+
+DROP TABLE IF EXISTS `tarjeta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tarjeta` (
+  `Id_Tarjeta` int(11) NOT NULL AUTO_INCREMENT,
+  `N_De_Usuario` int(11) DEFAULT NULL,
+  `Nombre_T` varchar(200) DEFAULT NULL,
+  `Num_T` varchar(200) DEFAULT NULL,
+  `Mes` int(11) DEFAULT NULL,
+  `Year` int(11) DEFAULT NULL,
+  `Codigo_S` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Id_Tarjeta`),
+  KEY `N_De_Usuario` (`N_De_Usuario`),
+  CONSTRAINT `tarjeta_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario_info` (`N_De_Usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tarjeta`
+--
+
+LOCK TABLES `tarjeta` WRITE;
+/*!40000 ALTER TABLE `tarjeta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tarjeta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario` (
+  `Correo` varchar(70) NOT NULL,
+  `Contrasena` varchar(200) DEFAULT NULL,
+  `Validacion` varchar(20) DEFAULT NULL,
+  `Tipo` int(11) DEFAULT NULL,
+  `Activacion` tinyint(1) DEFAULT NULL,
+  `Codigo_Activacion` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Correo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `pulidclass`.`ValidarCuenta`
+AFTER UPDATE ON `pulidclass`.`usuario`
+FOR EACH ROW
+Update Cuenta set Validacion='Validada' */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `usuario_info`
+--
+
+DROP TABLE IF EXISTS `usuario_info`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario_info` (
+  `N_De_Usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombres` varchar(50) DEFAULT NULL,
+  `A_Paterno` varchar(20) DEFAULT NULL,
+  `A_Materno` varchar(20) DEFAULT NULL,
+  `Edad` int(11) DEFAULT NULL,
+  `Telefono` varchar(16) DEFAULT NULL,
+  `Foto` text,
+  `usuario_Correo` varchar(70) NOT NULL,
+  PRIMARY KEY (`N_De_Usuario`),
+  KEY `fk_usuario_info_usuario1_idx` (`usuario_Correo`),
+  CONSTRAINT `fk_usuario_info_usuario1` FOREIGN KEY (`usuario_Correo`) REFERENCES `usuario` (`Correo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario_info`
+--
+
+LOCK TABLES `usuario_info` WRITE;
+/*!40000 ALTER TABLE `usuario_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuario_info` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'pulidclass'
+--
+
+--
+-- Dumping routines for database 'pulidclass'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `spAltaAdministrador` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAdministrador`(IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(200), IN `_Tipo` INT)
+BEGIN
 	declare Id_AltaCuenta int default 0;
     declare Id_AltaUsuario int default 0;
 
@@ -48,9 +410,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAdministrador` (IN `_Correo` 
 			select 1;
         end;
 	end if;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAsesor` (IN `_CorreoAdmin` VARCHAR(70), IN `_Correo` VARCHAR(70), IN `_NombreUsuario` VARCHAR(30), IN `_Edad` INT, IN `_GradoEstudios` VARCHAR(40), IN `_Nombres` VARCHAR(50), IN `_APaterno` VARCHAR(30), IN `_AMaterno` VARCHAR(30), IN `_Ocupacion` VARCHAR(50), IN `_Materia1` VARCHAR(70), IN `_Materia2` VARCHAR(70), IN `_Materia3` VARCHAR(70), IN `_Descripcion` VARCHAR(250), IN `_Telefono` VARCHAR(16), IN `_Foto` TEXT)  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spAltaAsesor` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAsesor`(IN `_CorreoAdmin` VARCHAR(70), IN `_Correo` VARCHAR(70), IN `_NombreUsuario` VARCHAR(30), IN `_Edad` INT, IN `_GradoEstudios` VARCHAR(40), IN `_Nombres` VARCHAR(50), IN `_APaterno` VARCHAR(30), IN `_AMaterno` VARCHAR(30), IN `_Ocupacion` VARCHAR(50), IN `_Materia1` VARCHAR(70), IN `_Materia2` VARCHAR(70), IN `_Materia3` VARCHAR(70), IN `_Descripcion` VARCHAR(250), IN `_Telefono` VARCHAR(16), IN `_Foto` TEXT)
+BEGIN
 	declare Id_AltaNombreUsuario int default 0;
     declare Id_AltaCorreo int default 0;
 
@@ -71,9 +448,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAsesor` (IN `_CorreoAdmin` VA
 			SELECT 1;
         end;
 	end if;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCita` (IN `_N_De_Usuario` INT, IN `_Id_Asesor` INT, IN `_Id_Tarjeta` INT, IN `_DireccionP1` VARCHAR(200), IN `_DireccionP2` VARCHAR(200), IN `_Dir_Descripcion` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora_Inicial` VARCHAR(15), IN `_Hora_Final` VARCHAR(15), IN `_NDeHoras` INT, IN `_Costo` DECIMAL(10,2))  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spAltaCita` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCita`(IN `_N_De_Usuario` INT, IN `_Id_Asesor` INT, IN `_Id_Tarjeta` INT, IN `_DireccionP1` VARCHAR(200), IN `_DireccionP2` VARCHAR(200), IN `_Dir_Descripcion` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora_Inicial` VARCHAR(15), IN `_Hora_Final` VARCHAR(15), IN `_NDeHoras` INT, IN `_Costo` DECIMAL(10,2))
+BEGIN
 		declare _correo varchar(70) default '';
         
         set _correo= (SELECT correo from Usuario where  N_De_Usuario=_N_De_Usuario);
@@ -82,9 +474,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCita` (IN `_N_De_Usuario` INT
 		insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('El usuario con el Numero De Usuario: ',_N_De_Usuario, 'Genero Una Cita con el asesor:', _Id_Asesor), 'Cita', curdate());
             
 		SELECT 0;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCuenta` (IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(200), IN `_tipo` INT, IN `_Activacion` BOOL, IN `_Codigo_Activacion` INT)  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spAltaCuenta` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCuenta`(IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(200), IN `_tipo` INT, IN `_Activacion` BOOL, IN `_Codigo_Activacion` INT)
+BEGIN
 	declare Id_AltaCuenta int default 0;
     declare Id_AltaUsuario int default 0;
     declare Id_AltaDireccion int default 0;
@@ -108,9 +515,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCuenta` (IN `_Correo` VARCHAR
 			select 1;
         end;
 	end if;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaDireccion` (IN `_Correo` VARCHAR(70), IN `_Pais` VARCHAR(30), IN `_Estado` VARCHAR(30), IN `_Ciudad` VARCHAR(30), IN `_Colonia` VARCHAR(50), IN `_Calle` VARCHAR(50), IN `_Numero` INT, IN `_CodigoPostal` INT, IN `_Descripcion` VARCHAR(250))  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spAltaDireccion` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaDireccion`(IN `_Correo` VARCHAR(70), IN `_Pais` VARCHAR(30), IN `_Estado` VARCHAR(30), IN `_Ciudad` VARCHAR(30), IN `_Colonia` VARCHAR(50), IN `_Calle` VARCHAR(50), IN `_Numero` INT, IN `_CodigoPostal` INT, IN `_Descripcion` VARCHAR(250))
+BEGIN
 	declare _IdUsuario int default 0;
     declare _IdDireccion int default 0;
     
@@ -123,9 +545,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaDireccion` (IN `_Correo` VARC
 	insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('Se agrego una dirección de el usuario con el correo ',_correo), 'Direccion y Habita', curdate());
 	SELECT 0;
     
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaUsuarioAsesor` (IN `_CorreoAdmin` VARCHAR(70), IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(200), IN `_Tipo` INT, IN `_Nombres` VARCHAR(50), IN `_A_Paterno` VARCHAR(30), IN `_A_Materno` VARCHAR(30), IN `_Edad` INT, IN `_Telefono` VARCHAR(16), IN `_Foto` TEXT)  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spAltaUsuarioAsesor` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaUsuarioAsesor`(IN `_CorreoAdmin` VARCHAR(70), IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(200), IN `_Tipo` INT, IN `_Nombres` VARCHAR(50), IN `_A_Paterno` VARCHAR(30), IN `_A_Materno` VARCHAR(30), IN `_Edad` INT, IN `_Telefono` VARCHAR(16), IN `_Foto` TEXT)
+BEGIN
 	declare Id_AltaCuenta int default 0;
     declare Id_AltaUsuario int default 0;
     
@@ -134,9 +571,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaUsuarioAsesor` (IN `_CorreoAd
 	insert into Usuario(Correo,Nombres,A_Paterno,A_Materno, Edad, Telefono, Foto) Values (_correo,_Nombres,_A_Paterno,_A_Materno,_Edad,_Telefono,_Foto);
             
 	insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_CorreoAdmin,concat('Se creo una cuenta con el correo ',_correo), 'Cuenta y Usuario', curdate());
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaAsesor` (IN `_Correo` VARCHAR(70), IN `_NombreUsuario` VARCHAR(30))  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spBajaAsesor` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaAsesor`(IN `_Correo` VARCHAR(70), IN `_NombreUsuario` VARCHAR(30))
+BEGIN
 	declare _Id_BajaAsesor int default 0;
     
     set _Id_BajaAsesor = (SELECT Id_Asesor from asesor where Nombre_Usuario=_NombreUsuario);
@@ -154,9 +606,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaAsesor` (IN `_Correo` VARCHAR
             select 'El Asesor Con Ese Nombre De Usuario No Existe';
         end;
 	end if;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCita` (IN `_Correo` VARCHAR(70), IN `_NombreUsuario` VARCHAR(30), IN `_Fecha` DATE, IN `_Hora` VARCHAR(15), IN `_NDeHoras` INT, IN `_Costo` INT)  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spBajaCita` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCita`(IN `_Correo` VARCHAR(70), IN `_NombreUsuario` VARCHAR(30), IN `_Fecha` DATE, IN `_Hora` VARCHAR(15), IN `_NDeHoras` INT, IN `_Costo` INT)
+BEGIN
 	declare	_IdNDeUsuario int default 0;
     declare	_IdAsesor int default 0;
     declare _Folio int default 0;
@@ -170,9 +637,24 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCita` (IN `_Correo` VARCHAR(7
              
 			insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('Se cancelo una cita de el usuario con el correo ',_correo, 'Y es asesor', _NombreUsuario), 'Cita', curdate());
 			SELECT 'Los Datos Ha Sido Ingresados Correctamente';
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCuenta` (IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(200))  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spBajaCuenta` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCuenta`(IN `_Correo` VARCHAR(70), IN `_Contra` VARCHAR(200))
+BEGIN
 	declare _Id_BajaCuenta int default 0;
     declare _Id_Usuario int default 0;
     
@@ -196,18 +678,48 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaCuenta` (IN `_Correo` VARCHAR
             select 1;
         end;
 	end if;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaDireccion` (IN `_IdDireccion` INT)  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spBajaDireccion` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spBajaDireccion`(IN `_IdDireccion` INT)
+BEGIN
 
 	delete from habita where Id_Direccion=_IdDireccion;
 	delete from direccion where Id_Direccion=_IdDireccion;
             
 	insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('Se elimino una dirección de el usuario con el correo ',_correo), 'Direccion y Habita', curdate());
 	Select 0;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarAsesor` (IN `_Correo` VARCHAR(70), IN `_NombreUsuario` VARCHAR(30), IN `_NombreUsuarioNew` VARCHAR(30), IN `_EdadNew` INT, IN `_GradoEstudiosNew` VARCHAR(40), IN `_NombresNew` VARCHAR(50), IN `_APaternoNew` VARCHAR(30), IN `_AMaternoNew` VARCHAR(30), IN `_OcupacionNew` VARCHAR(50), IN `_MateriaNew` VARCHAR(70))  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spModificarAsesor` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarAsesor`(IN `_Correo` VARCHAR(70), IN `_NombreUsuario` VARCHAR(30), IN `_NombreUsuarioNew` VARCHAR(30), IN `_EdadNew` INT, IN `_GradoEstudiosNew` VARCHAR(40), IN `_NombresNew` VARCHAR(50), IN `_APaternoNew` VARCHAR(30), IN `_AMaternoNew` VARCHAR(30), IN `_OcupacionNew` VARCHAR(50), IN `_MateriaNew` VARCHAR(70))
+BEGIN
 	declare Id_ModificaAsesor int default 0;
     declare Id_Corroborar_Nueva int default 0;
     
@@ -235,26 +747,71 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarAsesor` (IN `_Correo` VA
             select 'El Asesor Con Ese Nombre De Usuario No Existe, Proporcione Bien Sus Datos';
         end;
 	end if;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarCuenta` (IN `_Correo` VARCHAR(70), IN `_ContraNew` VARCHAR(200))  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spModificarCuenta` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarCuenta`(IN `_Correo` VARCHAR(70), IN `_ContraNew` VARCHAR(200))
+BEGIN
 
 	Update cuenta set Contrasena=_contraNew where Correo=_correo;
                     
 	insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('Se modifico una cuenta con el correo ',_correo), 'Cuenta', curdate());
 	
     select 1;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarDireccion` (IN `_IdDireccion` INT, IN `_PaisNew` VARCHAR(30), IN `_EstadoNew` VARCHAR(30), IN `_CiudadNew` VARCHAR(30), IN `_ColoniaNew` VARCHAR(50), IN `_CalleNew` VARCHAR(50), IN `_NumeroNew` INT, IN `_CodigoPostalNew` INT, IN `_DescripcionNew` VARCHAR(250))  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spModificarDireccion` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarDireccion`(IN `_IdDireccion` INT, IN `_PaisNew` VARCHAR(30), IN `_EstadoNew` VARCHAR(30), IN `_CiudadNew` VARCHAR(30), IN `_ColoniaNew` VARCHAR(50), IN `_CalleNew` VARCHAR(50), IN `_NumeroNew` INT, IN `_CodigoPostalNew` INT, IN `_DescripcionNew` VARCHAR(250))
+BEGIN
 
     Update Direccion set Pais=_PaisNew, Estado=_EstadoNew, Ciudad=_CiudadNew, Colonia=_ColoniaNew, Calle=_CalleNew, Numero=_NumeroNew, Codigo_Postal=_CodigoPostalNew, Descripcion=_DescripcionNew where Id_Direccion=_IdDireccion;
             
 	insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('Se agrego una dirección de el usuario con el correo ',_correo), 'Direccion', curdate());
 	Select 0;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarUsuario` (IN `_Correo` VARCHAR(70), IN `_Nombres` VARCHAR(50), IN `_A_Paterno` VARCHAR(20), IN `_A_Materno` VARCHAR(20), IN `_Edad` INT, IN `_Telefono` VARCHAR(16), IN `_Foto` TEXT)  BEGIN
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spModificarUsuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarUsuario`(IN `_Correo` VARCHAR(70), IN `_Nombres` VARCHAR(50), IN `_A_Paterno` VARCHAR(20), IN `_A_Materno` VARCHAR(20), IN `_Edad` INT, IN `_Telefono` VARCHAR(16), IN `_Foto` TEXT)
+BEGIN
 	declare _Id_ModificaUsuario int default 0;
     
     set _Id_ModificaUsuario = (SELECT N_De_Usuario from Usuario where Correo=_correo);
@@ -263,482 +820,20 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spModificarUsuario` (IN `_Correo` V
 	insert into Bitacora(Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('Se actualizaron los datos del usuario con el correo ',_correo), 'Usuario', curdate());
 	SELECT 0;
 
-END$$
-
+END ;;
 DELIMITER ;
-
-CREATE DATABASE PulidClass;
-use PulidClass;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `asesor`
---
-
-CREATE TABLE `asesor` (
-  `Id_Asesor` int(11) NOT NULL,
-  `Nombre_Usuario` varchar(30) NOT NULL,
-  `Edad` int(11) DEFAULT NULL,
-  `Grado_Estudios` varchar(40) DEFAULT NULL,
-  `Nombres` varchar(50) DEFAULT NULL,
-  `A_Paterno` varchar(30) DEFAULT NULL,
-  `A_Materno` varchar(30) DEFAULT NULL,
-  `Ocupacion` varchar(50) DEFAULT NULL,
-  `Descripcion` varchar(250) DEFAULT NULL,
-  `Correo` varchar(70) DEFAULT NULL,
-  `Telefono` varchar(16) DEFAULT NULL,
-  `Foto` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Estructura de tabla para la tabla `Materia`
---
-create table `materia`(
-	`Id_Materia` int(11) not null,
-    `Nombre` varchar(70) not null,
-    `Area_Conocimiento` varchar(50),
-    `Id_Asesor` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-SELECT * FROM Asesor;
-SELECT * FROM materia;
---
--- Volcado de datos para la tabla `asesor`
---
-
-INSERT INTO `asesor` (`Id_Asesor`, `Nombre_Usuario`, `Edad`, `Grado_Estudios`, `Nombres`, `A_Paterno`, `A_Materno`, `Ocupacion`, `Descripcion`, `Correo`, `Telefono`, `Foto`) VALUES
-(125, 'TakitoTime', 22, 'Universidad', 'David Guadalupe', 'Pulido', 'Valdez', 'Estudiante', 'Joven universitario con habilidades principalmente en matematicas, y con capacidad de enseñar a otros', '17231222@itslerdo.edu.mx', '8713975674', 'fotoasesores/asesorpro1.jpg'),
-(127, 'Gerita', 30, 'Posgrado', 'Gerardo', 'Ortiz', 'Salas', 'Arquitecto', 'Profesionista experto en la realizacion de obras de ingenieria, capacitado para poder asistir a jovenes en los ambitos relacionados con las matematicas.', 'gerardortiz@gmail.com', '8714685762', 'fotoasesores/face2.jpg'),
-(128, 'Meny98', 21, 'Universidad', 'Manuel Alejandro', 'Herrera', 'Ceniceros', 'Estudiante', 'Lo más bello de este Mundo son las mujeres y la naturaleza.', 'ManuelAlejandroH@outlook.com', '8714038669', 'fotoasesores/asesorpro3.png'),
-(129, 'Karlita23', 23, 'Universidad', 'Karla', 'Guerrero', 'Hernandez', 'Estudiante', 'Soy una joven estudiante con la capacidad de emprender e inonvar con nuevas metodologias y con el estudio del mercado.', 'karlaguerrero@gmail.com', '8714440458', 'fotoasesores/face1.jpg'),
-(130, 'Serious', 20, 'Universidad', 'Luis Felipe', 'Carrillo', 'Alvarado', 'Estudiante', 'Joven apacionado por la programacion web, y especializado en diseño de paginas web', 'felipec@gmail.com', '8717754896', 'fotoasesores/asesorpro4.jpg'),
-(131, 'GomezQueen', 20, 'Universidad', 'Erika', 'Gomez', 'Valdez', 'Estudiante', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'ErikaGomez@gmail.com', '8717958896', 'fotoasesores/face3.jpg'),
-(132, 'Lorem', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem@gmail.com', '8717958896', 'fotoasesores/face5.jpg'),
-(133, 'Lorem1', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem1@gmail.com', '8717958896', 'fotoasesores/face6.jpg'),
-(134, 'Lorem2', 20, 'Universidad', 'Lorem', 'ipsum', 'dolor', 'Estudiante', 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum, sunt reiciendis cupiditate vero fugiat optio dolore alias natus placeat provident molestias deleniti illo ullam repellendus eveniet accusamus velit iusto esse, voluptas nulla earum', 'Lorem2@gmail.com', '8717958896', 'fotoasesores/face4.jpg'),
-(145, 'chino', 20, 'Preparatoria', 'Cesar', 'Mendoza', 'Reyes', 'Estudiante', 'Breve Descripcion De El Asesor', 'chino@gmail.com', '12345678', 'fotosusuarios/asesorpro2.jpeg');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `bitacora`
---
-
-CREATE TABLE `bitacora` (
-  `Id_Bitacora` int(11) NOT NULL,
-  `Correo` varchar(70) DEFAULT NULL,
-  `Accion_Realizada` varchar(250) DEFAULT NULL,
-  `TablaAfectada` varchar(250) DEFAULT NULL,
-  `Fecha` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `bitacora`
---
-
-INSERT INTO `bitacora` (`Id_Bitacora`, `Correo`, `Accion_Realizada`, `TablaAfectada`, `Fecha`) VALUES
-(1, 'correo@correo.com', 'Se creo una cuenta con el correo correo@correo.com', 'Cuenta y Usuario', '2019-11-26'),
-(2, 'felipe@mail.com', 'Se creo una cuenta con el correo felipe@mail.com', 'Cuenta y Usuario', '2019-11-26'),
-(3, 'correo@correo.com', 'Se actualizaron los datos del usuario con el correo correo@correo.com', 'Usuario', '2019-11-26'),
-(4, 'correo@correo.com', 'Se actualizaron los datos del usuario con el correo correo@correo.com', 'Usuario', '2019-11-26'),
-(5, 'correo@correo.com', 'Se agrego una dirección de el usuario con el correo correo@correo.com', 'Direccion y Habita', '2019-11-26'),
-(330, 'davida7x77@gmail.com', 'Se creo una cuenta con el correo davida7x77@gmail.com', 'Cuenta y Usuario', '2020-05-14'),
-(331, 'davida7x77@gmail.com', 'Se actualizaron los datos del usuario con el correo davida7x77@gmail.com', 'Usuario', '2020-05-14'),
-(332, 'davida7x77@gmail.com', 'Se agrego una dirección de el usuario con el correo davida7x77@gmail.com', 'Direccion y Habita', '2020-05-14'),
-(333, 'davida7x77@gmail.com', 'El usuario con el Numero De Usuario: 48Genero Una Cita con el asesor:125', 'Cita', '2020-05-14'),
-(334, 'davida7x77@gmail.com', 'Se elimino la cuenta con el correo davida7x77@gmail.com', 'Cuenta, Usuario, Dirección y Habita', '2020-05-14'),
-(335, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-05-14'),
-(336, 'sillapone@gmail.com', 'Se elimino la cuenta con el correo sillapone@gmail.com', 'Cuenta, Usuario, Dirección y Habita', '2020-05-14'),
-(337, 'sillapone@gmail.com', 'Se creo una cuenta con el correo sillapone@gmail.com', 'Cuenta y Usuario', '2020-05-14');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cita`
---
-
-CREATE TABLE `cita` (
-  `Folio` int(11) NOT NULL,
-  `N_De_Usuario` int(11) DEFAULT NULL,
-  `Id_Asesor` int(11) DEFAULT NULL,
-  `Id_Tarjeta` int(11) DEFAULT NULL,
-  `DireccionP1` varchar(200) DEFAULT NULL,
-  `DireccionP2` varchar(200) DEFAULT NULL,
-  `Dir_Descripcion` varchar(100) DEFAULT NULL,
-  `Fecha` date DEFAULT NULL,
-  `Hora_Inicial` varchar(15) DEFAULT NULL,
-  `Hora_Final` varchar(15) DEFAULT NULL,
-  `N_De_Horas` int(11) DEFAULT NULL,
-  `Costo` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `cita`
---
-
-INSERT INTO `cita` (`Folio`, `N_De_Usuario`, `Id_Asesor`, `Id_Tarjeta`, `DireccionP1`, `DireccionP2`, `Dir_Descripcion`, `Fecha`, `Hora_Inicial`, `Hora_Final`, `N_De_Horas`, `Costo`) VALUES
-(2, 39, 128, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-13', '10:00', '11:00', 1, '100.00'),
-(3, 39, 130, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-26', '17:00', '18:00', 1, '100.00'),
-(4, 39, 130, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-26', '17:00', '18:00', 1, '100.00'),
-(5, 39, 128, 4, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-03-30', '14:00', '17:00', 3, '250.00'),
-(6, 39, 145, NULL, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-05-07', '09:00', '10:00', 1, '100.00'),
-(7, 39, 145, 3, 'Hector Espino #185, Col.Hortencias. 35043', ' Gomez Palacio Durango, Mexico.', 'Fachada verde, porton azul, 2 arboles enfrente', '2020-05-06', '11:00', '12:00', 1, '100.00');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cuenta`
---
-
-CREATE TABLE `usuario` (
-  `Correo` varchar(70) NOT NULL,
-  `Contrasena` varchar(200) DEFAULT NULL,
-  `Validacion` varchar(20) DEFAULT NULL,
-  `Tipo` int(11) DEFAULT NULL,
-  `Activacion` tinyint(1) DEFAULT NULL,
-  `Codigo_Activacion` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `cuenta`
---
-
-INSERT INTO `usuario` (`Correo`, `Contrasena`, `Validacion`, `Tipo`, `Activacion`, `Codigo_Activacion`) VALUES
-('17231222@itslerdo.edu.mx', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 2, 1, 2422),
-('administrador1@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 1, NULL, NULL),
-('chino@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', 'Validada', 3, NULL, NULL),
-('sillapone@gmail.com', '8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e', NULL, 2, 0, 2857);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `direccion`
---
-
-CREATE TABLE `direccion` (
-  `Id_Direccion` int(11) NOT NULL,
-  `Pais` varchar(30) DEFAULT NULL,
-  `Estado` varchar(30) DEFAULT NULL,
-  `Ciudad` varchar(30) DEFAULT NULL,
-  `Colonia` varchar(50) DEFAULT NULL,
-  `Calle` varchar(50) DEFAULT NULL,
-  `Numero` int(11) DEFAULT NULL,
-  `Codigo_Postal` int(11) DEFAULT NULL,
-  `Descripcion` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `direccion`
---
-
-INSERT INTO `direccion` (`Id_Direccion`, `Pais`, `Estado`, `Ciudad`, `Colonia`, `Calle`, `Numero`, `Codigo_Postal`, `Descripcion`) VALUES
-(32, 'Mexico', 'Durango', 'Gomez Palacio', 'Hortencias', 'Hector Espino', 185, 35043, 'Fachada Verde, Porton Azul');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `habita`
---
-
-CREATE TABLE `habita` (
-  `N_De_Usuario` int(11) DEFAULT NULL,
-  `Id_Direccion` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `habita`
---
-
-INSERT INTO `habita` (`N_De_Usuario`, `Id_Direccion`) VALUES
-(39, 32);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `material`
---
-
-CREATE TABLE `material` (
-  `Id_Material` int(11) NOT NULL,
-  `Correo` varchar(70) DEFAULT NULL,
-  `Titulo` varchar(50) DEFAULT NULL,
-  `Fecha` date DEFAULT NULL,
-  `Materia` varchar(70) DEFAULT NULL,
-  `Documento` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `material`
---
-
-INSERT INTO `material` (`Id_Material`, `Correo`, `Titulo`, `Fecha`, `Materia`, `Documento`) VALUES
-(1, 'administrador1@gmail.com', 'Formulario Fisica', '2020-05-05', 'Fisica', 'asdasdasdasd'),
-(4, 'administrador1@gmail.com', 'Hola Mundo', '2020-05-05', 'Ingles', 'materialdidactico/'),
-(5, 'chino@gmail.com', 'Hola Mundo', '2020-05-07', 'Matematicas', 'materialdidactico/David_Pulido_04052020_0-65536.docx'),
-(6, 'administrador1@gmail.com', 'Verbo ToBE', '2020-05-12', 'Ingles', 'materialdidactico/LENGUAJES DE INTERFAZ - 4.docx'),
-(7, 'administrador1@gmail.com', 'Formulario Integrales', '2020-05-12', 'Matematicas', 'materialdidactico/LENGUAJES DE INTERFAZ - 4.docx');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `noticia`
---
-
-CREATE TABLE `noticia` (
-  `Id_Noticia` int(11) NOT NULL,
-  `Correo` varchar(70) DEFAULT NULL,
-  `Titulo` varchar(100) NOT NULL,
-  `Subtitulo` varchar(150) NOT NULL,
-  `Fecha` date NOT NULL,
-  `Fuentes` text NOT NULL,
-  `Informacion` text NOT NULL,
-  `Imagen` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `noticia`
---
-
-INSERT INTO `noticia` (`Id_Noticia`, `Correo`, `Titulo`, `Subtitulo`, `Fecha`, `Fuentes`, `Informacion`, `Imagen`) VALUES
-(7, 'administrador1@gmail.com', 'El Esqueleto Humano', 'El sistema oseo visto de cerca', '2020-05-05', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis dolor sit illum numquam provident pariatur distinctio ex iure nostrum assumenda.', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio vitae officia dolorem, atque recusandae tempora, at nesciunt quisquam debitis assumenda id animi velit est aperiam similique nobis! Fugit, eligendi hic cupiditate mollitia quam fugiat eaque delectus dolore sapiente aliquid inventore blanditiis molestiae quaerat provident aperiam, quo neque, dolorum velit vel possimus. Laboriosam molestiae quae perspiciatis beatae, distinctio fugiat vero modi est aspernatur eius. Accusantium odit dolore quae, magni praesentium, dolorem possimus a enim atque aut asperiores? Pariatur est aliquam quam dolorem laborum laboriosam cumque officiis voluptatum, eius error quo iusto porro sed ab? Dignissimos molestias maiores molestiae, fuga doloribus nostrum!', 'fotosnoticias/new1.jpg'),
-(8, 'administrador1@gmail.com', 'Bacterias importantes', 'Bacterias que debes conocer', '2020-05-05', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.', 'fotosnoticias/new2.jpg'),
-(9, 'administrador1@gmail.com', 'Bacterias importantes', 'Bacterias que debes conocer', '2020-05-05', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.\r\nLorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sit recusandae. Sapiente non culpa consectetur error quibusdam reiciendis voluptas mollitia aliquam magnam tempora fugiat ullam iure, cum debitis, excepturi magni. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum natus necessitatibus ratione neque debitis, expedita eum tempora asperiores.', 'fotosnoticias/new2.jpg');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `precio`
---
-
-CREATE TABLE `precio` (
-  `Id_Precio` int(11) NOT NULL,
-  `Costo` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `precio`
---
-
-INSERT INTO `precio` (`Id_Precio`, `Costo`) VALUES
-(1, '100.00'),
-(2, '200.00'),
-(3, '250.00'),
-(4, '300.00');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tarjeta`
---
-
-CREATE TABLE `tarjeta` (
-  `Id_Tarjeta` int(11) NOT NULL,
-  `N_De_Usuario` int(11) DEFAULT NULL,
-  `Nombre_T` varchar(200) DEFAULT NULL,
-  `Num_T` varchar(200) DEFAULT NULL,
-  `Mes` int(11) DEFAULT NULL,
-  `Year` int(11) DEFAULT NULL,
-  `Codigo_S` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tarjeta`
---
-
-INSERT INTO `tarjeta` (`Id_Tarjeta`, `N_De_Usuario`, `Nombre_T`, `Num_T`, `Mes`, `Year`, `Codigo_S`) VALUES
-(4, 39, 'David Pulido', '1234567890123456', 11, 2020, 392);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE `usuario_info` (
-  `N_De_Usuario` int(11) NOT NULL,
-  `Correo` varchar(70) DEFAULT NULL,
-  `Nombres` varchar(50) DEFAULT NULL,
-  `A_Paterno` varchar(20) DEFAULT NULL,
-  `A_Materno` varchar(20) DEFAULT NULL,
-  `Edad` int(11) DEFAULT NULL,
-  `Telefono` varchar(16) DEFAULT NULL,
-  `Foto` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `usuario`
---
-
-INSERT INTO `usuario_info` (`N_De_Usuario`, `Correo`, `Nombres`, `A_Paterno`, `A_Materno`, `Edad`, `Telefono`, `Foto`) VALUES
-(0, 'chino@gmail.com', 'Cesar', 'Mendoza', 'Reyes', 20, '12345678', 'fotosusuarios/asesorpro2.jpeg'),
-(8, 'administrador1@gmail.com', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg'),
-(39, '17231222@itslerdo.edu.mx', 'David Guadalupe', 'Pulido', 'Valdez', 22, '8713975674', 'fotosusuarios/pp.jpg'),
-(50, 'sillapone@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL);
-
---
--- Disparadores `usuario`
---
-DELIMITER $$
-CREATE TRIGGER `ValidarCuenta` AFTER UPDATE ON `usuario` FOR EACH ROW Update Cuenta set Validacion='Validada'
-$$
-DELIMITER ;
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `asesor`
---
-ALTER TABLE `asesor`
-  ADD PRIMARY KEY (`Id_Asesor`);
-  
---
--- Indices de la tabla `materia`
---
-ALTER TABLE `materia`
-	ADD PRIMARY KEY (`Id_Materia`),
-    ADD KEY `Id_Asesor` (`Id_Asesor`);
-  
-
---
--- Indices de la tabla `bitacora`
---
-ALTER TABLE `bitacora`
-  ADD PRIMARY KEY (`Id_Bitacora`);
-
---
--- Indices de la tabla `cita`
---
-ALTER TABLE `cita`
-  ADD PRIMARY KEY (`Folio`),
-  ADD KEY `cita_ibfk_1` (`N_De_Usuario`),
-  ADD KEY `cita_ibfk_2` (`Id_Asesor`),
-  ADD KEY `cita_ibfk_3` (`Id_Tarjeta`);
-
---
--- Indices de la tabla `cuenta`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`Correo`);
-
---
--- Indices de la tabla `direccion`
---
-ALTER TABLE `direccion`
-  ADD PRIMARY KEY (`Id_Direccion`);
-
---
--- Indices de la tabla `habita`
---
-ALTER TABLE `habita`
-  ADD KEY `N_De_Usuario` (`N_De_Usuario`),
-  ADD KEY `Id_Direccion` (`Id_Direccion`);
-
---
--- Indices de la tabla `material`
---
-ALTER TABLE `material`
-  ADD PRIMARY KEY (`Id_Material`),
-  ADD KEY `material_ibfk_1` (`Correo`);
-
---
--- Indices de la tabla `noticia`
---
-ALTER TABLE `noticia`
-  ADD PRIMARY KEY (`Id_Noticia`),
-  ADD KEY `cita_ibfk_1` (`Correo`);
-
---
--- Indices de la tabla `precio`
---
-ALTER TABLE `precio`
-  ADD PRIMARY KEY (`Id_Precio`);
-
---
--- Indices de la tabla `tarjeta`
---
-ALTER TABLE `tarjeta`
-  ADD PRIMARY KEY (`Id_Tarjeta`),
-  ADD KEY `N_De_Usuario` (`N_De_Usuario`);
-
---
--- Indices de la tabla `usuario`
---
-ALTER TABLE `usuario_info`
-  ADD PRIMARY KEY (`N_De_Usuario`),
-  ADD KEY `Correo` (`Correo`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `asesor`
---
-ALTER TABLE `asesor`
-  MODIFY `Id_Asesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
-
---
--- AUTO_INCREMENT de la tabla `bitacora`
---
-ALTER TABLE `bitacora`
-  MODIFY `Id_Bitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
-
---
--- AUTO_INCREMENT de la tabla `cita`
---
-ALTER TABLE `cita`
-  MODIFY `Folio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT de la tabla `direccion`
---
-ALTER TABLE `direccion`
-  MODIFY `Id_Direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT de la tabla `material`
---
-ALTER TABLE `material`
-  MODIFY `Id_Material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de la tabla `noticia`
---
-ALTER TABLE `noticia`
-  MODIFY `Id_Noticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT de la tabla `precio`
---
-ALTER TABLE `precio`
-  MODIFY `Id_Precio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `tarjeta`
---
-ALTER TABLE `tarjeta`
-  MODIFY `Id_Tarjeta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de la tabla `usuario`
---
-ALTER TABLE `usuario_info`
-  MODIFY `N_De_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `tarjeta`
---
-ALTER TABLE `tarjeta`
-  ADD CONSTRAINT `tarjeta_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario` (`N_De_Usuario`);
-COMMIT;
-
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-12-09 20:59:39

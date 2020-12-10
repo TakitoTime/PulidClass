@@ -56,7 +56,7 @@
                     <input type="text" name="edad" id="edad" placeholder="edad" disabled value="<?php echo $info_personal['Edad']?>">
                     <input type="text" name="paterno" id="paterno" placeholder="Apellido Paterno" disabled value="<?php echo $info_personal['A_Paterno']?>">
                     <input type="text" name="materno" id="materno" placeholder="Apellido Materno" disabled value="<?php echo $info_personal['A_Materno']?>">
-                    <input type="text" name="correo" id="correo" placeholder="Correo Electronico" disabled value="<?php echo $info_personal['Correo']?>">
+                    <input type="text" name="correo" id="correo" placeholder="Correo Electronico" disabled value="<?php echo $info_personal['usuario_Correo']?>">
                     <input type="text" name="telefono" id="telefono" placeholder="Numero Telefonico" disabled value="<?php echo $info_personal['Telefono']?>">
                     <div class="perfil-footer">
                         <input type="submit" class="button" name="guardar_usuario" id="guardar_usuario" value="Guardar" onclick="Habilitar_Correo()">
@@ -74,25 +74,19 @@
                     $id_direccion=$direccion['Id_Direccion'];
                     $cont=$cont+1;
 
-                    $statement = $conexion->prepare('SELECT * FROM direccion WHERE id_direccion = :id_direccion LIMIT 1');
-                    $statement->execute(array(':id_direccion' => $id_direccion));
-
-                    $direccion_datos=$statement->fetchAll();
-                    
-                    foreach($direccion_datos as $dato){
                 ?>
                     <h3 class="titulo" id="titulo<?php echo $cont?>">Dirección <?php echo $cont?></h3>
                     <div class="datos">
                         <form enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                                <input type="hidden" name="id_direccion" class="id" id="id<?php echo $cont?>" disabled value=<?php echo $dato['Id_Direccion']?>>
-                                <input type="text" name="pais" class="pais" id="pais<?php echo $cont?>" placeholder="Pais" disabled value=<?php echo $dato['Pais']?>>
-                                <input type="text" name="estado" class="estado" id="estado<?php echo $cont?>" placeholder="Estado" disabled value="<?php echo $dato['Estado']?>">
-                                <input type="text" name="ciudad" class="ciudad" id="ciudad<?php echo $cont?>" placeholder="Ciudad" disabled value="<?php echo $dato['Ciudad']?>">
-                                <input type="text" name="colonia" class="colonia" id="colonia<?php echo $cont?>" placeholder="Colonia" disabled value="<?php echo $dato['Colonia']?>">
-                                <input type="text" name="calle" class="calle" id="calle<?php echo $cont?>" placeholder="Calle" disabled value="<?php echo $dato['Calle']?>">
-                                <input type="text" name="numero" class="numero" id="numero<?php echo $cont?>" placeholder="Numero" disabled value="<?php echo $dato['Numero']?>">
-                                <input type="text" name="codigo_postal" class="codigo_postal" id="codigo_postal<?php echo $cont?>" placeholder="Codigo Postal" disabled value="<?php echo $dato['Codigo_Postal']?>">
-                                <input type="text" name="descripcion" class="descripcion" id="descripcion<?php echo $cont?>" placeholder="Descripcion" disabled value="<?php echo $dato['Descripcion']?>">
+                                <input type="hidden" name="id_direccion" class="id" id="id<?php echo $cont?>" disabled value=<?php echo $direccion['Id_Direccion']?>>
+                                <input type="text" name="pais" class="pais" id="pais<?php echo $cont?>" placeholder="Pais" disabled value=<?php echo $direccion['Pais']?>>
+                                <input type="text" name="estado" class="estado" id="estado<?php echo $cont?>" placeholder="Estado" disabled value="<?php echo $direccion['Estado']?>">
+                                <input type="text" name="ciudad" class="ciudad" id="ciudad<?php echo $cont?>" placeholder="Ciudad" disabled value="<?php echo $direccion['Ciudad']?>">
+                                <input type="text" name="colonia" class="colonia" id="colonia<?php echo $cont?>" placeholder="Colonia" disabled value="<?php echo $direccion['Colonia']?>">
+                                <input type="text" name="calle" class="calle" id="calle<?php echo $cont?>" placeholder="Calle" disabled value="<?php echo $direccion['Calle']?>">
+                                <input type="text" name="numero" class="numero" id="numero<?php echo $cont?>" placeholder="Numero" disabled value="<?php echo $direccion['Numero']?>">
+                                <input type="text" name="codigo_postal" class="codigo_postal" id="codigo_postal<?php echo $cont?>" placeholder="Codigo Postal" disabled value="<?php echo $direccion['Codigo_Postal']?>">
+                                <input type="text" name="descripcion" class="descripcion" id="descripcion<?php echo $cont?>" placeholder="Descripcion" disabled value="<?php echo $direccion['Descripcion']?>">
 
                                 <input type="submit" name="guardar" disabled value="Guardar Cambios" onclick="Habilitar_ID(<?php echo $cont?>)" id="guardar<?php echo $cont?>">
                                 <input type="submit" name="eliminar"  disabled value="Eliminar Direccion" onclick="Habilitar_ID(<?php echo $cont?>)" id="eliminar_d<?php echo $cont?>">
@@ -102,7 +96,7 @@
                 <?php
                     }
                     $cont_eliminar=$cont;
-                }
+                
                 $cont_agregar=$cont+1;
                 while($cont!=3){
                     $cont=$cont+1;

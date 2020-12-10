@@ -1,7 +1,7 @@
 <?php
     require('conexion.php');
 
-    $statement = $conexion->prepare('UPDATE Cuenta set Activacion=:activacion,Codigo_Activacion=:codigo_activacion where correo=:correo');
+    $statement = $conexion->prepare('UPDATE Usuario set Activacion=:activacion,Codigo_Activacion=:codigo_activacion where correo=:correo');
     $statement->execute(array(
         ':activacion' => 1,
         ':codigo_activacion' => $_GET['codigo_activacion'],
