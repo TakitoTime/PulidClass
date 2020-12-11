@@ -56,7 +56,7 @@
                     <div class="perfil-footer">
                         <input type="submit" class="button" name="guardar_usuario" id="guardar_usuario" value="Guardar" onclick="Habilitar_Correo()">
                         <input type="button" class="button" id="modificar_usuario" value="Modificar Datos" onclick="Modificar_Datos_Usuario()">
-                        <input type="submit" class="button" name="respaldar_db" id="respaldar_db" value="Respaldar Base de Datos">
+                        <!--<input type="submit" class="button" name="respaldar_db" id="respaldar_db" value="Respaldar Base de Datos">-->
                     </div>
                 </form>
             </div>
@@ -88,13 +88,11 @@
             </div>
         </div>
 
-        <div class="noticias">
+        <!--<div class="noticias">
             <h2>Noticias</h2>
 
             <a href="#noticia-modal" class="add-profesor" rel="modal:open" id="modalactive" data-value="<?php echo $abrir_modal_noticia?>">Agregar Noticia</a>
-            <!-- <a href="#" class="remove-profesor">Eliminar Asesor</a> -->
             <div class="error_box" id="error_box_noticias">
-				<!--<p>Se ha producido un error.</p>-->
 			</div>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                 <table border="2" id="tablaNoticias">
@@ -113,15 +111,13 @@
                 <button id="btn_previous_noticias"><i class="fas fa-chevron-left"></i></button>
                 <button id="btn_next_noticias"><i class="fas fa-chevron-right"></i></button>
             </div>
-        </div>
+        </div>-->
 
-        <div class="materialdidactico">
+        <!---<div class="materialdidactico">
             <h2>Material Didactico</h2>
 
             <a href="#material-modal" class="add-material" rel="modal:open" id="modalactive" data-value="<?php echo $abrir_modal_material?>">Agregar Material Didactico</a>
-            <!-- <a href="#" class="remove-profesor">Eliminar Asesor</a> -->
             <div class="error_box" id="error_box_material">
-				<!--<p>Se ha producido un error.</p>-->
             </div>
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
                 <table border="2" id="tablaMaterial">
@@ -140,6 +136,7 @@
                 <button id="btn_next_material"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
+        -->
 
         <div class="bitacora">
             <h2>Bitacora de movimientos</h2>
@@ -182,21 +179,21 @@
                     <th>Correo</th>
                 </tr>
                 <?php 
-                $sql = "SELECT Nombres, A_Paterno, A_Materno, usuario.Correo, cuenta.Contrasena FROM usuario INNER JOIN cuenta ON cuenta.Correo = usuario.Correo WHERE cuenta.tipo = 2";
+                $sql = "SELECT Nombres, A_Paterno, A_Materno, usuario_info.usuario_correo, usuario.Contrasena FROM usuario_info INNER JOIN usuario ON usuario.Correo = usuario_info.usuario_Correo WHERE usuario.tipo = 2";
                 foreach($conexion->query($sql) as $row){
                 ?>
                 <tr>
                     <td><?php echo $row['Nombres']; ?></td>
                     <td><?php echo $row['A_Paterno']; ?></td>
                     <td><?php echo $row['A_Materno']; ?></td>
-                    <td><?php echo $row['Correo']; ?></td>
+                    <td><?php echo $row['usuario_correo']; ?></td>
                 </tr>
                 <?php
                 }
                 ?>
             </table>
         </div>
-        <div class="muerto">
+        <!--<div class="muerto">
             <h2>Cuentas desactivadas (archivo muerto)</h2>
             <a href="#muerto-modal" class="add-profesor" rel="modal:open">Recuperar cuentas</a>
             <div id="muerto-modal" class="modal">
@@ -228,7 +225,7 @@
                 }
                 ?>
             </table>
-        </div>
+        </div>-->
     </main>
     <footer>
         <div class="info">

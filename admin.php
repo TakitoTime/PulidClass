@@ -226,7 +226,7 @@ if(!isset($_SESSION['admin'])){
                     $referencias =trim($_POST["referencias"]);
                     $referencias = filter_var($referencias, FILTER_SANITIZE_STRING);
 
-                    $statement = $conexion->prepare('INSERT INTO noticia values(NULL, :correo, :titulo, :subtitulo, :fecha, :fuentes, :informacion, :imagen)');
+                    $statement = $conexion->prepare('INSERT INTO noticia values(NULL, :correo, :titulo, :subtitulo, :fecha, :fuentes, :informacion, :imagen, :)');
                     $statement->execute(array(
                             ':correo' => $correo,
                             ':titulo' => $titulo,
@@ -234,7 +234,8 @@ if(!isset($_SESSION['admin'])){
                             ':fecha' => $fecha,
                             ':fuentes' => $referencias,
                             ':informacion' => $informacion,
-                            ':imagen' => $imagen_noticia
+                            ':imagen' => $imagen_noticia,
+                            ':imagen' => $imagen_noticia,
                         ));
     
                     $resultado = $statement->fetchColumn();

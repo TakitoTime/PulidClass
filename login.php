@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     }else{
 
-        $statement = $conexion->prepare('SELECT * FROM Usuario WHERE Correo = :correo AND Contrasena = :contra LIMIT 1');
+        $statement = $conexion->prepare('select * from usuario inner join usuario_info on usuario.correo=usuario_info.usuario_correo where usuario.correo=:correo and contrasena=:contra');
         $statement->execute(array(
                 ':correo' => $correo,
                 ':contra' => $contra
@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     
                     $_SESSION['admin'] = $correo;
                     $_SESSION['contra'] = $contra;
+                    $_SESSION['id'] = $resultado['N_De_Usuario'];
                     header('Location: admin.php');
                     
                 }else{
@@ -44,14 +45,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     
                         $_SESSION['asesor'] = $correo;
                         $_SESSION['contra'] = $contra;
+                        $_SESSION['id'] = $resultado['N_De_Usuario'];
                         header('Location: perfil_asesor.php');
                         
                     }else{
                         $_SESSION['cliente'] = $correo;
                         $_SESSION['contra'] = $contra;
+                        $_SESSION['id'] = $resultado['N_De_Usuario'];
                         header('Location: perfil.php');
                     }
                 }
+                
     
             } else {
                 $errores = '<li>Datos incorrectos</li>';
