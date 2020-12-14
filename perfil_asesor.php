@@ -12,11 +12,11 @@ if(!isset($_SESSION['asesor'])){
     $abrir_modal_noticia="false";
     $abrir_modal_material="false";
 
-    $statement = $conexion->prepare('SELECT * FROM Usuario WHERE correo = :correo LIMIT 1');
+    $statement = $conexion->prepare('SELECT * FROM usuario_info WHERE usuario_Correo = :correo LIMIT 1');
             $statement->execute(array(':correo' => $correo));
 
             $info_personal=$statement->fetch();
-
+            
             $statement = $conexion->prepare('SELECT N_De_Usuario FROM Usuario WHERE correo = :correo LIMIT 1');
             $statement->execute(array(':correo' => $correo));
 
@@ -36,6 +36,10 @@ if(!isset($_SESSION['asesor'])){
 
             $statement = $conexion->prepare('SELECT * FROM Asesor WHERE Id_Asesor = :id_asesor');
             $statement->execute(array(':id_asesor' => $id_asesor));
+
+            $statement = $conexion->prepare('SELECT Nombre FROM materia INNER JOIN materiacategoria ON materiacategoria.id_materia = materia.Id_materia WHERE materiacategoria.id_asesor = :id_asesor');
+            $statement->execute(array(':id_asesor'=> $id_asesor));
+            $materias=$statement->fetchAll();
 
             $ficha_tecnica=$statement->fetch();
 

@@ -1,3 +1,5 @@
+create database pulidclass
+use pulidclass;
 -- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: pulidclass
@@ -7,7 +9,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8 */;asesor
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -87,24 +89,22 @@ DROP TABLE IF EXISTS `cita`;
 CREATE TABLE `cita` (
   `Folio` int(11) NOT NULL AUTO_INCREMENT,
   `N_De_Usuario` int(11) DEFAULT NULL,
+  `Id_Asesor` int(11) NOT NULL,
+  `Id_Tarjeta` int(11) NOT NULL,
+  `Id_Direccion` int(11) NOT NULL,
   `Fecha` date DEFAULT NULL,
   `Hora_Inicial` varchar(15) DEFAULT NULL,
   `Hora_Final` varchar(15) DEFAULT NULL,
   `N_De_Horas` int(11) DEFAULT NULL,
-  `usuario_info_N_De_Usuario` int(11) NOT NULL,
-  `asesor_Id_Asesor` int(11) NOT NULL,
-  `direccion_Id_Direccion` int(11) NOT NULL,
-  `precio_Id_Precio` int(11) NOT NULL,
+  `Costo` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`Folio`),
   KEY `cita_ibfk_1` (`N_De_Usuario`),
-  KEY `fk_cita_usuario_info1_idx` (`usuario_info_N_De_Usuario`),
-  KEY `fk_cita_asesor1_idx` (`asesor_Id_Asesor`),
-  KEY `fk_cita_direccion1_idx` (`direccion_Id_Direccion`),
-  KEY `fk_cita_precio1_idx` (`precio_Id_Precio`),
-  CONSTRAINT `fk_cita_asesor1` FOREIGN KEY (`asesor_Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cita_direccion1` FOREIGN KEY (`direccion_Id_Direccion`) REFERENCES `direccion` (`Id_Direccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cita_precio1` FOREIGN KEY (`precio_Id_Precio`) REFERENCES `precio` (`Id_Precio`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cita_usuario_info1` FOREIGN KEY (`usuario_info_N_De_Usuario`) REFERENCES `usuario_info` (`N_De_Usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_cita_usuario_info1_idx` (`N_De_Usuario`),
+  KEY `fk_cita_asesor1_idx` (`Id_Asesor`),
+  KEY `fk_cita_direccion1_idx` (`Id_Direccion`),
+  CONSTRAINT `fk_cita_asesor1` FOREIGN KEY (`Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cita_direccion1` FOREIGN KEY (`Id_Direccion`) REFERENCES `direccion` (`Id_Direccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cita_usuario_info1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario_info` (`N_De_Usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -456,7 +456,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAsesor`(IN `_CorreoAdmin` VARCHAR(70), IN `_Correo` VARCHAR(70), IN `_NombreUsuario` VARCHAR(30), IN `_Edad` INT, IN `_GradoEstudios` VARCHAR(40), IN `_Nombres` VARCHAR(50), IN `_APaterno` VARCHAR(30), IN `_AMaterno` VARCHAR(30), IN `_Ocupacion` VARCHAR(50), IN `_Materia1` VARCHAR(70), IN `_Materia2` VARCHAR(70), IN `_Materia3` VARCHAR(70), IN `_Descripcion` VARCHAR(250), IN `_Telefono` VARCHAR(16), IN `_Foto` TEXT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaAsesor`(IN `_CorreoAdmin` VARCHAR(70), IN `_Correo` VARCHAR(70), IN `_Password` VARCHAR(200), IN `_NombreUsuario` VARCHAR(30), IN `_Edad` INT, IN `_GradoEstudios` VARCHAR(40), IN `_Nombres` VARCHAR(50), IN `_APaterno` VARCHAR(30), IN `_AMaterno` VARCHAR(30), IN `_Ocupacion` VARCHAR(50), IN `_Materia1` INT, IN `_Materia2` INT, IN `_Materia3` INT, IN `_Descripcion` VARCHAR(250), IN `_Telefono` VARCHAR(16), IN `_Foto` TEXT)
 BEGIN
 	declare Id_AltaNombreUsuario int default 0;
 	declare Id_AltaAsesor int default 0;
@@ -476,9 +476,10 @@ BEGIN
             
             set Id_AltaAsesor = (SELECT Id_Asesor FROM Asesor ORDER BY Id_Asesor DESC LIMIT 1);
 
-            insert into materiacategoria values (null,Id_AltaAsesor,materia1),(null,Id_AltaAsesor,materia2),(null,Id_AltaAsesor,materia3);
-            
+            insert into materiacategoria values (null, Id_AltaAsesor,_Materia1),(null, Id_AltaAsesor,_Materia2),(null, Id_AltaAsesor,_Materia3);
             insert into Bitacora(usuario_Correo,Accion_Realizada,TablaAfectada, Fecha) values (_CorreoAdmin,concat('El usuario con el correo:  ',_CorreoAdmin,'creo una cuenta de asesor, con el nombre de usuario: ', _NombreUsuario), 'Asesor', curdate());
+            insert into usuario values (_Correo, _Password, 'Validada', 3, null, null);
+            insert into usuario_info values (null, _Nombres, _APaterno, _AMaterno, _Edad, _Telefono, _Foto, _Correo);
             
 			SELECT 1;
         end;
@@ -499,12 +500,13 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCita`(IN `_N_De_Usuario` INT, IN `_Id_Asesor` INT, IN `_Id_Tarjeta` INT, IN `_DireccionP1` VARCHAR(200), IN `_DireccionP2` VARCHAR(200), IN `_Dir_Descripcion` VARCHAR(100), IN `_Fecha` DATE, IN `_Hora_Inicial` VARCHAR(15), IN `_Hora_Final` VARCHAR(15), IN `_NDeHoras` INT, IN `_Costo` DECIMAL(10,2))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCita`(IN `_N_De_Usuario` INT, IN `_Id_Asesor` INT, IN `_Id_Tarjeta` INT, IN `_Id_Direccion` INT, IN `_Fecha` DATE, IN `_Hora_Inicial` VARCHAR(15), IN `_Hora_Final` VARCHAR(15), IN `_NDeHoras` INT, IN `_Costo` DECIMAL(10,2))
 BEGIN
 		declare _correo varchar(70) default '';
         
-        set _correo= (SELECT correo from Usuario where  N_De_Usuario=_N_De_Usuario);
-		insert into Cita(N_De_Usuario, Id_Asesor,Id_Tarjeta,DireccionP1,DireccionP2,Dir_Descripcion,Fecha,Hora_Inicial,Hora_Final,N_De_Horas,Costo) Values (_N_De_Usuario,_Id_Asesor,_Id_Tarjeta,_DireccionP1,_DireccionP2,_Dir_Descripcion,_Fecha,_Hora_Inicial,_Hora_Final,_NDeHoras,_Costo);
+        set _correo= (SELECT correo from usuario_info where  N_De_Usuario=_N_De_Usuario);
+		insert into Cita(N_De_Usuario, Id_Asesor, Id_Tarjeta, Id_Direccion, Fecha, Hora_Inicial, Hora_Final, N_De_Horas, Costo) Values 
+        (_N_De_Usuario,_Id_Asesor,_Id_Tarjeta,_Id_Direccion,_Fecha,_Hora_Inicial,_Hora_Final,_NDeHoras,_Costo);
             
 		insert into Bitacora(usuario_Correo,Accion_Realizada,TablaAfectada, Fecha) values (_correo,concat('El usuario con el Numero De Usuario: ',_N_De_Usuario, 'Genero Una Cita con el asesor:', _Id_Asesor), 'Cita', curdate());
             

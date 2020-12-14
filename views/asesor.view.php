@@ -64,9 +64,9 @@
                     </div>
                     <div class="materias">
                         <p>Materias que ofrece:</p>
-                        <input type="label" disabled value="<?php echo $asesor['Materia1']?>">
-                        <input type="label" disabled value="<?php echo $asesor['Materia2']?>">
-                        <input type="label" disabled value="<?php echo $asesor['Materia3']?>">
+                        <input type="label" disabled value="<?php echo $materias[0]['Nombre']?>">
+                        <input type="label" disabled value="<?php echo $materias[1]['Nombre']?>">
+                        <input type="label" disabled value="<?php echo $materias[2]['Nombre']?>">
                     </div>
                 </div>
                 <div class="contacto">

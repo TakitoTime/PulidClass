@@ -102,6 +102,7 @@ if(!isset($_SESSION['admin'])){
 
                     $password =trim($_POST["password"]);
                     $password = filter_var($password, FILTER_SANITIZE_STRING);
+                    $password = hash('sha512', $password);
     
                     $username =trim($_POST["usuario"]);
                     $username = filter_var($username, FILTER_SANITIZE_STRING);
@@ -149,10 +150,11 @@ if(!isset($_SESSION['admin'])){
                     $descripcion =trim($_POST["descripcion"]);
                     $descripcion = filter_var($descripcion, FILTER_SANITIZE_STRING);
     
-                    $statement = $conexion->prepare('call pulidclass.spAltaAsesor(:correo_admin,:correo_asesor,:username,:edad,:grado,:nombre,:paterno,:materno,:ocupacion,:materia1,:materia2,:materia3,:descripcion,:telefono,:foto)');
+                    $statement = $conexion->prepare('call pulidclass.spAltaAsesor(:correo_admin,:correo_asesor,:password,:username,:edad,:grado,:nombre,:paterno,:materno,:ocupacion,:materia1,:materia2,:materia3,:descripcion,:telefono,:foto)');
                     $statement->execute(array(
                             ':correo_admin' => $correo,
                             ':correo_asesor' => $correo_asesor,
+                            ':password' => $password,
                             ':username' => $username,
                             ':edad' => $edad_asesor,
                             ':grado' => $grado,
@@ -176,22 +178,6 @@ if(!isset($_SESSION['admin'])){
                         break;
     
                         case 1: 
-                            $password = hash('sha512', $password);
-            
-                            $statement = $conexion->prepare('call pulidclass.spAltaUsuarioAsesor(:correo_admin,:correo_asesor,:password,:tipo,:nombre,:paterno,:materno,:edad,:telefono,:foto)');
-                            $statement->execute(array(
-                                    ':correo_admin' => $correo,
-                                    ':correo_asesor' => $correo_asesor,
-                                    ':password' => $password,
-                                    ':tipo' => '3',
-                                    ':nombre' => $nombre_asesor,
-                                    ':paterno' => $paterno_asesor,
-                                    ':materno' => $materno_asesor,
-                                    ':edad' => $edad_asesor,
-                                    ':telefono' => $telefono_asesor,
-                                    ':foto' => $foto_asesor,
-                                ));
-
                             $errores='<li>Datos Guardados Correctamente</li>';
                         break;
 

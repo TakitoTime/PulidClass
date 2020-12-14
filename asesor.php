@@ -14,6 +14,10 @@
 
         $nombre_asesor=$asesor['Nombres']." ".$asesor['A_Paterno']." ".$asesor['A_Materno'];
 
+        $statement = $conexion->prepare('SELECT Nombre FROM materia INNER JOIN materiacategoria ON materiacategoria.id_materia = materia.Id_materia WHERE materiacategoria.id_asesor = :id_asesor');
+        $statement->execute(array(':id_asesor'=> $id_asesor));
+        $materias=$statement->fetchAll();
+
         if($asesor['Id_Asesor']==NULL){
             header('Location:asesores.php');
         }
@@ -22,7 +26,7 @@
 
             $n_de_usuario=$_SESSION['n_de_usuario'];
 
-                $statement = $conexion->prepare('SELECT * FROM usuario WHERE N_De_Usuario = :n_de_usuario LIMIT 1');
+                $statement = $conexion->prepare('SELECT * FROM usuario_info WHERE N_De_Usuario = :n_de_usuario LIMIT 1');
                 $statement->execute(array(
                         ':n_de_usuario' => $n_de_usuario
                     ));
@@ -35,14 +39,14 @@
 
                 $precios=$statement->fetchAll();
 
-                $statement=$conexion->prepare('SELECT Id_direccion from habita where N_De_Usuario=:n_de_usuario LIMIT 3');
+                $statement=$conexion->prepare('SELECT * from direccion where usuario_info_N_De_Usuario=:n_de_usuario LIMIT 3');
                 $statement->execute(array(
                     'n_de_usuario'=>$n_de_usuario
                 ));
 
                 $direcciones=$statement->fetchAll();
 
-                $statement=$conexion->prepare('SELECT Id_Tarjeta from Tarjeta where N_De_Usuario=:n_de_usuario LIMIT 2');
+                $statement=$conexion->prepare('SELECT * from tarjeta where N_De_Usuario=:n_de_usuario LIMIT 2');
                 $statement->execute(array(
                     'n_de_usuario'=>$n_de_usuario
                 ));
@@ -191,6 +195,7 @@
                 $abrir_modal="true";
                 
                 $fecha=$_POST['fecha'];
+                print_r($fecha);
         
                 $hora_inicial=$_POST['hora_inicial'];
                 $inicial=substr($hora_inicial,0,-3);
@@ -205,12 +210,6 @@
                 $statement=$conexion->prepare('SELECT * FROM Direccion where Id_Direccion=:id_direccion');
                 $statement->execute(array('id_direccion'=> $dir));
 
-                $dir=$statement->fetch();
-                $direccion1=$dir['Calle']." #".$dir['Numero'].", Col.".$dir['Colonia'].". ".$dir['Codigo_Postal'];
-                $direccion2=" ".$dir['Ciudad']." ".$dir['Estado'].", ".$dir['Pais'].".";
-
-                $descripcion=$dir['Descripcion'];
-
                 $nhoras=$final-$inicial;
 
                 $statement=$conexion->prepare('SELECT * FROM precio WHERE Id_Precio=:nhoras');
@@ -221,14 +220,12 @@
                 $costo=$statement->fetch();
                 $costo=$costo['Costo'];
                 
-                $statement=$conexion->prepare('call pulidclass.spAltaCita(:n_de_usuario, :id_asesor,:id_tarjeta, :direccionp1,:direccionp2, :descripcion, :fecha, :hora_inicial, :hora_final, :n_horas, :costo)');
+                $statement=$conexion->prepare('call pulidclass.spAltaCita(:n_de_usuario, :id_asesor,:id_tarjeta, :id_direccion, :fecha, :hora_inicial, :hora_final, :n_horas, :costo)');
                 $statement->execute(array(
                     ':n_de_usuario'=> $n_de_usuario,
                     ':id_asesor'=> $id_asesor,
                     ':id_tarjeta'=> $tarjeta,
-                    ':direccionp1'=> $direccion1,
-                    ':direccionp2'=> $direccion2,
-                    ':descripcion' => $descripcion,
+                    ':id_direccion'=> $dir,
                     ':fecha'=> $fecha,
                     ':hora_inicial'=> $hora_inicial,
                     ':hora_final'=> $hora_final,

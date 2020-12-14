@@ -251,20 +251,25 @@
                     foreach($citas as $cita){
 
                         $id_asesor=$cita['Id_Asesor'];
+                        $id_direccion = $cita['Id_Direccion'];
 
                         $statement = $conexion->prepare('SELECT * FROM Asesor WHERE Id_Asesor = :id_asesor');
                         $statement->execute(array(':id_asesor' => $id_asesor));
-
                         $asesor=$statement->fetch();
-                            
                         $nombre_asesor=$asesor['Nombres']." ".$asesor['A_Paterno']." ".$asesor['A_Materno'];
+
+                        $statement = $conexion->prepare('SELECT * FROM direccion WHERE Id_Direccion = :id_direccion');
+                        $statement->execute(array(':id_direccion' => $id_direccion));
+                        $direccion = $statement->fetch();
+                        $nombre_direccion = '<strong>Colonia: </strong>'.$direccion['Colonia'].' <br><strong>Calle: </strong>'.$direccion['Calle'].' <br><strong>Numero: </strong>'.$direccion['Numero'].' <br><strong>Codigo Postal: </strong>'.$direccion['Codigo_Postal'].' <br><strong>Descripcion: </strong>'.$direccion['Descripcion'].' <br><strong>Ciudad: </strong>'.$direccion['Ciudad'].' <br><strong>Estado: </strong>'.$direccion['Estado'];
+
 
                 ?>
                 <tbody>
                     <tr>
                         <td scope="row"><?php echo $cita['Folio']?></td>
                         <td><?php echo $nombre_asesor?></td>
-                        <td><?php echo $cita['DireccionP1']; echo $cita['DireccionP2']?></td>
+                        <td><?php echo $nombre_direccion?></td>
                         <td><?php echo $cita['Fecha']?></td>
                         <td><?php echo $cita['Hora_Inicial']?></td>
                         <td><?php echo $cita['Hora_Final']?></td>

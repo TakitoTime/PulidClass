@@ -51,7 +51,7 @@
                     <input type="text" name="edad" id="edad" placeholder="edad" disabled value="<?php echo $info_personal['Edad']?>">
                     <input type="text" name="paterno" id="paterno" placeholder="Apellido Paterno" disabled value="<?php echo $info_personal['A_Paterno']?>">
                     <input type="text" name="materno" id="materno" placeholder="Apellido Materno" disabled value="<?php echo $info_personal['A_Materno']?>">
-                    <input type="text" name="correo" id="correo" placeholder="Correo Electronico" disabled value="<?php echo $info_personal['Correo']?>">
+                    <input type="text" name="correo" id="correo" placeholder="Correo Electronico" disabled value="<?php echo $info_personal['usuario_Correo']?>">
                     <input type="text" name="telefono" id="telefono" placeholder="Numero Telefonico" disabled value="<?php echo $info_personal['Telefono']?>">
                     <div class="perfil-footer">
                         <input type="submit" class="button" name="guardar_usuario" id="guardar_usuario" value="Guardar" onclick="Habilitar_Correo()">
@@ -81,13 +81,13 @@
                     </div>
                     <div class="secundario">
                         <div class="info">
-                            <h3>Materia1: <?php echo $ficha_tecnica['Materia1']?></h3>
+                            <h3>Materia1: <?php echo $materias[0]['Nombre']?></h3>
                         </div>
                         <div class="info">
-                            <h3>Materia2: <?php echo $ficha_tecnica['Materia2']?></h3>
+                            <h3>Materia2: <?php echo $materias[1]['Nombre']?></h3>
                         </div>
                         <div class="info">
-                            <h3>Materia3: <?php echo $ficha_tecnica['Materia3']?></h3>
+                            <h3>Materia3: <?php echo $materias[2]['Nombre']?></h3>
                         </div>
                     </div>
                 </div>
@@ -118,20 +118,24 @@
                     foreach($citas as $cita){
 
                         $id_usuario=$cita['N_De_Usuario'];
+                        $id_direccion = $cita['Id_Direccion'];
 
-                        $statement = $conexion->prepare('SELECT * FROM Usuario WHERE N_De_Usuario = :n_de_usuario');
+                        $statement = $conexion->prepare('SELECT * FROM usuario_info WHERE N_De_Usuario = :n_de_usuario');
                         $statement->execute(array(':n_de_usuario' => $id_usuario));
-
                         $cliente=$statement->fetch();
-                            
                         $nombre_cliente=$cliente['Nombres']." ".$cliente['A_Paterno']." ".$cliente['A_Materno'];
+
+                        $statement = $conexion->prepare('SELECT * FROM direccion WHERE Id_Direccion = :id_direccion');
+                        $statement->execute(array(':id_direccion' => $id_direccion));
+                        $direccion = $statement->fetch();
+                        $nombre_direccion = '<strong>Colonia: </strong>'.$direccion['Colonia'].' <br><strong>Calle: </strong>'.$direccion['Calle'].' <br><strong>Numero: </strong>'.$direccion['Numero'].' <br><strong>Codigo Postal: </strong>'.$direccion['Codigo_Postal'].' <br><strong>Descripcion: </strong>'.$direccion['Descripcion'].' <br><strong>Ciudad: </strong>'.$direccion['Ciudad'].' <br><strong>Estado: </strong>'.$direccion['Estado'];
 
                 ?>
                 <tbody>
                     <tr>
                         <td scope="row"><?php echo $cita['Folio']?></td>
                         <td><?php echo $nombre_cliente?></td>
-                        <td><?php echo $cita['DireccionP1']; echo $cita['DireccionP2']?></td>
+                        <td><?php echo $nombre_direccion?></td>
                         <td><?php echo $cita['Fecha']?></td>
                         <td><?php echo $cita['Hora_Inicial']?></td>
                         <td><?php echo $cita['Hora_Final']?></td>

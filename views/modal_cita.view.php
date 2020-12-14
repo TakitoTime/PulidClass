@@ -30,7 +30,7 @@
                                         <p>Direccion:</p>
                                         <select name="direccion" id="direccion">
                                             <?php $cont=1; foreach ($direcciones as $direccion){?>
-                                                <option value="<?php echo $direccion['Id_direccion'];?>"><?php echo"Direccion $cont";?></option>
+                                                <option value="<?php echo $direccion['Id_Direccion'];?>"><?php echo"Direccion $cont";?></option>
                                             <?php $cont=$cont+1; }?>
                                         </select>
                                     </div>
