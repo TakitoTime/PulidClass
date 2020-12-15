@@ -36,7 +36,7 @@ CREATE TABLE `asesor` (
   `Telefono` varchar(16) DEFAULT NULL,
   `Foto` text,
   PRIMARY KEY (`Id_Asesor`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `asesor` (
 
 LOCK TABLES `asesor` WRITE;
 /*!40000 ALTER TABLE `asesor` DISABLE KEYS */;
-INSERT INTO `asesor` VALUES (9,'Danca15',25,'Universidad','Profesor','Valdez','Cuevas','Estudiante','Breve Descripcion De El Asesor','prueba1@gmai.com','12345678','fotoasesores/face2.jpg'),(10,'Kioña',25,'Preparatoria','David','Pulido','Valdez','Desarrollador Web','Breve Descripcion De El Asesor','sillapone@gmail.com','874596856','fotoasesores/asesorpro3.png'),(11,'Danca21',19,'Preparatoria','Prueba','Hernandez','Martinez','Desarrollador Web','Breve Descripcion De El Asesor','pulidclass@gmail.com','458796585','fotoasesores/asesorpro4.jpg');
+INSERT INTO `asesor` VALUES (9,'Danca15',25,'Universidad','Profesor','Valdez','Cuevas','Estudiante','Breve Descripcion De El Asesor','prueba1@gmai.com','12345678','fotoasesores/face2.jpg'),(10,'Kioña',25,'Preparatoria','David','Pulido','Valdez','Desarrollador Web','Breve Descripcion De El Asesor','sillapone@gmail.com','874596856','fotoasesores/asesorpro3.png'),(11,'Danca21',19,'Preparatoria','Prueba','Hernandez','Martinez','Desarrollador Web','Breve Descripcion De El Asesor','pulidclass@gmail.com','458796585','fotoasesores/asesorpro4.jpg'),(12,'ElMasPro',25,'Preparatoria','Elber','Taco','Pan','Desarrollador Web','Breve Descripcion De El Asesor','profesor1@gmail.com','795685695','fotoasesores/asesorpro2.jpeg');
 /*!40000 ALTER TABLE `asesor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -65,7 +65,7 @@ CREATE TABLE `bitacora` (
   PRIMARY KEY (`Id_Bitacora`),
   KEY `fk_bitacora_usuario1_idx` (`usuario_Correo`),
   CONSTRAINT `fk_bitacora_usuario1` FOREIGN KEY (`usuario_Correo`) REFERENCES `usuario` (`Correo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `bitacora` (
 
 LOCK TABLES `bitacora` WRITE;
 /*!40000 ALTER TABLE `bitacora` DISABLE KEYS */;
-INSERT INTO `bitacora` VALUES (1,'El usuario con el correo:  pulidovaldezd@gmail.comcreo una cuenta de asesor, con el nombre de usuario: sillapone@gmail.com','Asesor','2020-12-14','pulidovaldezd@gmail.com'),(2,'El usuario con el correo:  pulidovaldezd@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Danca21','Asesor','2020-12-14','pulidovaldezd@gmail.com'),(3,'El usuario con el Numero De Usuario: 2Genero Una Cita con el asesor:11','Cita','2020-12-14','17231222@itslerdo.edu.mx');
+INSERT INTO `bitacora` VALUES (1,'El usuario con el correo:  pulidovaldezd@gmail.comcreo una cuenta de asesor, con el nombre de usuario: sillapone@gmail.com','Asesor','2020-12-14','pulidovaldezd@gmail.com'),(2,'El usuario con el correo:  pulidovaldezd@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Danca21','Asesor','2020-12-14','pulidovaldezd@gmail.com'),(3,'El usuario con el Numero De Usuario: 2Genero Una Cita con el asesor:11','Cita','2020-12-14','17231222@itslerdo.edu.mx'),(4,'El usuario con el correo:  pulidovaldezd@gmail.comcreo una cuenta de asesor, con el nombre de usuario: ElMasPro','Asesor','2020-12-14','pulidovaldezd@gmail.com');
 /*!40000 ALTER TABLE `bitacora` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +192,7 @@ CREATE TABLE `materiacategoria` (
   KEY `id_materia` (`id_materia`),
   CONSTRAINT `materiacategoria_ibfk_1` FOREIGN KEY (`id_asesor`) REFERENCES `asesor` (`Id_Asesor`),
   CONSTRAINT `materiacategoria_ibfk_2` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`Id_Materia`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,7 +201,7 @@ CREATE TABLE `materiacategoria` (
 
 LOCK TABLES `materiacategoria` WRITE;
 /*!40000 ALTER TABLE `materiacategoria` DISABLE KEYS */;
-INSERT INTO `materiacategoria` VALUES (1,9,1),(2,9,2),(3,9,3),(4,10,2),(5,10,3),(6,10,1),(7,11,2),(8,11,3),(9,11,1);
+INSERT INTO `materiacategoria` VALUES (1,9,1),(2,9,2),(3,9,3),(4,10,2),(5,10,3),(6,10,1),(7,11,2),(8,11,3),(9,11,1),(10,12,2),(11,12,3),(12,12,1);
 /*!40000 ALTER TABLE `materiacategoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -224,7 +224,7 @@ CREATE TABLE `material` (
   KEY `material_ibfk_1` (`Correo`),
   KEY `fk_material_asesor1_idx` (`asesor_Id_Asesor`),
   CONSTRAINT `fk_material_asesor1` FOREIGN KEY (`asesor_Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,6 +233,7 @@ CREATE TABLE `material` (
 
 LOCK TABLES `material` WRITE;
 /*!40000 ALTER TABLE `material` DISABLE KEYS */;
+INSERT INTO `material` VALUES (1,'profesor1@gmail.com','Formulario Integrales','2020-12-15','Matematicas','materialdidactico/P2PULIDOVALDEZ.doc',12);
 /*!40000 ALTER TABLE `material` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +258,7 @@ CREATE TABLE `noticia` (
   KEY `cita_ibfk_1` (`Correo`),
   KEY `fk_noticia_asesor1_idx` (`asesor_Id_Asesor`),
   CONSTRAINT `fk_noticia_asesor1` FOREIGN KEY (`asesor_Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,6 +267,7 @@ CREATE TABLE `noticia` (
 
 LOCK TABLES `noticia` WRITE;
 /*!40000 ALTER TABLE `noticia` DISABLE KEYS */;
+INSERT INTO `noticia` VALUES (3,'profesor1@gmail.com','Hola Mundo','Hola','2020-12-15','Fuentes Biblograficas...','Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius, ratione soluta perferendis suscipit voluptates vero nemo? Nesciunt unde recusandae vel quibusdam nobis neque perferendis non maxime facere ratione perspiciatis amet dolores, molestiae reprehenderit alias repudiandae, fugit rem ipsa magni enim harum tempora ad officiis. Nihil consectetur eligendi dolorum iure distinctio?','fotosnoticias/shutterstock_291965744.jpg',12),(4,'profesor1@gmail.com','Hola Mundo','El sistema oseo visto de cerca','2020-12-15','Fuentes Biblograficas...','Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius, ratione soluta perferendis suscipit voluptates vero nemo? Nesciunt unde recusandae vel quibusdam nobis neque perferendis non maxime facere ratione perspiciatis amet dolores, molestiae reprehenderit alias repudiandae, fugit rem ipsa magni enim harum tempora ad officiis. Nihil consectetur eligendi dolorum iure distinctio?','fotosnoticias/new1.jpg',12),(5,'profesor1@gmail.com','Bacterias importantes','Bacterias que debes conocer','2020-12-15','Fuentes Biblograficas...','Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius, ratione soluta perferendis suscipit voluptates vero nemo? Nesciunt unde recusandae vel quibusdam nobis neque perferendis non maxime facere ratione perspiciatis amet dolores, molestiae reprehenderit alias repudiandae, fugit rem ipsa magni enim harum tempora ad officiis. Nihil consectetur eligendi dolorum iure distinctio?','fotosnoticias/new2.jpg',12),(6,'profesor1@gmail.com','El Esqueleto Humano','El sistema oseo visto de cerca','2020-12-15','Fuentes Biblograficas...','Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius, ratione soluta perferendis suscipit voluptates vero nemo? Nesciunt unde recusandae vel quibusdam nobis neque perferendis non maxime facere ratione perspiciatis amet dolores, molestiae reprehenderit alias repudiandae, fugit rem ipsa magni enim harum tempora ad officiis. Nihil consectetur eligendi dolorum iure distinctio?','fotosnoticias/new1.jpg',12);
 /*!40000 ALTER TABLE `noticia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -348,7 +350,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES ('17231222@itslerdo.edu.mx','8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e','Validada',2,1,3365),('Kioa','ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413','Validada',3,NULL,NULL),('pulidclass@gmail.com','3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79','Validada',3,NULL,NULL),('pulidovaldezd@gmail.com','8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e','Validada',1,NULL,NULL);
+INSERT INTO `usuario` VALUES ('17231222@itslerdo.edu.mx','8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e','Validada',2,1,3365),('Kioa','ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413','Validada',3,NULL,NULL),('profesor1@gmail.com','b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86','Validada',3,NULL,NULL),('pulidclass@gmail.com','3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79','Validada',3,NULL,NULL),('pulidovaldezd@gmail.com','8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e','Validada',1,NULL,NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,7 +373,7 @@ CREATE TABLE `usuario_info` (
   PRIMARY KEY (`N_De_Usuario`),
   KEY `fk_usuario_info_usuario1_idx` (`usuario_Correo`),
   CONSTRAINT `fk_usuario_info_usuario1` FOREIGN KEY (`usuario_Correo`) REFERENCES `usuario` (`Correo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -380,7 +382,7 @@ CREATE TABLE `usuario_info` (
 
 LOCK TABLES `usuario_info` WRITE;
 /*!40000 ALTER TABLE `usuario_info` DISABLE KEYS */;
-INSERT INTO `usuario_info` VALUES (2,'David','Valdez','Valdez',23,'+528713975674','fotosusuarios/pp.jpg','17231222@itslerdo.edu.mx'),(3,'David','Valdez','Valdez',23,'+528713975674','fotosusuarios/WhatsApp Image 2019-11-26 at 13.18.51.jpeg','pulidovaldezd@gmail.com'),(4,'David','Pulido','Valdez',25,'874596856','fotoasesores/asesorpro3.png','Kioa'),(5,'Prueba','Hernandez','Martinez',19,'458796585','fotoasesores/asesorpro4.jpg','pulidclass@gmail.com');
+INSERT INTO `usuario_info` VALUES (2,'David','Valdez','Valdez',23,'+528713975674','fotosusuarios/pp.jpg','17231222@itslerdo.edu.mx'),(3,'David','Valdez','Valdez',23,'+528713975674','fotosusuarios/WhatsApp Image 2019-11-26 at 13.18.51.jpeg','pulidovaldezd@gmail.com'),(4,'David','Pulido','Valdez',25,'874596856','fotoasesores/asesorpro3.png','Kioa'),(5,'Prueba','Hernandez','Martinez',19,'458796585','fotoasesores/asesorpro4.jpg','pulidclass@gmail.com'),(6,'Elber','Taco','Pan',25,'795685695','fotoasesores/asesorpro2.jpeg','profesor1@gmail.com');
 /*!40000 ALTER TABLE `usuario_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -874,4 +876,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-14 21:13:15
+-- Dump completed on 2020-12-14 22:10:54

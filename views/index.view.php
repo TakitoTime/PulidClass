@@ -60,7 +60,7 @@
                 </div>
                 <div class="testimonio">
                     <div class="foto">
-                        <img src="img/face1.jpg" alt="">
+                        <img src="fotoasesores/face1.jpg" alt="">
                     </div>
                     <div class="opinion">
                         <p class="texto">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, eum?"</p>
@@ -70,7 +70,7 @@
 
                 <div class="testimonio derecha">
                     <div class="foto">
-                        <img src="img/face2.jpg" alt="">
+                        <img src="fotoasesores/face2.jpg" alt="">
                     </div>
                     <div class="opinion">
                         <p class="texto">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, eum?"</p>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="testimonio">
                     <div class="foto">
-                        <img src="img/face4.jpg" alt="">
+                        <img src="fotoasesores/face4.jpg" alt="">
                     </div>
                     <div class="opinion">
                         <p class="texto">"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, eum?"</p>

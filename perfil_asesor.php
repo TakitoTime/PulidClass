@@ -36,12 +36,12 @@ if(!isset($_SESSION['asesor'])){
 
             $statement = $conexion->prepare('SELECT * FROM Asesor WHERE Id_Asesor = :id_asesor');
             $statement->execute(array(':id_asesor' => $id_asesor));
+            $ficha_tecnica=$statement->fetch();
+
 
             $statement = $conexion->prepare('SELECT Nombre FROM materia INNER JOIN materiacategoria ON materiacategoria.id_materia = materia.Id_materia WHERE materiacategoria.id_asesor = :id_asesor');
             $statement->execute(array(':id_asesor'=> $id_asesor));
             $materias=$statement->fetchAll();
-
-            $ficha_tecnica=$statement->fetch();
 
             $_SESSION['n_de_usuario']=$n_de_usuario;
 
@@ -129,7 +129,7 @@ if(!isset($_SESSION['asesor'])){
                     $referencias =trim($_POST["referencias"]);
                     $referencias = filter_var($referencias, FILTER_SANITIZE_STRING);
 
-                    $statement = $conexion->prepare('INSERT INTO noticia values(NULL, :correo, :titulo, :subtitulo, :fecha, :fuentes, :informacion, :imagen)');
+                    $statement = $conexion->prepare('INSERT INTO noticia values(NULL, :correo, :titulo, :subtitulo, :fecha, :fuentes, :informacion, :imagen, :id_asesor)');
                     $statement->execute(array(
                             ':correo' => $correo,
                             ':titulo' => $titulo,
@@ -137,7 +137,8 @@ if(!isset($_SESSION['asesor'])){
                             ':fecha' => $fecha,
                             ':fuentes' => $referencias,
                             ':informacion' => $informacion,
-                            ':imagen' => $imagen_noticia
+                            ':imagen' => $imagen_noticia,
+                            ':id_asesor' => $id_asesor
                         ));
     
                     $resultado = $statement->fetchColumn();
@@ -179,13 +180,14 @@ if(!isset($_SESSION['asesor'])){
                     }
                     $archivo=$target_path;
 
-                    $statement = $conexion->prepare('INSERT INTO material values(NULL, :correo, :titulo, :fecha, :materia, :archivo)');
+                    $statement = $conexion->prepare('INSERT INTO material values(NULL, :correo, :titulo, :fecha, :materia, :archivo, :id_asesor)');
                     $statement->execute(array(
                             ':correo' => $correo,
                             ':titulo' => $titulo,
                             ':fecha' => $fecha,
                             ':materia' => $materia,
-                            ':archivo' => $archivo
+                            ':archivo' => $archivo,
+                            ':id_asesor' => $id_asesor,
                         ));
     
                     $resultado = $statement->fetchColumn();
