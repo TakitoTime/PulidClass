@@ -2,7 +2,12 @@
     require('conexion.php');
 
     $folio=$_GET['Folio'];
-    $statement = $conexion->prepare('SELECT * FROM Cita WHERE Folio = :folio');
+
+    $statement = $conexion->prepare("SELECT C.Folio, C.Fecha,C.Hora_Inicial,C.Hora_Final,C.N_De_Horas,C.Costo, Concat(UI.Nombres,' ', UI.A_Paterno,' ', UI.A_Materno) as Nombre_Completo,Concat(A.Nombres,' ', A.A_Paterno,' ', A.A_Materno) as Nombre_Asesor, Concat(D.Calle,' ', D.Numero,', ', D.Codigo_Postal)  as DireccionP1, Concat(D.Colonia,', ', D.Ciudad,', ', D.Estado) as DireccionP2 
+    from cita as C inner join usuario_info as UI on C.N_De_Usuario=UI.N_De_Usuario
+                   inner join direccion as D on D.Id_Direccion=C.Id_Direccion
+                   inner join asesor as A on A.Id_Asesor=C.Id_Asesor
+                   where folio=:folio");
     $statement->execute(array(':folio' => $folio));
         
     $cita=$statement->fetch();
@@ -22,19 +27,8 @@
     $direccion1=$cita['DireccionP1'];
     $direccion2=$cita['DireccionP2'];
 
-    $id_asesor=$cita['Id_Asesor'];
-
-    $statement = $conexion->prepare('SELECT * FROM Asesor WHERE Id_Asesor = :id_asesor');
-    $statement->execute(array(':id_asesor' => $id_asesor));
-    $asesor=$statement->fetch();
-        
-    $nombre_asesor=$asesor['Nombres']." ".$asesor['A_Paterno']." ".$asesor['A_Materno'];
-
-    $statement = $conexion->prepare('SELECT * FROM Usuario WHERE N_De_Usuario = :n_de_usuario');
-    $statement->execute(array(':n_de_usuario' => $_SESSION['n_de_usuario']));
-    $usuario=$statement->fetch();
-        
-    $nombre_usuario=$usuario['Nombres']." ".$usuario['A_Paterno']." ".$usuario['A_Materno'];
+    $nombre_usuario=$cita['Nombre_Completo'];
+    $nombre_asesor=$cita['Nombre_Asesor'];
 
     require('views/ticket.view.php');
 ?>

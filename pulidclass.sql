@@ -1,5 +1,3 @@
-create database pulidclass
-use pulidclass;
 -- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: pulidclass
@@ -9,7 +7,7 @@ use pulidclass;
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;asesor
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -38,7 +36,7 @@ CREATE TABLE `asesor` (
   `Telefono` varchar(16) DEFAULT NULL,
   `Foto` text,
   PRIMARY KEY (`Id_Asesor`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +45,7 @@ CREATE TABLE `asesor` (
 
 LOCK TABLES `asesor` WRITE;
 /*!40000 ALTER TABLE `asesor` DISABLE KEYS */;
-INSERT INTO `asesor` VALUES (9,'Danca15',25,'Universidad','Profesor','Valdez','Cuevas','Estudiante','Breve Descripcion De El Asesor','prueba1@gmai.com','12345678','fotoasesores/face2.jpg');
+INSERT INTO `asesor` VALUES (9,'Danca15',25,'Universidad','Profesor','Valdez','Cuevas','Estudiante','Breve Descripcion De El Asesor','prueba1@gmai.com','12345678','fotoasesores/face2.jpg'),(10,'Kioña',25,'Preparatoria','David','Pulido','Valdez','Desarrollador Web','Breve Descripcion De El Asesor','sillapone@gmail.com','874596856','fotoasesores/asesorpro3.png'),(11,'Danca21',19,'Preparatoria','Prueba','Hernandez','Martinez','Desarrollador Web','Breve Descripcion De El Asesor','pulidclass@gmail.com','458796585','fotoasesores/asesorpro4.jpg');
 /*!40000 ALTER TABLE `asesor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +65,7 @@ CREATE TABLE `bitacora` (
   PRIMARY KEY (`Id_Bitacora`),
   KEY `fk_bitacora_usuario1_idx` (`usuario_Correo`),
   CONSTRAINT `fk_bitacora_usuario1` FOREIGN KEY (`usuario_Correo`) REFERENCES `usuario` (`Correo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,6 +74,7 @@ CREATE TABLE `bitacora` (
 
 LOCK TABLES `bitacora` WRITE;
 /*!40000 ALTER TABLE `bitacora` DISABLE KEYS */;
+INSERT INTO `bitacora` VALUES (1,'El usuario con el correo:  pulidovaldezd@gmail.comcreo una cuenta de asesor, con el nombre de usuario: sillapone@gmail.com','Asesor','2020-12-14','pulidovaldezd@gmail.com'),(2,'El usuario con el correo:  pulidovaldezd@gmail.comcreo una cuenta de asesor, con el nombre de usuario: Danca21','Asesor','2020-12-14','pulidovaldezd@gmail.com'),(3,'El usuario con el Numero De Usuario: 2Genero Una Cita con el asesor:11','Cita','2020-12-14','17231222@itslerdo.edu.mx');
 /*!40000 ALTER TABLE `bitacora` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +95,7 @@ CREATE TABLE `cita` (
   `Hora_Inicial` varchar(15) DEFAULT NULL,
   `Hora_Final` varchar(15) DEFAULT NULL,
   `N_De_Horas` int(11) DEFAULT NULL,
-  `Costo` DECIMAL(10,2) NOT NULL,
+  `Costo` decimal(10,2) NOT NULL,
   PRIMARY KEY (`Folio`),
   KEY `cita_ibfk_1` (`N_De_Usuario`),
   KEY `fk_cita_usuario_info1_idx` (`N_De_Usuario`),
@@ -105,7 +104,7 @@ CREATE TABLE `cita` (
   CONSTRAINT `fk_cita_asesor1` FOREIGN KEY (`Id_Asesor`) REFERENCES `asesor` (`Id_Asesor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cita_direccion1` FOREIGN KEY (`Id_Direccion`) REFERENCES `direccion` (`Id_Direccion`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cita_usuario_info1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario_info` (`N_De_Usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,6 +113,7 @@ CREATE TABLE `cita` (
 
 LOCK TABLES `cita` WRITE;
 /*!40000 ALTER TABLE `cita` DISABLE KEYS */;
+INSERT INTO `cita` VALUES (1,2,11,1,3,'2020-12-31','08:00','10:00',2,200.00);
 /*!40000 ALTER TABLE `cita` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +192,7 @@ CREATE TABLE `materiacategoria` (
   KEY `id_materia` (`id_materia`),
   CONSTRAINT `materiacategoria_ibfk_1` FOREIGN KEY (`id_asesor`) REFERENCES `asesor` (`Id_Asesor`),
   CONSTRAINT `materiacategoria_ibfk_2` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`Id_Materia`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,6 +201,7 @@ CREATE TABLE `materiacategoria` (
 
 LOCK TABLES `materiacategoria` WRITE;
 /*!40000 ALTER TABLE `materiacategoria` DISABLE KEYS */;
+INSERT INTO `materiacategoria` VALUES (1,9,1),(2,9,2),(3,9,3),(4,10,2),(5,10,3),(6,10,1),(7,11,2),(8,11,3),(9,11,1);
 /*!40000 ALTER TABLE `materiacategoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -279,7 +280,7 @@ CREATE TABLE `precio` (
   `Id_Precio` int(11) NOT NULL AUTO_INCREMENT,
   `Costo` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`Id_Precio`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,6 +289,7 @@ CREATE TABLE `precio` (
 
 LOCK TABLES `precio` WRITE;
 /*!40000 ALTER TABLE `precio` DISABLE KEYS */;
+INSERT INTO `precio` VALUES (1,100.00),(2,200.00),(3,300.00);
 /*!40000 ALTER TABLE `precio` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,7 +311,7 @@ CREATE TABLE `tarjeta` (
   PRIMARY KEY (`Id_Tarjeta`),
   KEY `N_De_Usuario` (`N_De_Usuario`),
   CONSTRAINT `tarjeta_ibfk_1` FOREIGN KEY (`N_De_Usuario`) REFERENCES `usuario_info` (`N_De_Usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -318,6 +320,7 @@ CREATE TABLE `tarjeta` (
 
 LOCK TABLES `tarjeta` WRITE;
 /*!40000 ALTER TABLE `tarjeta` DISABLE KEYS */;
+INSERT INTO `tarjeta` VALUES (1,2,'1234567890123456','David Pulido',5,2020,269);
 /*!40000 ALTER TABLE `tarjeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,7 +348,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES ('17231222@itslerdo.edu.mx','8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e','Validada',2,1,3365),('pulidovaldezd@gmail.com','8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e','Validada',1,NULL,NULL);
+INSERT INTO `usuario` VALUES ('17231222@itslerdo.edu.mx','8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e','Validada',2,1,3365),('Kioa','ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413','Validada',3,NULL,NULL),('pulidclass@gmail.com','3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79','Validada',3,NULL,NULL),('pulidovaldezd@gmail.com','8ebd873aea90b4acc4a44be4085fadf938734e04f071bb2ba622ce9aefc3d55bb09de4e15c424e86896ccd64de326717b5d718439159ff89b45da9730583288e','Validada',1,NULL,NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -368,7 +371,7 @@ CREATE TABLE `usuario_info` (
   PRIMARY KEY (`N_De_Usuario`),
   KEY `fk_usuario_info_usuario1_idx` (`usuario_Correo`),
   CONSTRAINT `fk_usuario_info_usuario1` FOREIGN KEY (`usuario_Correo`) REFERENCES `usuario` (`Correo`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -377,7 +380,7 @@ CREATE TABLE `usuario_info` (
 
 LOCK TABLES `usuario_info` WRITE;
 /*!40000 ALTER TABLE `usuario_info` DISABLE KEYS */;
-INSERT INTO `usuario_info` VALUES (2,'David','Valdez','Valdez',23,'+528713975674','fotosusuarios/pp.jpg','17231222@itslerdo.edu.mx'),(3,'David','Valdez','Valdez',23,'+528713975674','fotosusuarios/WhatsApp Image 2019-11-26 at 13.18.51.jpeg','pulidovaldezd@gmail.com');
+INSERT INTO `usuario_info` VALUES (2,'David','Valdez','Valdez',23,'+528713975674','fotosusuarios/pp.jpg','17231222@itslerdo.edu.mx'),(3,'David','Valdez','Valdez',23,'+528713975674','fotosusuarios/WhatsApp Image 2019-11-26 at 13.18.51.jpeg','pulidovaldezd@gmail.com'),(4,'David','Pulido','Valdez',25,'874596856','fotoasesores/asesorpro3.png','Kioa'),(5,'Prueba','Hernandez','Martinez',19,'458796585','fotoasesores/asesorpro4.jpg','pulidclass@gmail.com');
 /*!40000 ALTER TABLE `usuario_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -494,9 +497,9 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -504,7 +507,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `spAltaCita`(IN `_N_De_Usuario` INT,
 BEGIN
 		declare _correo varchar(70) default '';
         
-        set _correo= (SELECT correo from usuario_info where  N_De_Usuario=_N_De_Usuario);
+        set _correo= (SELECT usuario_correo from usuario_info where  N_De_Usuario=_N_De_Usuario);
 		insert into Cita(N_De_Usuario, Id_Asesor, Id_Tarjeta, Id_Direccion, Fecha, Hora_Inicial, Hora_Final, N_De_Horas, Costo) Values 
         (_N_De_Usuario,_Id_Asesor,_Id_Tarjeta,_Id_Direccion,_Fecha,_Hora_Inicial,_Hora_Final,_NDeHoras,_Costo);
             
@@ -871,4 +874,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-13 12:24:01
+-- Dump completed on 2020-12-14 21:13:15
