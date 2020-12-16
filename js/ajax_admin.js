@@ -25,7 +25,7 @@ function cargarBitacora(){
                 const info = datos[index];
                 var elemento = document.createElement('tr');
                 elemento.innerHTML += "<td>" + info.Id_Bitacora + "</td>";
-                elemento.innerHTML += "<td>" + info.Correo + "</td>";
+                elemento.innerHTML += "<td>" + info.usuario_Correo + "</td>";
                 elemento.innerHTML += "<td>" + info.Accion_Realizada + "</td>";
                 elemento.innerHTML += "<td>" + info.TablaAfectada + "</td>";
                 elemento.innerHTML += "<td>" + info.Fecha + "</td>";
